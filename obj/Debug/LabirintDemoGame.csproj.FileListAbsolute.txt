@@ -1,0 +1,1 @@
+/home/valery/projects/game/LabirintDemoGame/LabirintDemoGame/obj/Debug/LabirintDemoGame.exe
