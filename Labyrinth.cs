@@ -58,8 +58,14 @@ namespace LabirintDemoGame
             Width = width;
             Maze = new HashSet<Cell>();
             UnvisitedCells = new HashSet<Cell>();
+            VisitingOrder = new Stack<Cell>((width - 1) * (height - 1));
+            InitialPoint = new Cell();
             StartGenerate();
         }
+
+        public Cell InitialPoint { get; set; }
+
+        public Stack<Cell> VisitingOrder { get; set; }
 
         private void StartGenerate()
         {
@@ -71,30 +77,35 @@ namespace LabirintDemoGame
 
         public void GenerateLabyrinth()
         {
-            var currentCell = UnvisitedCells.First();
             var random = new Random();
+            var currentCell = UnvisitedCells.ElementAt(random.Next(0, (Width / 2) * (Height / 2)));
+            InitialPoint = currentCell;
+            Maze.Add(currentCell);
+            UnvisitedCells.Remove(currentCell);
             Cell[] currentNeighbours;
+            Cell nextCell;
             do
             {
-                try
+                currentNeighbours = GetUnvisitedNeighbours(currentCell);
+                if (currentNeighbours.Any() && Maze.Contains(currentCell))
                 {
-                    Maze.Add(currentCell);
-                    currentNeighbours = GetUnvisitedNeighbours(currentCell);
-                    Console.WriteLine(currentCell);
-                    var nextCell = currentNeighbours[random.Next(0, currentNeighbours.Length - 1)];
+                    var a = random.Next(0, currentNeighbours.Length);
+                    nextCell = currentNeighbours[a];
                     var middleCell = new Cell(
-                        Math.Abs(currentCell.X - nextCell.X) / 2 + 1,
-                        Math.Abs(currentCell.Y - nextCell.Y) / 2 + 1,
+                        Math.Abs(currentCell.X + nextCell.X) / 2,
+                        Math.Abs(currentCell.Y + nextCell.Y) / 2,
                         CellTypes.Empty);
-                    UnvisitedCells.Remove(currentCell);
                     Maze.Add(middleCell);
+                    VisitingOrder.Push(currentCell);
                     currentCell = nextCell;
+                    Maze.Add(currentCell);
+                    UnvisitedCells.Remove(currentCell);
                 }
-                catch
+                else
                 {
-                    break;
+                    currentCell = VisitingOrder.Pop();
                 }
-            } while (currentNeighbours.Any());
+            } while (UnvisitedCells.Count != 0 || VisitingOrder.Count != 0);
         }
 
         public Cell[] GetUnvisitedNeighbours(Cell currentCell)
@@ -118,7 +129,7 @@ namespace LabirintDemoGame
             }
 
             foreach (var cell in Maze)
-                maze[cell.X][cell.Y] = ". ";
+                maze[cell.X][cell.Y] = !cell.Equals(InitialPoint) ? ". "  : "S ";
             return string.Join("\n", maze.Select(x => string.Join("", x)).ToArray());
         }
     }

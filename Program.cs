@@ -6,8 +6,7 @@ namespace LabirintDemoGame
     {
         public static void Main(string[] args)
         {
-            var a = new Labyrinth(7, 7);
-            Console.WriteLine(a);
+            var a = new Labyrinth(9, 9);
             a.GenerateLabyrinth();
             Console.WriteLine(a);
         }
