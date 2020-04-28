@@ -1,7 +1,0 @@
-/home/valery/projects/game/LabirintDemoGame/LabirintDemoGame/obj/Debug/.NETFramework,Version=v4.5.2.AssemblyAttribute.cs
-/home/valery/projects/game/LabirintDemoGame/LabirintDemoGame/bin/Debug/LabirintDemoGame.exe.mdb
-/home/valery/projects/game/LabirintDemoGame/LabirintDemoGame/bin/Debug/LabirintDemoGame.exe
-/home/valery/projects/game/LabirintDemoGame/LabirintDemoGame/obj/Debug/LabirintDemoGame.exe
-/home/valery/projects/game/LabirintDemoGame/LabirintDemoGame/obj/Debug/LabirintDemoGame.exe.mdb
-/home/valery/projects/game/LabirintDemoGame/LabirintDemoGame/bin/Debug/nunit.framework.dll
-/home/valery/projects/game/LabirintDemoGame/LabirintDemoGame/bin/Debug/System.ValueTuple.dll
