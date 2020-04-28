@@ -122,7 +122,7 @@ namespace LabirintDemoGame
             for (int i = 0; i < Height; i++)
             {
                 maze.Add(new string[Width]);
-                for (int j = 0; j < Height; j++)
+                for (int j = 0; j < Width; j++)
                     maze[i][j] = "# ";
             }
 
