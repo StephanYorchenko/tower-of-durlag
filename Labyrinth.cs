@@ -7,16 +7,16 @@ namespace LabirintDemoGame
     public enum CellTypes
     {
         Empty,
-        Wall,
-        Start,
-        End
+        // Wall,
+        // Start,
+        // End
     }
     
     public struct Cell
     {
         public int X { get; }
         public int Y { get; }
-        public CellTypes Type { get; }
+        private CellTypes Type { get; }
 
         public Cell(int x, int y, CellTypes type)
         {
@@ -35,9 +35,10 @@ namespace LabirintDemoGame
 
     public class Labyrinth
     {
-        public int Height { get; }
-        public int Width { get; }
-        public HashSet<Cell> Maze { get; }
+        private int Height { get; }
+        private int Width { get; }
+        private HashSet<Cell> Maze { get; }
+        // ReSharper disable once FieldCanBeMadeReadOnly.Global
         public HashSet<Cell> UnvisitedCells;
         
         private static readonly List<Tuple<int, int>> NeighboursCoordinated = new List<Tuple<int, int>>
@@ -61,9 +62,9 @@ namespace LabirintDemoGame
             StartGenerate();
         }
 
-        public Cell InitialPoint { get; set; }
+        private Cell InitialPoint { get; set; }
 
-        public Stack<Cell> VisitingOrder { get; set; }
+        private Stack<Cell> VisitingOrder { get; }
 
         private void StartGenerate()
         {
@@ -80,15 +81,13 @@ namespace LabirintDemoGame
             InitialPoint = currentCell;
             Maze.Add(currentCell);
             UnvisitedCells.Remove(currentCell);
-            Cell[] currentNeighbours;
-            Cell nextCell;
             do
             {
-                currentNeighbours = GetUnvisitedNeighbours(currentCell);
+                var currentNeighbours = GetUnvisitedNeighbours(currentCell);
                 if (currentNeighbours.Any() && Maze.Contains(currentCell))
                 {
                     var a = random.Next(0, currentNeighbours.Length);
-                    nextCell = currentNeighbours[a];
+                    var nextCell = currentNeighbours[a];
                     var middleCell = new Cell(
                         Math.Abs(currentCell.X + nextCell.X) / 2,
                         Math.Abs(currentCell.Y + nextCell.Y) / 2,

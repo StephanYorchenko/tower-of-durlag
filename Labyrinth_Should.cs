@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 
 namespace LabirintDemoGame
@@ -13,7 +12,7 @@ namespace LabirintDemoGame
         {
             var sampleLabyrinth = new Labyrinth(width, height);
             var example = new Cell(1, 1, CellTypes.Empty);
-            Assert.AreEqual(expected, sampleLabyrinth.UnvisitedCells.Count());
+            Assert.AreEqual(expected, sampleLabyrinth.UnvisitedCells.Count);
             Assert.IsTrue(sampleLabyrinth.UnvisitedCells.Contains(example), "Sample start generator");
         }
 

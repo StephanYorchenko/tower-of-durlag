@@ -2,11 +2,11 @@
 
 namespace LabirintDemoGame
 {
-    internal class Program
+    internal static class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
-            var a = new Labyrinth(5, 19);
+            var a = new Labyrinth(13, 9);
             a.GenerateLabyrinth();
             Console.WriteLine(a);
         }
