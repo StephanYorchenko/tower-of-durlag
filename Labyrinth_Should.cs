@@ -25,7 +25,6 @@ namespace LabirintDemoGame
             var neighboursCorner = labyrinth.GetUnvisitedNeighbours(new Cell(1, 1, CellTypes.Empty));
             Assert.AreEqual(4, neighboursMiddle.Length);
             Assert.AreEqual(2, neighboursCorner.Length);
-            Assert.AreEqual(1, 2);
         }
     }
 }
