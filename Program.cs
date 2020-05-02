@@ -9,7 +9,7 @@ namespace LabirintDemoGame
         {
             var a = Game.CreateFromConfig("5%7");
             Console.WriteLine(a.Level.Map);
-            //Application.Run(new LabyrinthWindow(a));
+            Application.Run(new LabyrinthWindow(a));
         }
     }
 }
