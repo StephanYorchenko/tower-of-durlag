@@ -8,8 +8,8 @@ namespace LabirintDemoGame
     {
         public int Height { get; }
         public int Width { get; }
-        public Cell InitialPoint { get; set; }
-        public Cell EndPoint { get; set; }
+        public Cell InitialPoint { get; private set; }
+        public Cell EndPoint { get; private set; }
         public HashSet<Cell> Maze { get; }
         // ReSharper disable once FieldCanBeMadeReadOnly.Global
         public HashSet<Cell> UnvisitedCells;
@@ -99,6 +99,22 @@ namespace LabirintDemoGame
             foreach (var cell in Maze)
                 maze[cell.X][cell.Y] = !cell.Equals(InitialPoint) ? ". "  : "S ";
             return string.Join("\n", maze.Select(x => string.Join("", x)).ToArray());
+        }
+
+        public Cell[,] ToArray()
+        {
+            var maze = new Cell[Height, Width];
+            for (int i = 0; i < Height; i++)
+            for (int j = 0; j < Width; j++)
+                    maze[i, j] = new Cell(i, j, CellTypes.Wall);
+
+            foreach (var cell in Maze)
+                maze[cell.X, cell.Y] = cell.Equals(InitialPoint)
+                    ? new Cell(cell.X, cell.Y, CellTypes.Start)  
+                    : cell.Equals(EndPoint) 
+                        ? new Cell(cell.X, cell.Y, CellTypes.End) 
+                        : new Cell(cell.X, cell.Y, CellTypes.Empty);
+            return maze;
         }
     }
 }

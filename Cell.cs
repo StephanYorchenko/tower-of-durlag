@@ -4,7 +4,7 @@ namespace LabirintDemoGame
     {
         public int X { get; }
         public int Y { get; }
-        private CellTypes Type { get; }
+        public CellTypes Type { get; }
 
         public Cell(int x, int y, CellTypes type)
         {
@@ -13,9 +13,28 @@ namespace LabirintDemoGame
             Type = type;
         }
 
+        public bool Equals(Cell obj)
+        {
+            return X == obj.X && Y == obj.Y;
+        }
+
         public override string ToString()
         {
-            return $"X:{X} Y:{Y} Type:{Type}";
+            switch (Type)
+            {
+                case CellTypes.Player:
+                    return "@ ";
+                case CellTypes.Empty:
+                    return "  ";
+                case CellTypes.End:
+                    return "E ";
+                case CellTypes.Start:
+                    return "S ";
+                case CellTypes.Wall:
+                    return "# ";
+                default:
+                    return "??";
+            }
         }
     }
 }

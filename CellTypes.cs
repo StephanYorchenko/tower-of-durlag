@@ -3,8 +3,9 @@ namespace LabirintDemoGame
     public enum CellTypes
     {
         Empty,
-        // Wall,
-        // Start,
-        // End
+        Wall,
+        Start,
+        End, 
+        Player
     }
 }
