@@ -14,7 +14,7 @@ namespace LabirintDemoGame
         public Cell InitialPoint => labyrinthGenerator.InitialPoint;
         public Cell EndPoint => labyrinthGenerator.EndPoint;
         
-        public readonly Cell PlayerPosition;
+        public Cell PlayerPosition;
 
         public Cell[,] Maze;
         
@@ -27,6 +27,19 @@ namespace LabirintDemoGame
             Maze[PlayerPosition.X, PlayerPosition.Y] = PlayerPosition;
         }
 
+        private bool IsMovingCorrect(Direction direction)
+        {
+            var x = direction.X + PlayerPosition.X;
+            var y = direction.Y + PlayerPosition.Y;
+            return x >= 0 && y >= 0 && x < MazeWidth && y < MazeHeight && Maze[x, y].Type != CellTypes.Wall;
+        }
+
+        public void MakePlayerMove(Direction direction)
+        {
+            if (IsMovingCorrect(direction))
+                PlayerPosition = new Cell(direction.X + PlayerPosition.X,
+                     direction.Y + PlayerPosition.Y, CellTypes.Player);
+        }
         public override string ToString()
         {
             var stringMaze = new StringBuilder();
