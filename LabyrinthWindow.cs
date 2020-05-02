@@ -10,12 +10,12 @@ namespace LabirintDemoGame
     {
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
         private readonly Game game;
-        private const int size = 32;
+        private const int sizeImages = 64;
 
         public LabyrinthWindow(Game game, DirectoryInfo imagesDirectory = null)
         {
             this.game = game;
-            ClientSize = new Size(size * game.MazeWidth, size * game.MazeHeight);
+            ClientSize = new Size(sizeImages * game.MazeWidth, sizeImages * game.MazeHeight);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
                 imagesDirectory = new DirectoryInfo("Images");
@@ -38,16 +38,16 @@ namespace LabirintDemoGame
         {
             for (var i = 0; i < game.MazeHeight; i++)
             for (var j = 0; j < game.MazeWidth; j++)
-                e.Graphics.DrawImage(bitmaps["Empty"], new Point(j * size, i * size));
+                e.Graphics.DrawImage(bitmaps["Empty"], new Point(j * sizeImages, i * sizeImages));
                 
             
             for (var i = 0; i < game.MazeHeight; i++)
             for (var j = 0; j < game.MazeWidth; j++)
                 if (game.Map[i, j].Type.ToString() != "Player")
-                    e.Graphics.DrawImage(bitmaps[game.Map[i, j].Type.ToString()], new Point(j * 32, i * 32));
+                    e.Graphics.DrawImage(bitmaps[game.Map[i, j].Type.ToString()], new Point(j * sizeImages, i * sizeImages));
             
             e.Graphics.DrawImage(bitmaps["Player"], 
-                new Point(game.PlayerPosition.X * size, game.PlayerPosition.Y * size));
+                new Point(game.PlayerPosition.X * sizeImages, game.PlayerPosition.Y * sizeImages));
             e.Graphics.ResetTransform();
         }
         protected override void OnKeyDown(KeyEventArgs e)
