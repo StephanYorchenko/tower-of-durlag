@@ -7,12 +7,17 @@ namespace LabirintDemoGame
     public class Player
     {
         public List<PlotSubject> Bag;
-        public int Health;
+        public int Health { get; private set; }
 
         public Player()
         {
             Bag = new List<PlotSubject>();
             Health = 100;
+        }
+
+        public void ChangeHp(int deltaHp)
+        {
+            Health -= deltaHp;
         }
 
         public Direction Move(Directions direction)
