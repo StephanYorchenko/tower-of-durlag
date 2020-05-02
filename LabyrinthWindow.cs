@@ -9,11 +9,11 @@ namespace LabirintDemoGame
     public class LabyrinthWindow : Form
     {
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
-        private readonly Game game;
+        private readonly MapController map;
         
-        public LabyrinthWindow(Game labyrinth, DirectoryInfo imagesDirectory = null)
+        public LabyrinthWindow(MapController labyrinth, DirectoryInfo imagesDirectory = null)
         {
-            game = labyrinth;
+            map = labyrinth;
             ClientSize = new Size(32 * labyrinth.MazeHeight, 32 * labyrinth.MazeWidth);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
@@ -31,14 +31,14 @@ namespace LabirintDemoGame
         
         protected override void OnPaint(PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(Brushes.Black, 0, 0, 32 * game.MazeHeight, 32 * game.MazeWidth);
-            for (int i = 0; i < game.MazeHeight; i++)
+            e.Graphics.FillRectangle(Brushes.Black, 0, 0, 32 * map.MazeHeight, 32 * map.MazeWidth);
+            for (int i = 0; i < map.MazeHeight; i++)
             {
-                for (int j = 0; j < game.MazeWidth; j++)
+                for (int j = 0; j < map.MazeWidth; j++)
                 {
-                    if (game.Maze[i, j].Type.ToString() != "Empty")
+                    if (map.Maze[i, j].Type.ToString() != "Empty")
                     {
-                        e.Graphics.DrawImage(bitmaps[game.Maze[i, j].Type.ToString()], new Point(i * 32, j * 32));
+                        e.Graphics.DrawImage(bitmaps[map.Maze[i, j].Type.ToString()], new Point(i * 32, j * 32));
                     }
                 }
             }
