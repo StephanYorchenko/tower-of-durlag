@@ -37,9 +37,11 @@ namespace LabirintDemoGame
     {
         private int Height { get; }
         private int Width { get; }
+        private Cell InitialPoint { get;}
         private HashSet<Cell> Maze { get; }
         // ReSharper disable once FieldCanBeMadeReadOnly.Global
         public HashSet<Cell> UnvisitedCells;
+        private Stack<Cell> VisitingOrder { get; }
         
         private static readonly List<Tuple<int, int>> NeighboursCoordinated = new List<Tuple<int, int>>
         {
@@ -61,10 +63,6 @@ namespace LabirintDemoGame
             InitialPoint = new Cell();
             StartGenerate();
         }
-
-        private Cell InitialPoint { get; set; }
-
-        private Stack<Cell> VisitingOrder { get; }
 
         private void StartGenerate()
         {
