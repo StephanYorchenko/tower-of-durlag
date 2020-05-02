@@ -18,6 +18,7 @@
       <e p="Level.cs" t="Include" />
       <e p="MapController.cs" t="Include" />
       <e p="Player.cs" t="Include" />
+      <e p="Player_Should.cs" t="Include" />
       <e p="PlotAct.cs" t="Include" />
       <e p="PlotSubject.cs" t="Include" />
       <e p="Program.cs" t="Include" />

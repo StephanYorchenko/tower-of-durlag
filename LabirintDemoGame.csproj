@@ -53,12 +53,14 @@
     <Compile Include="Directions.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Game_Should.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="MapController.cs" />
     <Compile Include="LabyrinthGenerator.cs" />
     <Compile Include="LabyrinthWindow.cs" />
     <Compile Include="LabyrinthGenerator_Should.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Player_Should.cs" />
     <Compile Include="PlotAct.cs" />
     <Compile Include="PlotSubject.cs" />
     <Compile Include="Program.cs" />

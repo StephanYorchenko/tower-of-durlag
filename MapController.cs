@@ -16,7 +16,7 @@ namespace LabirintDemoGame
         
         public Cell PlayerPosition;
 
-        public Cell[,] Maze;
+        public Cell[,] Maze { get; }
         
         public MapController(int width, int height)
         {

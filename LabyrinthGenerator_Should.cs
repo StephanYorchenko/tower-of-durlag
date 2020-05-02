@@ -25,5 +25,14 @@ namespace LabirintDemoGame
             Assert.AreEqual(4, neighboursMiddle.Length);
             Assert.AreEqual(2, neighboursCorner.Length);
         }
+
+        [TestCase(5, 5)]
+        [TestCase(7, 3)]
+        public void EndAndInitialPointAreDifferent(int width, int height)
+        {
+            var labyrinth = new LabyrinthGenerator(height, width);
+            labyrinth.GenerateLabyrinth();
+            Assert.IsFalse(labyrinth.InitialPoint.Equals(labyrinth.EndPoint));
+        }
     }
 }
