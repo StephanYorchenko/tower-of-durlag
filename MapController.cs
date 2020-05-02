@@ -24,7 +24,6 @@ namespace LabirintDemoGame
             labyrinthGenerator.GenerateLabyrinth();
             PlayerPosition = new Cell(InitialPoint.X, InitialPoint.Y, CellTypes.Player);
             Maze = labyrinthGenerator.ToArray();
-            Maze[PlayerPosition.X, PlayerPosition.Y] = PlayerPosition;
         }
 
         private bool IsMovingCorrect(Direction direction)

@@ -9,6 +9,7 @@
       <e p="Direction.cs" t="Include" />
       <e p="Directions.cs" t="Include" />
       <e p="Game.cs" t="Include" />
+      <e p="Game_Should.cs" t="Include" />
       <e p="LabirintDemoGame.csproj" t="IncludeRecursive" />
       <e p="LabirintDemoGame.sln" t="IncludeFlat" />
       <e p="LabyrinthGenerator.cs" t="Include" />
