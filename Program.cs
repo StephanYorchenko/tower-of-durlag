@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace LabirintDemoGame
 {
@@ -9,6 +10,8 @@ namespace LabirintDemoGame
             var a = new Labyrinth(13, 9);
             a.GenerateLabyrinth();
             Console.WriteLine(a);
+            var form = new Form();
+            Application.Run(form);
         }
     }
 }
