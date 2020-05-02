@@ -10,6 +10,13 @@
       <e p="Directions.cs" t="Include" />
       <e p="Game.cs" t="Include" />
       <e p="Game_Should.cs" t="Include" />
+      <e p="Images" t="Include">
+        <e p="Empty.png" t="Include" />
+        <e p="End.png" t="Include" />
+        <e p="Player.png" t="Include" />
+        <e p="Start.png" t="Include" />
+        <e p="Wall.png" t="Include" />
+      </e>
       <e p="LabirintDemoGame.csproj" t="IncludeRecursive" />
       <e p="LabirintDemoGame.sln" t="IncludeFlat" />
       <e p="LabyrinthGenerator.cs" t="Include" />
@@ -18,6 +25,7 @@
       <e p="Level.cs" t="Include" />
       <e p="MapController.cs" t="Include" />
       <e p="Player.cs" t="Include" />
+      <e p="Player_Should.cs" t="Include" />
       <e p="PlotAct.cs" t="Include" />
       <e p="PlotSubject.cs" t="Include" />
       <e p="Program.cs" t="Include" />

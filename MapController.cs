@@ -16,7 +16,7 @@ namespace LabirintDemoGame
         
         public Cell PlayerPosition;
 
-        public Cell[,] Maze;
+        public Cell[,] Maze { get; }
         
         public MapController(int width, int height)
         {
@@ -30,14 +30,16 @@ namespace LabirintDemoGame
         {
             var x = direction.X + PlayerPosition.X;
             var y = direction.Y + PlayerPosition.Y;
-            return x >= 0 && y >= 0 && x < MazeWidth && y < MazeHeight && Maze[x, y].Type != CellTypes.Wall;
+            return x >= 0 && y >= 0 && x < MazeWidth && y < MazeHeight && Maze[y, x].Type != CellTypes.Wall;
         }
 
         public void MakePlayerMove(Direction direction)
         {
             if (IsMovingCorrect(direction))
-                PlayerPosition = new Cell(direction.X + PlayerPosition.X,
-                     direction.Y + PlayerPosition.Y, CellTypes.Player);
+                PlayerPosition = new Cell(
+                    direction.X + PlayerPosition.X,
+                    direction.Y + PlayerPosition.Y,
+                    CellTypes.Player);
         }
 
         public override string ToString()
