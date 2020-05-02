@@ -53,6 +53,7 @@
     <Compile Include="Directions.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="MapController.cs" />
     <Compile Include="LabyrinthGenerator.cs" />
     <Compile Include="LabyrinthWindow.cs" />

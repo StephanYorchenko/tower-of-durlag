@@ -14,6 +14,7 @@
       <e p="LabyrinthGenerator.cs" t="Include" />
       <e p="LabyrinthGenerator_Should.cs" t="Include" />
       <e p="LabyrinthWindow.cs" t="Include" />
+      <e p="Level.cs" t="Include" />
       <e p="MapController.cs" t="Include" />
       <e p="Player.cs" t="Include" />
       <e p="PlotAct.cs" t="Include" />

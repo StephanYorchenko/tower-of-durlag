@@ -40,12 +40,13 @@ namespace LabirintDemoGame
                 PlayerPosition = new Cell(direction.X + PlayerPosition.X,
                      direction.Y + PlayerPosition.Y, CellTypes.Player);
         }
+
         public override string ToString()
         {
             var stringMaze = new StringBuilder();
             for (var i = 0; i < MazeHeight; i++)
                 stringMaze.Append(string.Join("",
-                    Enumerable.Range(0 ,MazeWidth)
+                    Enumerable.Range(0, MazeWidth)
                         .Select(x => Maze[i, x].ToString())) + "\n");
             return stringMaze.ToString();
         }
