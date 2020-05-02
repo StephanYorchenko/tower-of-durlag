@@ -7,9 +7,9 @@ namespace LabirintDemoGame
     {
         public static void Main()
         {
-            var a = new MapController(13, 9);
-            Console.WriteLine(a);
-            Application.Run(new LabyrinthWindow(a));
+            var a = Game.CreateFromConfig("5%7");
+            Console.WriteLine(a.Level.Map);
+            //Application.Run(new LabyrinthWindow(a));
         }
     }
 }

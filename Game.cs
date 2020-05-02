@@ -4,24 +4,37 @@ namespace LabirintDemoGame
 {
     public class Game
     {
-        public MapController Map;
         public Player Player;
-        public int Level;
+        public Level Level;
 
-        public Game()
+        public Game(int width, int height)
         {
-            Level = 1;
-            Map = new MapController(3, 5);
+            //TODO: add plot text and subjects parameters
+            var map = new MapController(width, height);
+            Level = new Level(map);
             Player = new Player();
+        }
+
+        public Game(Level level, Player player)
+        {
+            Level = level;
+            Player = player;
         }
 
         public override string ToString()
         {
             var log = new StringBuilder();
             log.Append(Player + "\n");
-            log.Append(Map + "\n");
-            log.Append(Level);
+            log.Append(Level.Map + "\n");
             return log.ToString();
         }
+
+        public static Game CreateFromConfig(string text)
+        {
+            var lvl = Level.CreateFromConfig(text);
+            return new Game(lvl, new Player());
+        }
+
+
     }
 }
