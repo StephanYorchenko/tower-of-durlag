@@ -15,6 +15,12 @@ namespace LabirintDemoGame
             Health = 100;
         }
 
+        public Player(int health, IEnumerable<PlotSubject> bag)
+        {
+            Bag = bag.ToList();
+            Health = health;
+        }
+
         public void ChangeHp(int deltaHp)
         {
             Health -= deltaHp;

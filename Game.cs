@@ -39,5 +39,10 @@ namespace LabirintDemoGame
         {
             Level.Map.MakePlayerMove(Player.Move(direction));
         }
+
+        public Cell[,] Map => Level.Map.Maze;
+        public Cell PlayerPosition => Level.Map.PlayerPosition;
+        public Cell InitialPoint => Level.Map.InitialPoint;
+        public Cell EndPoint => Level.Map.EndPoint;
     }
 }
