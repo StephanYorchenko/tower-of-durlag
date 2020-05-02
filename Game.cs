@@ -41,6 +41,8 @@ namespace LabirintDemoGame
         }
 
         public Cell[,] Map => Level.Map.Maze;
+        public int MazeWidth => Level.Map.MazeWidth;
+        public int MazeHeight => Level.Map.MazeHeight;
         public Cell PlayerPosition => Level.Map.PlayerPosition;
         public Cell InitialPoint => Level.Map.InitialPoint;
         public Cell EndPoint => Level.Map.EndPoint;

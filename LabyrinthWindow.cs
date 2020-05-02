@@ -9,17 +9,21 @@ namespace LabirintDemoGame
     public class LabyrinthWindow : Form
     {
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
-        private readonly MapController map;
-        
-        public LabyrinthWindow(MapController labyrinth, DirectoryInfo imagesDirectory = null)
+        private readonly Game game;
+
+        public LabyrinthWindow(Game game, DirectoryInfo imagesDirectory = null)
         {
-            map = labyrinth;
-            ClientSize = new Size(32 * labyrinth.MazeHeight, 32 * labyrinth.MazeWidth);
+            this.game = game;
+            ClientSize = new Size(32 * game.MazeWidth, 32 * game.MazeHeight);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
                 imagesDirectory = new DirectoryInfo("Images");
             foreach (var e in imagesDirectory.GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
+            var timer = new Timer();
+            timer.Interval = 1;
+            timer.Tick += TimerTick;
+            timer.Start();
         }
         
         protected override void OnLoad(EventArgs e)
@@ -31,18 +35,48 @@ namespace LabirintDemoGame
         
         protected override void OnPaint(PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(Brushes.Black, 0, 0, 32 * map.MazeHeight, 32 * map.MazeWidth);
-            for (int i = 0; i < map.MazeHeight; i++)
+            for (int i = 0; i < game.MazeHeight; i++)
             {
-                for (int j = 0; j < map.MazeWidth; j++)
+                for (int j = 0; j < game.MazeWidth; j++)
                 {
-                    if (map.Maze[i, j].Type.ToString() != "Empty")
+                    e.Graphics.DrawImage(bitmaps["Empty"], new Point(j * 32, i * 32));
+                }
+            }
+            for (int i = 0; i < game.MazeHeight; i++)
+            {
+                for (int j = 0; j < game.MazeWidth; j++)
+                {
+                    if (game.Map[i, j].Type.ToString() != "Player")
                     {
-                        e.Graphics.DrawImage(bitmaps[map.Maze[i, j].Type.ToString()], new Point(i * 32, j * 32));
+                        e.Graphics.DrawImage(bitmaps[game.Map[i, j].Type.ToString()], new Point(j * 32, i * 32));
                     }
                 }
             }
+            e.Graphics.DrawImage(bitmaps["Player"], new Point(game.PlayerPosition.X * 32, game.PlayerPosition.Y * 32));
             e.Graphics.ResetTransform();
+        }
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    game.MakePlayerMove(Directions.Up);
+                    break;
+                case Keys.Down:
+                    game.MakePlayerMove(Directions.Down);
+                    break;
+                case Keys.Left:
+                    game.MakePlayerMove(Directions.Left);
+                    break;
+                case Keys.Right:
+                    game.MakePlayerMove(Directions.Right);
+                    break;
+            }
+        }
+        
+        private void TimerTick(object sender, EventArgs args)
+        {
+            Invalidate();
         }
     }
 }
