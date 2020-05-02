@@ -19,6 +19,7 @@
       <e p="PlotAct.cs" t="Include" />
       <e p="PlotSubject.cs" t="Include" />
       <e p="Program.cs" t="Include" />
+      <e p="README.md" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />

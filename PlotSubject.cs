@@ -7,7 +7,5 @@ namespace LabirintDemoGame
         public PlotSubject(string name) { Name = name; }
 
         public override string ToString() => Name;
-
-        public string GetImageName() => Name + ".png";
     }
 }
