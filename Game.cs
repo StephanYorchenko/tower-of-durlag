@@ -1,40 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace LabirintDemoGame
 {
     public class Game
     {
-        private readonly Labyrinth labyrinth;
-        public int MazeWidth => labyrinth.Width;
-        public int MazeHeight => labyrinth.Height;
-        
-        public Cell InitialPoint => labyrinth.InitialPoint;
-        public Cell EndPoint => labyrinth.EndPoint;
-        
-        public Cell Player;
+        public MapController Map;
+        public Player Player;
+        public int Level;
 
-        public Cell[,] Maze;
-        
-        public Game(int width, int height)
+        public Game()
         {
-            labyrinth = new Labyrinth(height, width);
-            labyrinth.GenerateLabyrinth();
-            Player = new Cell(InitialPoint.X, InitialPoint.Y, CellTypes.Player);
-            Maze = labyrinth.ToArray();
-            Maze[Player.X, Player.Y] = Player;
+            Level = 1;
+            Map = new MapController(3, 5);
+            Player = new Player(Map.PlayerPosition);
         }
 
         public override string ToString()
         {
-            var stringMaze = new StringBuilder();
-            for (var i = 0; i < MazeHeight; i++)
-                stringMaze.Append(string.Join("",
-                    Enumerable.Range(0 ,MazeWidth)
-                        .Select(x => Maze[i, x].ToString())) + "\n");
-            return stringMaze.ToString();
+            var log = new StringBuilder();
+            log.Append(Player + "\n");
+            log.Append(Map + "\n");
+            log.Append(Level);
+            return log.ToString();
         }
-    }    
+    }
 }

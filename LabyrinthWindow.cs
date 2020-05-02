@@ -5,10 +5,10 @@ namespace LabirintDemoGame
 {
     public class LabyrinthWindow : Form
     {
-        public LabyrinthWindow(Game labyrinth)
+        public LabyrinthWindow(MapController labyrinth)
         {
             ClientSize = new Size(32 * labyrinth.MazeWidth, 32 * labyrinth.MazeHeight);
-            FormBorderStyle = FormBorderStyle.FixedDialog; // потом можно будет поставить None и сделать свой креатик
+            FormBorderStyle = FormBorderStyle.FixedDialog;
         }
     }
 }

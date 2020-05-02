@@ -2,15 +2,17 @@ namespace LabirintDemoGame
 {
     public struct Cell
     {
-        public int X { get; }
-        public int Y { get; }
+        public int X { get; set; }
+        public int Y { get; set; }
         public CellTypes Type { get; }
+        public bool IsExplored { get; set; }
 
         public Cell(int x, int y, CellTypes type)
         {
             X = x;
             Y = y;
             Type = type;
+            IsExplored = true;
         }
 
         public bool Equals(Cell obj)

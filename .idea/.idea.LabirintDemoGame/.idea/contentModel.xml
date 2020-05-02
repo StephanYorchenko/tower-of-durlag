@@ -6,12 +6,16 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Cell.cs" t="Include" />
       <e p="CellTypes.cs" t="Include" />
+      <e p="Directions.cs" t="Include" />
       <e p="Game.cs" t="Include" />
       <e p="LabirintDemoGame.csproj" t="IncludeRecursive" />
       <e p="LabirintDemoGame.sln" t="IncludeFlat" />
-      <e p="Labyrinth.cs" t="Include" />
+      <e p="LabyrinthGenerator.cs" t="Include" />
+      <e p="LabyrinthGenerator_Should.cs" t="Include" />
       <e p="LabyrinthWindow.cs" t="Include" />
-      <e p="Labyrinth_Should.cs" t="Include" />
+      <e p="MapController.cs" t="Include" />
+      <e p="Player.cs" t="Include" />
+      <e p="PlotSubject.cs" t="Include" />
       <e p="Program.cs" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

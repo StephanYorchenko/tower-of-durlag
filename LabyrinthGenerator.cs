@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace LabirintDemoGame
 {
-    public class Labyrinth
+    public class LabyrinthGenerator
     {
         public int Height { get; }
         public int Width { get; }
         public Cell InitialPoint { get; private set; }
         public Cell EndPoint { get; private set; }
-        public HashSet<Cell> Maze { get; }
-        // ReSharper disable once FieldCanBeMadeReadOnly.Global
-        public HashSet<Cell> UnvisitedCells;
+        private HashSet<Cell> Maze { get; }
+        
+        public readonly HashSet<Cell> UnvisitedCells;
         private Stack<Cell> VisitingOrder { get; }
 
         private static readonly List<Tuple<int, int>> NeighboursCoordinated = new List<Tuple<int, int>>
@@ -23,7 +23,7 @@ namespace LabirintDemoGame
             new Tuple<int, int>(0, 2)
         };
         
-        public Labyrinth(int height, int width)
+        public LabyrinthGenerator(int height, int width)
         {
             Height = height;
             Width = width;
@@ -89,10 +89,10 @@ namespace LabirintDemoGame
         public override string ToString()
         {
             var maze = new List<string[]>();
-            for (int i = 0; i < Height; i++)
+            for (var i = 0; i < Height; i++)
             {
                 maze.Add(new string[Width]);
-                for (int j = 0; j < Width; j++)
+                for (var j = 0; j < Width; j++)
                     maze[i][j] = "# ";
             }
 
@@ -104,8 +104,8 @@ namespace LabirintDemoGame
         public Cell[,] ToArray()
         {
             var maze = new Cell[Height, Width];
-            for (int i = 0; i < Height; i++)
-            for (int j = 0; j < Width; j++)
+            for (var i = 0; i < Height; i++)
+            for (var j = 0; j < Width; j++)
                     maze[i, j] = new Cell(i, j, CellTypes.Wall);
 
             foreach (var cell in Maze)

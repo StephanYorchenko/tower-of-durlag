@@ -50,10 +50,14 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="CellTypes.cs" />
+    <Compile Include="Directions.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Labyrinth.cs" />
+    <Compile Include="MapController.cs" />
+    <Compile Include="LabyrinthGenerator.cs" />
     <Compile Include="LabyrinthWindow.cs" />
-    <Compile Include="Labyrinth_Should.cs" />
+    <Compile Include="LabyrinthGenerator_Should.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PlotSubject.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
