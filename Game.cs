@@ -35,6 +35,9 @@ namespace LabirintDemoGame
             return new Game(lvl, new Player());
         }
 
-
+        public void MakePlayerMove(Directions direction)
+        {
+            Level.Map.MakePlayerMove(Player.Move(direction));
+        }
     }
 }
