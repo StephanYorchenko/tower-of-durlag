@@ -10,11 +10,12 @@ namespace LabirintDemoGame
     {
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
         private readonly Game game;
+        private const int size = 32;
 
         public LabyrinthWindow(Game game, DirectoryInfo imagesDirectory = null)
         {
             this.game = game;
-            ClientSize = new Size(32 * game.MazeWidth, 32 * game.MazeHeight);
+            ClientSize = new Size(size * game.MazeWidth, size * game.MazeHeight);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
                 imagesDirectory = new DirectoryInfo("Images");
@@ -35,24 +36,18 @@ namespace LabirintDemoGame
         
         protected override void OnPaint(PaintEventArgs e)
         {
-            for (int i = 0; i < game.MazeHeight; i++)
-            {
-                for (int j = 0; j < game.MazeWidth; j++)
-                {
-                    e.Graphics.DrawImage(bitmaps["Empty"], new Point(j * 32, i * 32));
-                }
-            }
-            for (int i = 0; i < game.MazeHeight; i++)
-            {
-                for (int j = 0; j < game.MazeWidth; j++)
-                {
-                    if (game.Map[i, j].Type.ToString() != "Player")
-                    {
-                        e.Graphics.DrawImage(bitmaps[game.Map[i, j].Type.ToString()], new Point(j * 32, i * 32));
-                    }
-                }
-            }
-            e.Graphics.DrawImage(bitmaps["Player"], new Point(game.PlayerPosition.X * 32, game.PlayerPosition.Y * 32));
+            for (var i = 0; i < game.MazeHeight; i++)
+            for (var j = 0; j < game.MazeWidth; j++)
+                e.Graphics.DrawImage(bitmaps["Empty"], new Point(j * size, i * size));
+                
+            
+            for (var i = 0; i < game.MazeHeight; i++)
+            for (var j = 0; j < game.MazeWidth; j++)
+                if (game.Map[i, j].Type.ToString() != "Player")
+                    e.Graphics.DrawImage(bitmaps[game.Map[i, j].Type.ToString()], new Point(j * 32, i * 32));
+            
+            e.Graphics.DrawImage(bitmaps["Player"], 
+                new Point(game.PlayerPosition.X * size, game.PlayerPosition.Y * size));
             e.Graphics.ResetTransform();
         }
         protected override void OnKeyDown(KeyEventArgs e)
