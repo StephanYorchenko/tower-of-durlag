@@ -12,7 +12,7 @@ namespace LabirintDemoGame
         {
             Level = 1;
             Map = new MapController(3, 5);
-            Player = new Player(Map.PlayerPosition);
+            Player = new Player();
         }
 
         public override string ToString()

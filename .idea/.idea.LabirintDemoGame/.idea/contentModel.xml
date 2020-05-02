@@ -6,6 +6,7 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Cell.cs" t="Include" />
       <e p="CellTypes.cs" t="Include" />
+      <e p="Direction.cs" t="Include" />
       <e p="Directions.cs" t="Include" />
       <e p="Game.cs" t="Include" />
       <e p="LabirintDemoGame.csproj" t="IncludeRecursive" />

@@ -6,42 +6,24 @@ namespace LabirintDemoGame
 {
     public class Player
     {
-        public Cell Position;
         public List<PlotSubject> Bag;
         public int Health;
 
-        public Player(Cell position)
+        public Player()
         {
-            Position = position;
             Bag = new List<PlotSubject>();
             Health = 100;
         }
 
-        public void Move(Directions direction)
+        public Direction Move(Directions direction)
         {
-            switch (direction)
-            {
-                case Directions.Up:
-                    Position.Y--;
-                    break;
-                case Directions.Down:
-                    Position.Y++;
-                    break;
-                case Directions.Left:
-                    Position.X--;
-                    break;
-                case Directions.Right:
-                    Position.X++;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
-            }
+            return Direction.Create(direction);
         }
 
         public override string ToString()
         {
             var bag = Bag.Select(x => x.ToString());
-            return $"{Position.X} -- {Position.Y} -- {Health} -- <{string.Join("/", bag)}>";
+            return $"{Health} -- <{string.Join("/", bag)}>";
         }
     }
 }

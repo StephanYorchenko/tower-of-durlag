@@ -51,6 +51,7 @@
     <Compile Include="Cell.cs" />
     <Compile Include="CellTypes.cs" />
     <Compile Include="Directions.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="MapController.cs" />
     <Compile Include="LabyrinthGenerator.cs" />
