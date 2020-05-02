@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -19,6 +20,13 @@ namespace LabirintDemoGame
                 imagesDirectory = new DirectoryInfo("Images");
             foreach (var e in imagesDirectory.GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
+        }
+        
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            Text = "Tower of Durlag";
+            DoubleBuffered = true;
         }
         
         protected override void OnPaint(PaintEventArgs e)
