@@ -4,45 +4,17 @@ using System.Linq;
 
 namespace LabirintDemoGame
 {
-    public enum CellTypes
-    {
-        Empty,
-        // Wall,
-        // Start,
-        // End
-    }
-    
-    public struct Cell
-    {
-        public int X { get; }
-        public int Y { get; }
-        private CellTypes Type { get; }
-
-        public Cell(int x, int y, CellTypes type)
-        {
-            X = x;
-            Y = y;
-            Type = type;
-        }
-
-        public override string ToString()
-        {
-            return $"X:{X} Y:{Y} Type:{Type}";
-        }
-    }
-    
-    
-
     public class Labyrinth
     {
-        private int Height { get; }
-        private int Width { get; }
-        private Cell InitialPoint { get;}
-        private HashSet<Cell> Maze { get; }
+        public int Height { get; }
+        public int Width { get; }
+        public Cell InitialPoint { get; set; }
+        public Cell EndPoint { get; set; }
+        public HashSet<Cell> Maze { get; }
         // ReSharper disable once FieldCanBeMadeReadOnly.Global
         public HashSet<Cell> UnvisitedCells;
         private Stack<Cell> VisitingOrder { get; }
-        
+
         private static readonly List<Tuple<int, int>> NeighboursCoordinated = new List<Tuple<int, int>>
         {
             new Tuple<int, int>(0 , -2),
@@ -51,8 +23,6 @@ namespace LabirintDemoGame
             new Tuple<int, int>(0, 2)
         };
         
-        
-
         public Labyrinth(int height, int width)
         {
             Height = height;
@@ -61,6 +31,7 @@ namespace LabirintDemoGame
             UnvisitedCells = new HashSet<Cell>();
             VisitingOrder = new Stack<Cell>((width - 1) * (height - 1));
             InitialPoint = new Cell();
+            EndPoint = new Cell();
             StartGenerate();
         }
 
@@ -98,6 +69,8 @@ namespace LabirintDemoGame
                 }
                 else
                 {
+                    if (EndPoint.Equals(new Cell()))
+                        EndPoint = currentCell;
                     currentCell = VisitingOrder.Pop();
                 }
             } while (UnvisitedCells.Count != 0 || VisitingOrder.Count != 0);
