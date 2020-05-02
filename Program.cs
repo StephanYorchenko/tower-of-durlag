@@ -9,6 +9,7 @@ namespace LabirintDemoGame
         {
             var a = new Game(13, 9);
             Console.WriteLine(a);
+            Application.Run(new LabyrinthWindow(a));
         }
     }
 }

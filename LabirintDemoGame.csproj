@@ -52,6 +52,7 @@
     <Compile Include="CellTypes.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Labyrinth.cs" />
+    <Compile Include="LabyrinthWindow.cs" />
     <Compile Include="Labyrinth_Should.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
