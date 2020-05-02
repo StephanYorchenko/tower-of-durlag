@@ -8,5 +8,5 @@
 
 С кликабельным прототипом можно ознакомится на сервисе figma:
 
-https://www.figma.com/file/g9HC1fVKVGdciGJAyI6j3q/Untitled?node-id=0%3A1
+https://www.figma.com/file/g9HC1fVKVGdciGJAyI6J3q/Untitled?node-id=0%3A1
 
