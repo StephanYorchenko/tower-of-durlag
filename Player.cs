@@ -26,7 +26,7 @@ namespace LabirintDemoGame
             Health -= deltaHp;
         }
 
-        public Direction Move(Directions direction)
+        public static Direction Move(Directions direction)
         {
             return Direction.Create(direction);
         }
