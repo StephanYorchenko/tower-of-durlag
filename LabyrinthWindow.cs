@@ -38,20 +38,22 @@ namespace LabirintDemoGame
         {
             if (game.EndGame)
                 Close();
-
+            
             foreach (var t in game.Map)
             {
-                e.Graphics.DrawImage(bitmaps["Empty"], new Point(t.X * size, t.Y * size));
+                var c = GetWindowCoordinates(t);
+                e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * size, c.Y * size));
                 if (t.Type != CellTypes.Player)
-                    e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(t.X * size, t.Y * size));
+                    e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * size, c.Y * size));
                 if (!t.IsExplored)
                     e.Graphics.FillRectangle(
-                        Brushes.Black, t.X * size, t.Y * size, size, size);
+                        Brushes.Black, c.X * size, c.Y * size, size, size);
 
             }
 
+            var player = GetWindowCoordinates(game.PlayerPosition);
             e.Graphics.DrawImage(bitmaps["Player"], 
-                new Point(game.PlayerPosition.X * size, game.PlayerPosition.Y * size));
+                new Point(player.X * size, player.Y * size));
             e.Graphics.ResetTransform();
         }
         protected override void OnKeyDown(KeyEventArgs e)
@@ -76,6 +78,13 @@ namespace LabirintDemoGame
         private void TimerTick(object sender, EventArgs args)
         {
             Invalidate();
+        }
+
+        private Point GetWindowCoordinates(Cell cell)
+        {
+            var deltaX = Math.Max(0, game.PlayerPosition.X - 4);
+            var deltaY = Math.Max(0, game.PlayerPosition.Y - 4);
+            return new Point(cell.X - deltaX, cell.Y-deltaY);
         }
     }
 }
