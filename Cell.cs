@@ -12,7 +12,7 @@ namespace LabirintDemoGame
             X = x;
             Y = y;
             Type = type;
-            IsExplored = true;
+            IsExplored = false;
         }
 
         public bool Equals(Cell obj)
