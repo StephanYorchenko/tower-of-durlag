@@ -64,6 +64,7 @@
     <Compile Include="Tests\Game_Should.cs" />
     <Compile Include="Tests\LabyrinthGenerator_Should.cs" />
     <Compile Include="Tests\Level_Should.cs" />
+    <Compile Include="Tests\MapController_Should.cs" />
     <Compile Include="Tests\Player_Should.cs" />
   </ItemGroup>
   <ItemGroup>
