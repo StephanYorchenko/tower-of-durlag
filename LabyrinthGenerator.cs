@@ -6,8 +6,8 @@ namespace LabirintDemoGame
 {
     public class LabyrinthGenerator
     {
-        public int Height { get; }
         public int Width { get; }
+        public int Height { get; }
         public Cell InitialPoint { get; private set; }
         public Cell EndPoint { get; private set; }
         private HashSet<Cell> Maze { get; }
@@ -23,13 +23,13 @@ namespace LabirintDemoGame
             new Tuple<int, int>(0, 2)
         };
         
-        public LabyrinthGenerator(int height, int width)
+        public LabyrinthGenerator(int width, int height)
         {
-            Height = height;
             Width = width;
+            Height = height;
             Maze = new HashSet<Cell>();
             UnvisitedCells = new HashSet<Cell>();
-            VisitingOrder = new Stack<Cell>((width - 1) * (height - 1));
+            VisitingOrder = new Stack<Cell>((height - 1) * (width - 1));
             InitialPoint = new Cell();
             EndPoint = new Cell();
             StartGenerate();
@@ -37,16 +37,16 @@ namespace LabirintDemoGame
 
         private void StartGenerate()
         {
-            for (var i = 0; i < Height; i++)
-            for (var j = 0; j < Width; j++)
-                if (i % 2 != 0 && j % 2 != 0 && i != Height - 1 && j != Width - 1)
+            for (var i = 0; i < Width; i++)
+            for (var j = 0; j < Height; j++)
+                if (i % 2 != 0 && j % 2 != 0 && i != Width - 1 && j != Height - 1)
                     UnvisitedCells.Add(new Cell(i, j, CellTypes.Empty));
         }
 
         public void GenerateLabyrinth()
         {
             var random = new Random();
-            var currentCell = UnvisitedCells.ElementAt(random.Next(0, (Width / 2) * (Height / 2)));
+            var currentCell = UnvisitedCells.ElementAt(random.Next(0, (Height / 2) * (Width / 2)));
             InitialPoint = currentCell;
             Maze.Add(currentCell);
             UnvisitedCells.Remove(currentCell);
@@ -89,10 +89,10 @@ namespace LabirintDemoGame
         public override string ToString()
         {
             var maze = new List<string[]>();
-            for (var i = 0; i < Height; i++)
+            for (var i = 0; i < Width; i++)
             {
-                maze.Add(new string[Width]);
-                for (var j = 0; j < Width; j++)
+                maze.Add(new string[Height]);
+                for (var j = 0; j < Height; j++)
                     maze[i][j] = "# ";
             }
 
@@ -103,9 +103,9 @@ namespace LabirintDemoGame
 
         public Cell[,] ToArray()
         {
-            var maze = new Cell[Height, Width];
-            for (var i = 0; i < Height; i++)
-            for (var j = 0; j < Width; j++)
+            var maze = new Cell[Width, Height];
+            for (var i = 0; i < Width; i++)
+            for (var j = 0; j < Height; j++)
                     maze[i, j] = new Cell(i, j, CellTypes.Wall);
 
             foreach (var cell in Maze)

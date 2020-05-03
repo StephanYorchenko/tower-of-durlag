@@ -10,12 +10,12 @@ namespace LabirintDemoGame
     {
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
         private readonly Game game;
-        private const int sizeImages = 64;
+        private const int size = 64;
 
         public LabyrinthWindow(Game game, DirectoryInfo imagesDirectory = null)
         {
             this.game = game;
-            ClientSize = new Size(sizeImages * game.MazeWidth, sizeImages * game.MazeHeight);
+            ClientSize = new Size(1028, 640);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
                 imagesDirectory = new DirectoryInfo("Images");
@@ -36,18 +36,22 @@ namespace LabirintDemoGame
         
         protected override void OnPaint(PaintEventArgs e)
         {
-            for (var i = 0; i < game.MazeHeight; i++)
-            for (var j = 0; j < game.MazeWidth; j++)
-                e.Graphics.DrawImage(bitmaps["Empty"], new Point(j * sizeImages, i * sizeImages));
-                
-            
-            for (var i = 0; i < game.MazeHeight; i++)
-            for (var j = 0; j < game.MazeWidth; j++)
-                if (game.Map[i, j].Type.ToString() != "Player")
-                    e.Graphics.DrawImage(bitmaps[game.Map[i, j].Type.ToString()], new Point(j * sizeImages, i * sizeImages));
-            
+            if (game.EndGame)
+                Close();
+
+            foreach (var t in game.Map)
+            {
+                e.Graphics.DrawImage(bitmaps["Empty"], new Point(t.X * size, t.Y * size));
+                if (t.Type != CellTypes.Player)
+                    e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(t.X * size, t.Y * size));
+                if (!t.IsExplored)
+                    e.Graphics.FillRectangle(
+                        Brushes.Black, t.X * size, t.Y * size, size, size);
+
+            }
+
             e.Graphics.DrawImage(bitmaps["Player"], 
-                new Point(game.PlayerPosition.X * sizeImages, game.PlayerPosition.Y * sizeImages));
+                new Point(game.PlayerPosition.X * size, game.PlayerPosition.Y * size));
             e.Graphics.ResetTransform();
         }
         protected override void OnKeyDown(KeyEventArgs e)
