@@ -30,5 +30,26 @@ namespace LabirintDemoGame
             var actual = game.ToString().Split('\n').Length;
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void CreateFromConfigShould()
+        {
+            var gaming = Game.CreateFromConfig("5%5;7%9");
+            Assert.AreEqual(5, gaming.MazeHeight);
+            Assert.AreEqual(5, gaming.MazeWidth);
+            gaming.GetNextLevel();
+            Assert.AreEqual(9, gaming.MazeWidth);
+            Assert.AreEqual(7, gaming.MazeHeight);
+        }
+
+        [TestCase("5%5", "7%9", 7, 9)]
+        [TestCase("5%9", "19%13", 19, 13)]
+        public void UpdateToConfigShould(string currentConf, string nextConf, int height, int width)
+        {
+            var game = Game.CreateFromConfig(currentConf);
+            game.UpdateToConfig(nextConf);
+            Assert.AreEqual(height, game.MazeHeight);
+            Assert.AreEqual(width, game.MazeWidth);
+        }
     }
 }

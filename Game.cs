@@ -49,11 +49,14 @@ namespace LabirintDemoGame
         {
             Level.Map.MakePlayerMove(Player.Move(direction));
             if (Level.Map.IsEndReached && logLevels.Count > 0)
-                UpdateToConfig(logLevels.Dequeue());
+                GetNextLevel();
             else if (Level.Map.IsEndReached)
                 EndGame = true;
-            
+        }
 
+        public void GetNextLevel()
+        {
+            UpdateToConfig(logLevels.Dequeue());
         }
 
         public bool EndGame { get; set; }
