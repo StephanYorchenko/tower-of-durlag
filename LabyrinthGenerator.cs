@@ -71,6 +71,8 @@ namespace LabirintDemoGame
                 }
                 else
                 {
+                    if (EndPoint.Equals(new Cell()))
+                        EndPoint = currentCell;
                     currentCell = VisitingOrder.Pop();
                 }
             } while (UnvisitedCells.Count != 0 || VisitingOrder.Count != 0);
@@ -111,9 +113,11 @@ namespace LabirintDemoGame
             foreach (var cell in Maze)
                 maze[cell.X, cell.Y] = cell.Equals(InitialPoint)
                     ? new Cell(cell.X, cell.Y, CellTypes.Start)  
-                    : new Cell(cell.X, cell.Y, CellTypes.Empty);
-            SetEndPoint(maze);
-            maze[EndPoint.X, EndPoint.Y] = EndPoint;
+                    : cell.Equals(EndPoint) 
+                        ? new Cell(cell.X, cell.Y, CellTypes.End) 
+                        : new Cell(cell.X, cell.Y, CellTypes.Empty);
+            //SetEndPoint(maze);
+            //maze[EndPoint.X, EndPoint.Y] = EndPoint;
             return maze;
         }
 
