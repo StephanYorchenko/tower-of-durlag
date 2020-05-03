@@ -6,6 +6,7 @@ namespace LabirintDemoGame
         public int Y { get; set; }
         public CellTypes Type { get; }
         public bool IsExplored { get; set; }
+        public bool IsVisible { get; private set; }
 
         public Cell(int x, int y, CellTypes type)
         {
@@ -13,11 +14,17 @@ namespace LabirintDemoGame
             Y = y;
             Type = type;
             IsExplored = false;
+            IsVisible = true;
         }
 
         public bool Equals(Cell obj)
         {
             return X == obj.X && Y == obj.Y;
+        }
+
+        public void SetVisiblity(bool value)
+        {
+            IsVisible = value;
         }
 
         public override string ToString()

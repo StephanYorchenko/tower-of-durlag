@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -9,6 +10,7 @@ namespace LabirintDemoGame
         public Cell PlayerPosition;
         public bool IsEndReached;
         public Cell[,] Maze { get; }
+        public List<Cell> VisibleMaze { get; set; }
         public int MazeWidth => labyrinthGenerator.Width;
         public int MazeHeight => labyrinthGenerator.Height;
         
@@ -23,6 +25,7 @@ namespace LabirintDemoGame
             Maze = labyrinthGenerator.ToArray();
             IsEndReached = false;
             ExploreCells();
+            UpdateVisibleCells();
         }
 
         private bool IsMovingCorrect(Direction direction)
@@ -40,6 +43,7 @@ namespace LabirintDemoGame
                     direction.Y + PlayerPosition.Y,
                     CellTypes.Player);
             ExploreCells();
+            UpdateVisibleCells();
             if (PlayerPosition.Equals(EndPoint))
                 IsEndReached = true;
         }
@@ -59,6 +63,17 @@ namespace LabirintDemoGame
             for (var i = -1; i <= 1; i++)
             for (var j = -1; j <= 1; j++)
                 Maze[PlayerPosition.X + i, PlayerPosition.Y + j].IsExplored = true;
+        }
+
+        private void UpdateVisibleCells()
+        {
+            VisibleMaze = new List<Cell>();
+            foreach (var cell in Maze)
+                cell.SetVisiblity(cell.X >= PlayerPosition.X - 4 && cell.X <= PlayerPosition.X + 4 &&
+                                  cell.Y >= PlayerPosition.Y - 4 && cell.Y <= PlayerPosition.X + 4);
+            foreach (var cell in Maze)
+                if (cell.IsVisible)
+                    VisibleMaze.Add(cell);
         }
     }    
 }
