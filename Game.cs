@@ -29,7 +29,7 @@ namespace LabirintDemoGame
         {
             var log = new StringBuilder();
             log.Append(Player + "\n");
-            log.Append(Level.Map + "\n");
+            log.Append(Level.Map);
             return log.ToString();
         }
 
