@@ -9,9 +9,9 @@ namespace LabirintDemoGame
         [Test]
         public void IsSizeInitializationCorrect()
         {
-            var gaming = new Game(7, 8);
+            var gaming = new Game(7, 9);
             Assert.AreEqual(7, gaming.MazeWidth);
-            Assert.AreEqual(8, gaming.MazeHeight);
+            Assert.AreEqual(9, gaming.MazeHeight);
         }
         
         [Test]
