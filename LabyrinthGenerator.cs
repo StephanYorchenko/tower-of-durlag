@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
+using NUnit.Framework;
 
 namespace LabirintDemoGame
 {
@@ -69,8 +71,6 @@ namespace LabirintDemoGame
                 }
                 else
                 {
-                    if (EndPoint.Equals(new Cell()))
-                        EndPoint = currentCell;
                     currentCell = VisitingOrder.Pop();
                 }
             } while (UnvisitedCells.Count != 0 || VisitingOrder.Count != 0);
@@ -111,10 +111,38 @@ namespace LabirintDemoGame
             foreach (var cell in Maze)
                 maze[cell.X, cell.Y] = cell.Equals(InitialPoint)
                     ? new Cell(cell.X, cell.Y, CellTypes.Start)  
-                    : cell.Equals(EndPoint) 
-                        ? new Cell(cell.X, cell.Y, CellTypes.End) 
-                        : new Cell(cell.X, cell.Y, CellTypes.Empty);
+                    : new Cell(cell.X, cell.Y, CellTypes.Empty);
+            SetEndPoint(maze);
+            maze[EndPoint.X, EndPoint.Y] = EndPoint;
             return maze;
+        }
+
+        //Приведённые ниже методы не планировались, но являются экспериментом по усложнению лабиринта
+        private void SetEndPoint(Cell[,] maze)
+        {
+            var rnd = new Random();
+            int x;
+            int y;
+            do
+            {
+                x = rnd.Next(1, Width - 2);
+                y = rnd.Next(1, Height - 2);
+            } while (!CheckNeighbours(maze, x, y));
+            EndPoint = new Cell(x, y, CellTypes.End);
+        }
+
+        private bool CheckNeighbours(Cell[,] maze, int x, int y)
+        {
+            var a = (double) new List<Cell>
+            {
+                maze[x - 1, y],
+                maze[x + 1, y],
+                maze[x, y - 1],
+                maze[x, y + 1],
+            }.Count(i => i.Type == CellTypes.Wall);
+            return maze[x, y].Type == CellTypes.Wall && 
+                   maze[x, y].Type != CellTypes.Start &&
+                   Math.Abs(a - 2.5) <= 0.5;
         }
     }
 }
