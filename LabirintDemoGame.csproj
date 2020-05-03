@@ -55,6 +55,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="Game_Should.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="Level_Should.cs" />
     <Compile Include="MapController.cs" />
     <Compile Include="LabyrinthGenerator.cs" />
     <Compile Include="LabyrinthWindow.cs" />
