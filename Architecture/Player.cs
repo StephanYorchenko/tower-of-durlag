@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using LabirintDemoGame.Architecture;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Architecture
 {
     public class Player
     {

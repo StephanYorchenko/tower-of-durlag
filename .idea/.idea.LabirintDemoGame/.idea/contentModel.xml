@@ -9,8 +9,10 @@
         <e p="CellTypes.cs" t="Include" />
         <e p="Direction.cs" t="Include" />
         <e p="Directions.cs" t="Include" />
+        <e p="Options.cs" t="Include" />
         <e p="Player.cs" t="Include" />
         <e p="PlotAct.cs" t="Include" />
+        <e p="PlotAction.cs" t="Include" />
         <e p="PlotSubject.cs" t="Include" />
       </e>
       <e p="Cards" t="Include">

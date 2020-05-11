@@ -7,39 +7,20 @@ using Newtonsoft.Json;
 
 namespace LabirintDemoGame.Architecture
 {
-    public class Option
-    {
-        public string Name;
-        public int Torch;
-        public int Bandage;
-        public int Herb;
-        public bool Sword;
-        public int Gold;
-        public int Supplies;
-        public int HP;
-        public string Result;
-    }
-    
-    public class PlotAction
-    {
-        public string Name;
-        public int Torch;
-        public int Bandage;
-        public int Herb;
-        public bool Sword;
-        public int Gold;
-        public int Supplies;
-        public int HP;
-        public string Result;
-    }
-    
     public class PlotAct
     {
         public string Text;
         public string Image;
-        private Option Option1;
-        private Option Option2;
-        private PlotAction PlotAction;
+        private readonly Option Option1;
+        private readonly Option Option2;
+        private readonly PlotAction PlotAction;
+
+        public PlotAct(PlotAction plotAction, Option option1, Option option2)
+        {
+            PlotAction = plotAction;
+            Option1 = option1;
+            Option2 = option2;
+        }
 
         public static PlotAct CreateFromJson(string fileName)
         {
@@ -47,7 +28,7 @@ namespace LabirintDemoGame.Architecture
             {
                 return JsonConvert.DeserializeObject<PlotAct>(File.ReadAllText(fileName));
             }
-            throw new Exception("file not fond");
+            throw new FileNotFoundException();
         }
 
         public PlotAction GetAction() => PlotAction;

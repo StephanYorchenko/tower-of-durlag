@@ -56,8 +56,10 @@
     <Compile Include="Architecture\CellTypes.cs" />
     <Compile Include="Architecture\Direction.cs" />
     <Compile Include="Architecture\Directions.cs" />
+    <Compile Include="Architecture\Options.cs" />
     <Compile Include="Architecture\Player.cs" />
     <Compile Include="Architecture\PlotAct.cs" />
+    <Compile Include="Architecture\PlotAction.cs" />
     <Compile Include="Architecture\PlotSubject.cs" />
     <Compile Include="Controllers\Game.cs" />
     <Compile Include="Controllers\Level.cs" />
