@@ -59,13 +59,13 @@
     <Compile Include="Controllers\Level.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Generators\LabyrinthGenerator.cs" />
-    <Compile Include="LabyrinthWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\GameShould.cs" />
     <Compile Include="Tests\LabyrinthGeneratorShould.cs" />
     <Compile Include="Tests\LevelShould.cs" />
     <Compile Include="Tests\MapControllerShould.cs" />
     <Compile Include="Tests\PlayerShould.cs" />
+    <Compile Include="Visualization\LabyrinthWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
