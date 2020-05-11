@@ -1,6 +1,8 @@
+using LabirintDemoGame.Architecture;
+using LabirintDemoGame.Generators;
 using NUnit.Framework;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Tests
 {
     [TestFixture]
     public class LabyrinthGeneratorShould

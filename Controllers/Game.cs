@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using LabirintDemoGame.Architecture;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Controllers
 {
     public class Game
     {
@@ -59,7 +59,7 @@ namespace LabirintDemoGame
             UpdateToConfig(logLevels.Dequeue());
         }
 
-        public bool EndGame { get; set; }
+        public bool EndGame { get; private set; }
 
         public List<Cell> Map => Level.Map.VisibleMaze;
         public int MazeWidth => Level.Map.MazeWidth;

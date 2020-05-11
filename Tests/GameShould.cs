@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+using LabirintDemoGame.Controllers;
 using NUnit.Framework;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Tests
 {
     [TestFixture]
-    public class Game_Should
+    public class GameShould
     {
         [Test]
         public void IsSizeInitializationCorrect()

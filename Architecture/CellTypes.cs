@@ -1,4 +1,4 @@
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Architecture
 {
     public enum CellTypes
     {

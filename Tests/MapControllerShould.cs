@@ -1,9 +1,10 @@
+using LabirintDemoGame.Controllers;
 using NUnit.Framework;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Tests
 {
     [TestFixture]
-    public class MapController_Should
+    public class MapControllerShould
     {
         [TestCase(5, 9)]
         [TestCase(13, 17)]

@@ -34,11 +34,11 @@
       <e p="Program.cs" t="Include" />
       <e p="README.md" t="Include" />
       <e p="Tests" t="Include">
-        <e p="Game_Should.cs" t="Include" />
-        <e p="LabyrinthGenerator_Should.cs" t="Include" />
-        <e p="Level_Should.cs" t="Include" />
-        <e p="MapController_Should.cs" t="Include" />
-        <e p="Player_Should.cs" t="Include" />
+        <e p="GameShould.cs" t="Include" />
+        <e p="LabyrinthGeneratorShould.cs" t="Include" />
+        <e p="LevelShould.cs" t="Include" />
+        <e p="MapControllerShould.cs" t="Include" />
+        <e p="PlayerShould.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using LabirintDemoGame.Architecture;
 using NUnit.Framework;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Tests
 {
     [TestFixture]
-    public class Player_Should
+    public class PlayerShould
     {
 
         [Test]

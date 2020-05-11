@@ -61,11 +61,11 @@
     <Compile Include="Generators\LabyrinthGenerator.cs" />
     <Compile Include="LabyrinthWindow.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Tests\Game_Should.cs" />
-    <Compile Include="Tests\LabyrinthGenerator_Should.cs" />
-    <Compile Include="Tests\Level_Should.cs" />
-    <Compile Include="Tests\MapController_Should.cs" />
-    <Compile Include="Tests\Player_Should.cs" />
+    <Compile Include="Tests\GameShould.cs" />
+    <Compile Include="Tests\LabyrinthGeneratorShould.cs" />
+    <Compile Include="Tests\LevelShould.cs" />
+    <Compile Include="Tests\MapControllerShould.cs" />
+    <Compile Include="Tests\PlayerShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
