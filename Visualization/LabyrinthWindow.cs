@@ -23,8 +23,7 @@ namespace LabirintDemoGame.Visualization
                 imagesDirectory = new DirectoryInfo("Images");
             foreach (var e in imagesDirectory.GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
-            var timer = new Timer();
-            timer.Interval = 1;
+            var timer = new Timer {Interval = 1};
             timer.Tick += TimerTick;
             timer.Start();
         }
