@@ -71,6 +71,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cards\AlchemicalLaboratory.json" />
+    <Content Include="Cards\Cellar.json" />
+    <Content Include="Cards\Corridor.json" />
+    <Content Include="Cards\SmallRoom.json" />
+    <Content Include="Cards\Steps.json" />
+    <Content Include="Cards\WeaponRoom.json" />
     <Content Include="Images\Empty.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

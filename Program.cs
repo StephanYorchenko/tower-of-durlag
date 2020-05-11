@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using LabirintDemoGame.Controllers;
+using LabirintDemoGame.Visualization;
 
 namespace LabirintDemoGame
 {

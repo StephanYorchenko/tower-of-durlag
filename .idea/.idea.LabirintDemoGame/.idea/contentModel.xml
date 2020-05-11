@@ -13,6 +13,14 @@
         <e p="PlotAct.cs" t="Include" />
         <e p="PlotSubject.cs" t="Include" />
       </e>
+      <e p="Cards" t="Include">
+        <e p="AlchemicalLaboratory.json" t="Include" />
+        <e p="Cellar.json" t="Include" />
+        <e p="Corridor.json" t="Include" />
+        <e p="SmallRoom.json" t="Include" />
+        <e p="Steps.json" t="Include" />
+        <e p="WeaponRoom.json" t="Include" />
+      </e>
       <e p="Controllers" t="Include">
         <e p="Game.cs" t="Include" />
         <e p="Level.cs" t="Include" />
@@ -30,7 +38,6 @@
       </e>
       <e p="LabirintDemoGame.csproj" t="IncludeRecursive" />
       <e p="LabirintDemoGame.sln" t="IncludeFlat" />
-      <e p="LabyrinthWindow.cs" t="Include" />
       <e p="Program.cs" t="Include" />
       <e p="README.md" t="Include" />
       <e p="Tests" t="Include">
@@ -39,6 +46,9 @@
         <e p="LevelShould.cs" t="Include" />
         <e p="MapControllerShould.cs" t="Include" />
         <e p="PlayerShould.cs" t="Include" />
+      </e>
+      <e p="Visualization" t="Include">
+        <e p="LabyrinthWindow.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

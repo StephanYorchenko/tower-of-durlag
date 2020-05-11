@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Visualization
 {
     public class LabyrinthWindow : Form
     {
