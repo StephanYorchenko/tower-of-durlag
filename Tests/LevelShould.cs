@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using LabirintDemoGame.Architecture;
+using LabirintDemoGame.Controllers;
 using NUnit.Framework;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Tests
 {
     [TestFixture]
     public class LevelShould

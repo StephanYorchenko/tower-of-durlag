@@ -1,17 +1,17 @@
-using System.Collections.Generic;
+using LabirintDemoGame.Controllers;
 using NUnit.Framework;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Tests
 {
     [TestFixture]
-    public class Game_Should
+    public class GameShould
     {
         [Test]
         public void IsSizeInitializationCorrect()
         {
-            var gaming = new Game(7, 8);
+            var gaming = new Game(7, 9);
             Assert.AreEqual(7, gaming.MazeWidth);
-            Assert.AreEqual(8, gaming.MazeHeight);
+            Assert.AreEqual(9, gaming.MazeHeight);
         }
         
         [Test]

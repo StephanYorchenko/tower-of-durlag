@@ -1,6 +1,7 @@
 using System.Linq;
+using LabirintDemoGame.Architecture;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Controllers
 {
     public class Level
     {

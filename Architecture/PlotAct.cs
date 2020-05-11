@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Architecture
 {
     public class PlotAct
     {

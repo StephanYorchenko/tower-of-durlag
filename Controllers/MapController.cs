@@ -1,16 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LabirintDemoGame.Architecture;
+using LabirintDemoGame.Generators;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Controllers
 {
     public class MapController
     {
         private readonly LabyrinthGenerator labyrinthGenerator;
         public Cell PlayerPosition;
         public bool IsEndReached;
-        public Cell[,] Maze { get; }
-        public List<Cell> VisibleMaze { get; set; }
+        private Cell[,] Maze { get; }
+        public List<Cell> VisibleMaze { get; private set; }
         public int MazeWidth => labyrinthGenerator.Width;
         public int MazeHeight => labyrinthGenerator.Height;
         

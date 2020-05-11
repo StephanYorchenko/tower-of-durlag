@@ -1,6 +1,6 @@
 using System;
 
-namespace LabirintDemoGame
+namespace LabirintDemoGame.Architecture
 {
     public class Direction
     {
