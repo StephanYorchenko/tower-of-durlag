@@ -48,18 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cell.cs" />
-    <Compile Include="CellTypes.cs" />
-    <Compile Include="Directions.cs" />
-    <Compile Include="Direction.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Level.cs" />
-    <Compile Include="MapController.cs" />
-    <Compile Include="LabyrinthGenerator.cs" />
+    <Compile Include="Architecture\Cell.cs" />
+    <Compile Include="Architecture\CellTypes.cs" />
+    <Compile Include="Architecture\Direction.cs" />
+    <Compile Include="Architecture\Directions.cs" />
+    <Compile Include="Architecture\Player.cs" />
+    <Compile Include="Architecture\PlotAct.cs" />
+    <Compile Include="Architecture\PlotSubject.cs" />
+    <Compile Include="Controllers\Game.cs" />
+    <Compile Include="Controllers\Level.cs" />
+    <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Generators\LabyrinthGenerator.cs" />
     <Compile Include="LabyrinthWindow.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlotAct.cs" />
-    <Compile Include="PlotSubject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\Game_Should.cs" />
     <Compile Include="Tests\LabyrinthGenerator_Should.cs" />

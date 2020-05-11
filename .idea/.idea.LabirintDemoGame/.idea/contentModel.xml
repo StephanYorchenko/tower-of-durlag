@@ -4,11 +4,23 @@
     <e p="$USER_HOME$/.Rider2019.3/system/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/.Rider2019.3/system/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_LabirintDemoGame.377443917.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
-      <e p="Cell.cs" t="Include" />
-      <e p="CellTypes.cs" t="Include" />
-      <e p="Direction.cs" t="Include" />
-      <e p="Directions.cs" t="Include" />
-      <e p="Game.cs" t="Include" />
+      <e p="Architecture" t="Include">
+        <e p="Cell.cs" t="Include" />
+        <e p="CellTypes.cs" t="Include" />
+        <e p="Direction.cs" t="Include" />
+        <e p="Directions.cs" t="Include" />
+        <e p="Player.cs" t="Include" />
+        <e p="PlotAct.cs" t="Include" />
+        <e p="PlotSubject.cs" t="Include" />
+      </e>
+      <e p="Controllers" t="Include">
+        <e p="Game.cs" t="Include" />
+        <e p="Level.cs" t="Include" />
+        <e p="MapController.cs" t="Include" />
+      </e>
+      <e p="Generators" t="Include">
+        <e p="LabyrinthGenerator.cs" t="Include" />
+      </e>
       <e p="Images" t="Include">
         <e p="Empty.png" t="Include" />
         <e p="End.png" t="Include" />
@@ -18,19 +30,14 @@
       </e>
       <e p="LabirintDemoGame.csproj" t="IncludeRecursive" />
       <e p="LabirintDemoGame.sln" t="IncludeFlat" />
-      <e p="LabyrinthGenerator.cs" t="Include" />
       <e p="LabyrinthWindow.cs" t="Include" />
-      <e p="Level.cs" t="Include" />
-      <e p="MapController.cs" t="Include" />
-      <e p="Player.cs" t="Include" />
-      <e p="PlotAct.cs" t="Include" />
-      <e p="PlotSubject.cs" t="Include" />
       <e p="Program.cs" t="Include" />
       <e p="README.md" t="Include" />
       <e p="Tests" t="Include">
         <e p="Game_Should.cs" t="Include" />
         <e p="LabyrinthGenerator_Should.cs" t="Include" />
         <e p="Level_Should.cs" t="Include" />
+        <e p="MapController_Should.cs" t="Include" />
         <e p="Player_Should.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
