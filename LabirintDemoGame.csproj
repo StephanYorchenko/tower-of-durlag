@@ -74,6 +74,9 @@
     <Content Include="Cards\AlchemicalLaboratory.json" />
     <Content Include="Cards\Cellar.json" />
     <Content Include="Cards\Corridor.json" />
+    <Content Include="Cards\DeadMan.json" />
+    <Content Include="Cards\Ifrit.json" />
+    <Content Include="Cards\Medicine.json" />
     <Content Include="Cards\SmallRoom.json" />
     <Content Include="Cards\Steps.json" />
     <Content Include="Cards\WeaponRoom.json" />

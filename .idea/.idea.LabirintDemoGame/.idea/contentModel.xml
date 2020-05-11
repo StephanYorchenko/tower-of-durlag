@@ -17,6 +17,9 @@
         <e p="AlchemicalLaboratory.json" t="Include" />
         <e p="Cellar.json" t="Include" />
         <e p="Corridor.json" t="Include" />
+        <e p="DeadMan.json" t="Include" />
+        <e p="Ifrit.json" t="Include" />
+        <e p="Medicine.json" t="Include" />
         <e p="SmallRoom.json" t="Include" />
         <e p="Steps.json" t="Include" />
         <e p="WeaponRoom.json" t="Include" />
