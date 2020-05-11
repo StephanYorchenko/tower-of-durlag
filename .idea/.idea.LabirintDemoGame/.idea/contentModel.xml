@@ -28,6 +28,7 @@
         <e p="Game.cs" t="Include" />
         <e p="Level.cs" t="Include" />
         <e p="MapController.cs" t="Include" />
+        <e p="PlotController.cs" t="Include" />
       </e>
       <e p="Generators" t="Include">
         <e p="LabyrinthGenerator.cs" t="Include" />

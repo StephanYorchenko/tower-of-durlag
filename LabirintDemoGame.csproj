@@ -58,6 +58,7 @@
     <Compile Include="Controllers\Game.cs" />
     <Compile Include="Controllers\Level.cs" />
     <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Generators\LabyrinthGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\GameShould.cs" />
