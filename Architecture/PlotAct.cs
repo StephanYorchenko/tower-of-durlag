@@ -1,5 +1,5 @@
 using System.IO;
-using Newtonsoft.Json;
+using Json;
 
 namespace LabirintDemoGame.Architecture
 {
@@ -21,14 +21,13 @@ namespace LabirintDemoGame.Architecture
         public static PlotAct CreateFromJson(string fileName)
         {
             if (File.Exists(fileName))
-            {
-                return JsonConvert.DeserializeObject<PlotAct>(File.ReadAllText(fileName));
-            }
+                return JsonParser.Deserialize<PlotAct>(File.ReadAllText(fileName));
+            
             throw new FileNotFoundException();
         }
 
         public PlotAction GetAction() => PlotAction;
         
-        public Option[] GetOptions() => new Option[]{Option1, Option2};
+        public Option[] GetOptions() => new[]{Option1, Option2};
     }
 }
