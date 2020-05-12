@@ -61,7 +61,7 @@ namespace LabirintDemoGame.Generators
                     var middleCell = new Cell(
                         Math.Abs(currentCell.X + nextCell.X) / 2,
                         Math.Abs(currentCell.Y + nextCell.Y) / 2,
-                        CellTypes.Empty);
+                        CellTypes.Gold);
                     Maze.Add(middleCell);
                     VisitingOrder.Push(currentCell);
                     currentCell = nextCell;
@@ -114,13 +114,10 @@ namespace LabirintDemoGame.Generators
                     ? new Cell(cell.X, cell.Y, CellTypes.Start)  
                     : cell.Equals(EndPoint) 
                         ? new Cell(cell.X, cell.Y, CellTypes.End) 
-                        : new Cell(cell.X, cell.Y, CellTypes.Empty);
-            //SetEndPoint(maze);
-            //maze[EndPoint.X, EndPoint.Y] = EndPoint;
+                        : cell;
             return maze;
         }
-
-        //Приведённые ниже методы не планировались, но являются экспериментом по усложнению лабиринта
+        
         private void SetEndPoint(Cell[,] maze)
         {
             var rnd = new Random();
@@ -134,7 +131,7 @@ namespace LabirintDemoGame.Generators
             EndPoint = new Cell(x, y, CellTypes.End);
         }
 
-        private bool CheckNeighbours(Cell[,] maze, int x, int y)
+        private static bool CheckNeighbours(Cell[,] maze, int x, int y)
         {
             var a = (double) new List<Cell>
             {

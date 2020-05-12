@@ -14,6 +14,17 @@
         <e p="PlotAct.cs" t="Include" />
         <e p="PlotParameters.cs" t="Include" />
       </e>
+      <e p="Background" t="Include">
+        <e p="AlchemicalLaboratory.png" t="Include" />
+        <e p="Cellar.png" t="Include" />
+        <e p="Corridor.png" t="Include" />
+        <e p="DeadMan.png" t="Include" />
+        <e p="Ifrit.png" t="Include" />
+        <e p="Medicine.png" t="Include" />
+        <e p="SmallRoom.png" t="Include" />
+        <e p="Steps.png" t="Include" />
+        <e p="Weapon.png" t="Include" />
+      </e>
       <e p="Cards" t="Include">
         <e p="AlchemicalLaboratory.json" t="Include" />
         <e p="Cellar.json" t="Include" />
@@ -38,6 +49,7 @@
       <e p="Images" t="Include">
         <e p="Empty.png" t="Include" />
         <e p="End.png" t="Include" />
+        <e p="Gold.png" t="Include" />
         <e p="Player.png" t="Include" />
         <e p="Start.png" t="Include" />
         <e p="Wall.png" t="Include" />

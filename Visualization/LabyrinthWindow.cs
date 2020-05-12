@@ -18,8 +18,8 @@ namespace LabirintDemoGame.Visualization
 
         public LabyrinthWindow(Game game, DirectoryInfo imagesDirectory = null)
         {
-            var simpleSound = new SoundPlayer(@"Sounds\Sound1.wav");
-            simpleSound.PlayLooping();
+            // var simpleSound = new SoundPlayer(@"Sounds\Sound1.wav");
+            // simpleSound.PlayLooping();
             this.game = game;
             WindowState = FormWindowState.Maximized;
             FormBorderStyle = FormBorderStyle.FixedDialog;

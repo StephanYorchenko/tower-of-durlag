@@ -6,6 +6,7 @@ namespace LabirintDemoGame.Architecture
         Wall,
         Start,
         End, 
-        Player
+        Player,
+        Gold
     }
 }
