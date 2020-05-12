@@ -1,3 +1,4 @@
+using System.Windows.Forms.VisualStyles;
 using LabirintDemoGame.Architecture;
 using NUnit.Framework;
 
@@ -13,6 +14,16 @@ namespace LabirintDemoGame.Tests
         {
             var actual = Option.FromJson(JsonTemplate);
             Assert.AreEqual("Обыскать рюкзак", actual.Name);
+        }
+
+        [Test]
+        public void IsValidShould()
+        {
+            var player = new Player();
+            var option = new Option {Requirements = new[] {10, 0, 0, 0, 0, 0}};
+            Assert.IsFalse(option.IsValid(player));
+            var option2 = new Option {Requirements = new[] {1, 0, 0, 0, 0, 0}};
+            Assert.IsTrue(option.IsValid(player));
         }
     }
 }

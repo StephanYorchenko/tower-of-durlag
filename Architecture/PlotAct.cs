@@ -23,7 +23,7 @@ namespace LabirintDemoGame.Architecture
             return act;
         }
 
-        public PlotParameters GetAction() => autoOption;
+        public Option GetAction() => autoOption;
         
         public Option[] GetOptions() => new[]{option1, option2};
 

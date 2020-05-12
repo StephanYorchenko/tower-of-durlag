@@ -38,7 +38,7 @@ namespace LabirintDemoGame.Architecture
             return $"{Hp}";
         }
 
-        public List<int> Check()
+        public IEnumerable<int> Check()
         {
             return new List<int>
             {

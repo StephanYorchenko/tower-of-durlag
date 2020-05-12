@@ -67,9 +67,9 @@ namespace LabirintDemoGame.Controllers
                 StepType = Step.Plot;
         }
 
-        public void StartPlotAct(Option startOption)
+        public void StartPlotAct()
         {
-            Player.ApplyChanges(startOption);
+            Player.ApplyChanges(Plot.CurrentAct.GetAction());
             if (Player.IsDead())
                 EndGame = true;
         }

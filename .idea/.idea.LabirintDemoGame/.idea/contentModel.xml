@@ -101,6 +101,7 @@
         <e p="PlayerShould.cs" t="Include" />
       </e>
       <e p="Visualization" t="Include">
+        <e p="Button.cs" t="Include" />
         <e p="LabyrinthWindow.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
