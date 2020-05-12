@@ -138,7 +138,9 @@
     <Content Include="Images\End.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Gold.png" />
+    <Content Include="Images\Gold.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Player.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

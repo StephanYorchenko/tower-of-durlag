@@ -8,20 +8,20 @@ namespace LabirintDemoGame.Controllers
 {
     public class PlotController
     {
-        private PlotAct currentAct;
+        public PlotAct CurrentAct { get; private set; }
 
         public PlotController()
         {
             SetNextAct();
         }
-        public Option[] CurrentOptions => currentAct.GetOptions();
+        public Option[] CurrentOptions => CurrentAct.GetOptions();
         private static IEnumerable<string> directory => Config.Cards;
 
         public void SetNextAct()
         {
             var random = new Random();
             var jsonTemplate = directory.ElementAt(random.Next(0, directory.Count() - 1));
-            currentAct = PlotAct.CreateFromJson(jsonTemplate);
+            CurrentAct = PlotAct.CreateFromJson(jsonTemplate);
         }
     }
 }
