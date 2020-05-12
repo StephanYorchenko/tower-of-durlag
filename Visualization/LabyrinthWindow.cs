@@ -21,7 +21,7 @@ namespace LabirintDemoGame.Visualization
             var simpleSound = new SoundPlayer(@"Sounds\Sound1.wav");
             simpleSound.PlayLooping();
             this.game = game;
-            WindowState = FormWindowState.Maximized;
+            ClientSize = new Size(1028, 640);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
                 imagesDirectory = new DirectoryInfo("Images");
