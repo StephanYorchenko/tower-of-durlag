@@ -75,6 +75,7 @@
     <Compile Include="Tests\MapControllerShould.cs" />
     <Compile Include="Tests\OptionShould.cs" />
     <Compile Include="Tests\PlayerShould.cs" />
+    <Compile Include="Visualization\Button.cs" />
     <Compile Include="Visualization\LabyrinthWindow.cs" />
   </ItemGroup>
   <ItemGroup>
