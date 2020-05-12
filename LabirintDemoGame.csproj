@@ -87,9 +87,9 @@
     <Content Include="Cards\Corridor.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Cards\DeadMan.json">
+    <Content Include="Cards\DeadMan.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="Cards\Ifrit.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

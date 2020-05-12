@@ -28,9 +28,6 @@ namespace LabirintDemoGame.Visualization
             BackColor = Color.Black;
             foreach (var e in imagesDirectory.GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
-            var timer = new Timer {Interval = 19};
-            timer.Tick += TimerTick;
-            timer.Start();
         }
         
         protected override void OnLoad(EventArgs e)
@@ -60,6 +57,7 @@ namespace LabirintDemoGame.Visualization
             e.Graphics.DrawImage(bitmaps["Player"], 
                 new Point(player.X * SizeImage, player.Y * SizeImage));
             e.Graphics.ResetTransform();
+            Invalidate();
         }
         protected override void OnKeyDown(KeyEventArgs e)
         {
@@ -79,16 +77,11 @@ namespace LabirintDemoGame.Visualization
                     break;
             }
         }
-        
-        private void TimerTick(object sender, EventArgs args)
-        {
-            Invalidate();
-        }
 
         private Point GetWindowCoordinates(Cell cell)
         {
-            var deltaX = Math.Max(0, game.PlayerPosition.X - 1028/SizeImage + 3);
-            var deltaY = Math.Max(0, game.PlayerPosition.Y - 640/SizeImage + 3);
+            var deltaX = Math.Max(0, game.PlayerPosition.X - ClientSize.Width/SizeImage + 3);
+            var deltaY = Math.Max(0, game.PlayerPosition.Y - ClientSize.Height/SizeImage + 3);
             return new Point(cell.X - deltaX, cell.Y-deltaY);
         }
     }
