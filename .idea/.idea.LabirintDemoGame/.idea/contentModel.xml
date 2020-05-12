@@ -97,6 +97,7 @@
         <e p="LabyrinthGeneratorShould.cs" t="Include" />
         <e p="LevelShould.cs" t="Include" />
         <e p="MapControllerShould.cs" t="Include" />
+        <e p="MapSizeGeneratorShould.cs" t="Include" />
         <e p="OptionShould.cs" t="Include" />
         <e p="PlayerShould.cs" t="Include" />
       </e>
