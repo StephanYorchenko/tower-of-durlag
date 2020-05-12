@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
 
@@ -12,18 +14,21 @@ namespace LabirintDemoGame.Visualization
     {
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
         private readonly Game game;
-        private const int size = 64;
+        private const int SizeImage = 64;
 
         public LabyrinthWindow(Game game, DirectoryInfo imagesDirectory = null)
         {
+            var simpleSound = new SoundPlayer(@"Sounds\Sound1.wav");
+            simpleSound.PlayLooping();
             this.game = game;
-            ClientSize = new Size(1028, 640);
+            WindowState = FormWindowState.Maximized;
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
                 imagesDirectory = new DirectoryInfo("Images");
+            BackColor = Color.Black;
             foreach (var e in imagesDirectory.GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
-            var timer = new Timer {Interval = 1};
+            var timer = new Timer {Interval = 19};
             timer.Tick += TimerTick;
             timer.Start();
         }
@@ -43,18 +48,17 @@ namespace LabirintDemoGame.Visualization
             foreach (var t in game.Map)
             {
                 var c = GetWindowCoordinates(t);
-                e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * size, c.Y * size));
+                e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * SizeImage, c.Y * SizeImage));
                 if (t.Type != CellTypes.Player)
-                    e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * size, c.Y * size));
+                    e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * SizeImage, c.Y * SizeImage));
                 if (!t.IsExplored)
                     e.Graphics.FillRectangle(
-                        Brushes.Black, c.X * size, c.Y * size, size, size);
+                        Brushes.Black, c.X * SizeImage, c.Y * SizeImage, SizeImage, SizeImage);
 
             }
-
             var player = GetWindowCoordinates(game.PlayerPosition);
             e.Graphics.DrawImage(bitmaps["Player"], 
-                new Point(player.X * size, player.Y * size));
+                new Point(player.X * SizeImage, player.Y * SizeImage));
             e.Graphics.ResetTransform();
         }
         protected override void OnKeyDown(KeyEventArgs e)
@@ -83,8 +87,8 @@ namespace LabirintDemoGame.Visualization
 
         private Point GetWindowCoordinates(Cell cell)
         {
-            var deltaX = Math.Max(0, game.PlayerPosition.X - 4);
-            var deltaY = Math.Max(0, game.PlayerPosition.Y - 4);
+            var deltaX = Math.Max(0, game.PlayerPosition.X - ClientSize.Width/SizeImage + 2);
+            var deltaY = Math.Max(0, game.PlayerPosition.Y - ClientSize.Height/SizeImage + 2);
             return new Point(cell.X - deltaX, cell.Y-deltaY);
         }
     }
