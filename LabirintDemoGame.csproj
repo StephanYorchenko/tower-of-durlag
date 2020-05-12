@@ -59,8 +59,7 @@
     <Compile Include="Architecture\Options.cs" />
     <Compile Include="Architecture\Player.cs" />
     <Compile Include="Architecture\PlotAct.cs" />
-    <Compile Include="Architecture\PlotAction.cs" />
-    <Compile Include="Architecture\PlotSubject.cs" />
+    <Compile Include="Architecture\PlotParameters.cs" />
     <Compile Include="Controllers\Game.cs" />
     <Compile Include="Controllers\Level.cs" />
     <Compile Include="Controllers\MapController.cs" />
@@ -78,15 +77,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cards\AlchemicalLaboratory.json" />
-    <Content Include="Cards\Cellar.json" />
-    <Content Include="Cards\Corridor.json" />
-    <Content Include="Cards\DeadMan.json" />
-    <Content Include="Cards\Ifrit.json" />
-    <Content Include="Cards\Medicine.json" />
-    <Content Include="Cards\SmallRoom.json" />
-    <Content Include="Cards\Steps.json" />
-    <Content Include="Cards\WeaponRoom.json" />
+    <Content Include="Cards\AlchemicalLaboratory.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cards\Cellar.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cards\Corridor.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cards\DeadMan.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cards\Ifrit.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cards\Medicine.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cards\SmallRoom.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cards\Steps.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cards\WeaponRoom.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Empty.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -102,36 +119,90 @@
     <Content Include="Images\Wall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Options\AlchemicalLaboratory0.json" />
-    <Content Include="Options\AlchemicalLaboratory1.json" />
-    <Content Include="Options\AlchemicalLaboratory2.json" />
-    <Content Include="Options\Cellar0.json" />
-    <Content Include="Options\Cellar1.json" />
-    <Content Include="Options\Cellar2.json" />
-    <Content Include="Options\Corridor0.json" />
-    <Content Include="Options\Corridor1.json" />
-    <Content Include="Options\Corridor2.json" />
-    <Content Include="Options\DeadMan0.json" />
-    <Content Include="Options\DeadMan1.json" />
-    <Content Include="Options\DeadMan2.json" />
-    <Content Include="Options\Ifrit0.json" />
-    <Content Include="Options\Ifrit1.json" />
-    <Content Include="Options\Ifrit2.json" />
-    <Content Include="Options\Medicine0.json" />
-    <Content Include="Options\Medicine1.json" />
-    <Content Include="Options\Medicine2.json" />
-    <Content Include="Options\SmallRoom0.json" />
-    <Content Include="Options\SmallRoom1.json" />
-    <Content Include="Options\SmallRoom2.json" />
-    <Content Include="Options\Steps0.json" />
-    <Content Include="Options\Steps1.json" />
-    <Content Include="Options\Steps2.json" />
-    <Content Include="Options\WeaponRoom0.json" />
-    <Content Include="Options\WeaponRoom1.json" />
-    <Content Include="Options\WeaponRoom2.json" />
+    <Content Include="Options\AlchemicalLaboratory0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\AlchemicalLaboratory1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\AlchemicalLaboratory2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Cellar0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Cellar1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Cellar2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Corridor0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Corridor1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Corridor2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\DeadMan0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\DeadMan1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\DeadMan2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Ifrit0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Ifrit1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Ifrit2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Medicine0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Medicine1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Medicine2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\SmallRoom0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\SmallRoom1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\SmallRoom2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Steps0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Steps1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\Steps2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\WeaponRoom0.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\WeaponRoom1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Options\WeaponRoom2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="README.md" />
     <Content Include="Sounds\Sound1.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

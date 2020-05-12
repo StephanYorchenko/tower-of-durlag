@@ -1,8 +1,7 @@
 namespace LabirintDemoGame.Architecture
 {
-    public abstract class PlotAction
+    public abstract class PlotParameters
     {
-        public string Name;
         public int Torch;
         public int Bandage;
         public int Herb;
@@ -10,6 +9,5 @@ namespace LabirintDemoGame.Architecture
         public int Gold;
         public int Supplies;
         public int HP;
-        public string Result;
     }
 }

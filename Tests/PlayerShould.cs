@@ -13,19 +13,19 @@ namespace LabirintDemoGame.Tests
         public void IsInitializationCorrect()
         {
             var player = new Player();
-            Assert.AreEqual(100, player.Health);
-            Assert.AreEqual(0, player.Bag.Count);
-            player = new Player(13, new []{new PlotSubject("some item")});
-            Assert.AreEqual(13, player.Health);
+            Assert.AreEqual(100, player.HP);
+            //player = new Player(13, new []{new PlotSubject("some item")});
+            Assert.AreEqual(13, player.HP);
         }
 
         [Test]
         public void PlayerChangeHpShould()
         {
             var player = new Player();
-            Assert.AreEqual(100, player.Health);
-            player.ChangeHp(10);
-            Assert.AreEqual(90, player.Health);
+            Assert.AreEqual(100, player.HP);
+            player.ApplyChanges(new Option{HP=-10, Gold = 200});
+            Assert.AreEqual(90, player.HP);
+            Assert.AreEqual(200, player.Gold);
         }
 
         [TestCase(Directions.Up, 0, -1)]
@@ -42,13 +42,12 @@ namespace LabirintDemoGame.Tests
         [Test]
         public void ToStringShould()
         {
-            var player = new Player(13, new List<PlotSubject>());
-            Assert.AreEqual("13 -- <>", player.ToString());
-            player.ChangeHp(-50);
-            Assert.AreEqual("63 -- <>", player.ToString());
-            player = new Player(72,
-                new List<string>{"sword", "shield"}.Select(x => new PlotSubject(x)));
-            Assert.AreEqual("72 -- <sword/shield>", player.ToString());
+            var player = new Player(13);
+            Assert.AreEqual("13", player.ToString());
+            player.ApplyChanges(new Option {HP = 50, requirements=new[]{1, 0, 0, 0, 0, 0}});
+            Assert.AreEqual("63", player.ToString());
+            player = new Player(72);
+            Assert.AreEqual("72", player.ToString());
         }
     }
 }

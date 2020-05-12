@@ -1,28 +1,31 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace LabirintDemoGame.Architecture
 {
-    public class Player
+    public class Player : PlotParameters
     {
-        public List<PlotSubject> Bag;
-        public int Health { get; private set; }
-
-        public Player()
+        public Player(int health = 100)
         {
-            Bag = new List<PlotSubject>();
-            Health = 100;
+            HP = health;
+            Torch = 1;
+            Bandage = 1;
+            Herb = 1;
+            Sword = true;
+            Gold = 0;
+            Supplies = 1;
         }
 
-        public Player(int health, IEnumerable<PlotSubject> bag)
+        public void ApplyChanges(Option changes)
         {
-            Bag = bag.ToList();
-            Health = health;
-        }
-
-        public void ChangeHp(int deltaHp)
-        {
-            Health -= deltaHp;
+            HP = Math.Max(100, HP + changes.HP);
+            Torch += changes.Torch;
+            Bandage += changes.Bandage;
+            Herb += changes.Herb;
+            Sword = changes.Sword;
+            Gold += changes.Gold;
+            Supplies += changes.Supplies;
         }
 
         public static Direction Move(Directions direction)
@@ -32,8 +35,20 @@ namespace LabirintDemoGame.Architecture
 
         public override string ToString()
         {
-            var bag = Bag.Select(x => x.ToString());
-            return $"{Health} -- <{string.Join("/", bag)}>";
+            return $"{HP}";
+        }
+
+        public List<int> Check()
+        {
+            return new List<int>
+            {
+                Torch,
+                Bandage,
+                Herb,
+                Sword ? 1 : 0,
+                Gold,
+                Supplies
+            };
         }
     }
 }

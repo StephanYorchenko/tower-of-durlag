@@ -1,6 +1,6 @@
 {
   "requirement" : [
-    "Supplies"
+    0,0,0,0,0,1
   ],
   "Name"     : "Перекусить",
   "Supplies" : -1,

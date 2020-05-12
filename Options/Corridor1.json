@@ -1,6 +1,6 @@
 {
   "requirement" : [
-    "Torch"
+    1,0,0,0,0,0
   ],
   "Name"     : "Зажечь факел",
   "Torch"    : -1,
