@@ -1,5 +1,4 @@
 using System.Linq;
-using LabirintDemoGame.Architecture;
 
 namespace LabirintDemoGame.Controllers
 {

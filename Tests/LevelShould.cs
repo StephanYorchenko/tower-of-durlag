@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
 using NUnit.Framework;
 

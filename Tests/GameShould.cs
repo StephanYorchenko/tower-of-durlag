@@ -10,15 +10,15 @@ namespace LabirintDemoGame.Tests
         [Test]
         public void IsSizeInitializationCorrect()
         {
-            var gaming = new Game(7, 9);
-            Assert.AreEqual(7, gaming.MazeWidth);
-            Assert.AreEqual(9, gaming.MazeHeight);
+            var gaming = new Game(7, 9, true);
+            Assert.AreEqual(9, gaming.MazeWidth);
+            Assert.AreEqual(11, gaming.MazeHeight);
         }
         
         [Test]
         public void IsLevelInitializationCorrect()
         {
-            var gaming = new Game(Level.CreateFromConfig("5%7"), new Player());
+            var gaming = new Game(Level.CreateFromConfig("5%7"), new Player(), null, true);
             Assert.AreEqual(7, gaming.MazeWidth);
             Assert.AreEqual(5, gaming.MazeHeight);
         }
