@@ -23,5 +23,10 @@ namespace LabirintDemoGame.Controllers
             var jsonTemplate = directory.ElementAt(random.Next(0, directory.Count() - 1));
             CurrentAct = PlotAct.CreateFromJson(jsonTemplate);
         }
+
+        public bool EndPlotStep()
+        {
+            return false;
+        }
     }
 }

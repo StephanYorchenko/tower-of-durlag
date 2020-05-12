@@ -12,16 +12,15 @@ namespace LabirintDemoGame.Controllers
         public Level Level;
         private Queue<string> logLevels;
 
-        public bool IsPlotStep { get; private set; }
+        public Step StepType;
 
         public Game(int width, int height)
         {
-            //TODO: add plot text and subjects parameters
             var map = new MapController(width, height);
             var plot = new PlotController();
             Level = new Level(map, plot);
             Player = new Player();
-            IsPlotStep = false;
+            StepType = Step.Maze;
         }
 
         public Game(Level level, Player player, Queue<string> queue = null)
@@ -60,7 +59,20 @@ namespace LabirintDemoGame.Controllers
             else if (Level.Map.IsEndReached)
                 EndGame = true;
             else
-                IsPlotStep = true;
+                StepType = Step.Plot;
+        }
+
+        public void StartPlotAct(Option startOption)
+        {
+            Player.ApplyChanges(startOption);
+            if (Player.IsDead())
+                EndGame = true;
+        }
+        public void MakePlotAction(int index)
+        {
+            Player.ApplyChanges(Plot.CurrentOptions[index]);
+            if (Player.IsDead())
+                EndGame = true;
         }
 
         public void GetNextLevel()

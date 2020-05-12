@@ -60,6 +60,7 @@
     <Compile Include="Architecture\Player.cs" />
     <Compile Include="Architecture\PlotAct.cs" />
     <Compile Include="Architecture\PlotParameters.cs" />
+    <Compile Include="Architecture\Step.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Controllers\Game.cs" />
     <Compile Include="Controllers\Level.cs" />

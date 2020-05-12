@@ -13,6 +13,7 @@
         <e p="Player.cs" t="Include" />
         <e p="PlotAct.cs" t="Include" />
         <e p="PlotParameters.cs" t="Include" />
+        <e p="Step.cs" t="Include" />
       </e>
       <e p="Background" t="Include">
         <e p="AlchemicalLaboratory.png" t="Include" />

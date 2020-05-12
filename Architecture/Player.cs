@@ -50,5 +50,7 @@ namespace LabirintDemoGame.Architecture
                 Supplies
             };
         }
+
+        public bool IsDead() => HP <= 0;
     }
 }

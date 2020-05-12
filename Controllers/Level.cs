@@ -22,5 +22,7 @@ namespace LabirintDemoGame.Controllers
             var map = new MapController(width, height);
             return new Level(map, new PlotController());
         }
+        
+        
     }
 }
