@@ -1,0 +1,14 @@
+{
+  "requirement" : [
+    "Torch"
+  ],
+  "Name"     : "Зажечь факел",
+  "Torch"    : -1,
+  "Bandage"  : 0,
+  "Herb"     : 0,
+  "Sword"    : true,
+  "Gold"     : 5,
+  "Supplies" : 0,
+  "HP"       : 0,
+  "Result"   : "С досадой вздохнув, Вы зажигаете новый факел и продолжаете путь."
+}

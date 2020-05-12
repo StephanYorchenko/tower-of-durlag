@@ -102,6 +102,33 @@
     <Content Include="Images\Wall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Options\AlchemicalLaboratory0.json" />
+    <Content Include="Options\AlchemicalLaboratory1.json" />
+    <Content Include="Options\AlchemicalLaboratory2.json" />
+    <Content Include="Options\Cellar0.json" />
+    <Content Include="Options\Cellar1.json" />
+    <Content Include="Options\Cellar2.json" />
+    <Content Include="Options\Corridor0.json" />
+    <Content Include="Options\Corridor1.json" />
+    <Content Include="Options\Corridor2.json" />
+    <Content Include="Options\DeadMan0.json" />
+    <Content Include="Options\DeadMan1.json" />
+    <Content Include="Options\DeadMan2.json" />
+    <Content Include="Options\Ifrit0.json" />
+    <Content Include="Options\Ifrit1.json" />
+    <Content Include="Options\Ifrit2.json" />
+    <Content Include="Options\Medicine0.json" />
+    <Content Include="Options\Medicine1.json" />
+    <Content Include="Options\Medicine2.json" />
+    <Content Include="Options\SmallRoom0.json" />
+    <Content Include="Options\SmallRoom1.json" />
+    <Content Include="Options\SmallRoom2.json" />
+    <Content Include="Options\Steps0.json" />
+    <Content Include="Options\Steps1.json" />
+    <Content Include="Options\Steps2.json" />
+    <Content Include="Options\WeaponRoom0.json" />
+    <Content Include="Options\WeaponRoom1.json" />
+    <Content Include="Options\WeaponRoom2.json" />
     <Content Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
