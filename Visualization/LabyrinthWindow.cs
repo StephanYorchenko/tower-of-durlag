@@ -16,7 +16,6 @@ namespace LabirintDemoGame.Visualization
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
         private readonly Game game;
         private const int SizeImage = 64;
-        private bool Z = false;
 
         public LabyrinthWindow(Game game)
         {
@@ -71,17 +70,18 @@ namespace LabirintDemoGame.Visualization
         
         private void Plot(PaintEventArgs e)
         {
-            var y = new Button();
-            y.Size = new Size(600, 100);
-            y.BackColor = Color.Black;
-            y.Text = game.Level.Plot.CurrentAct.Text;
-            y.ForeColor = Color.Azure;
-            y.Location = (new Point((ClientSize.Width - y.Size.Width)/2, 400));
-            e.Graphics.DrawImage(bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
-            Controls.Add(y);
-            //e.Graphics.DrawString(game.Level.Plot.CurrentAct.Text, new Font("Arial", 20), Brushes.Yellow, 0, 0);
-            Thread.Sleep(100);
-            Z = false;
+            var text = new Button();
+            MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
+                new Point((ClientSize.Width - 600)/2, 400), 100, 600, null);
+            var l = new Button();
+            MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
+                new Point(50 , ClientSize.Height - 80), 50, 250, null);
+            var r = new Button();
+            MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
+                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, null);
+            e.Graphics.DrawImage(
+                bitmaps[game.Level.Plot.CurrentAct.Image.Substring(
+                    0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -102,10 +102,6 @@ namespace LabirintDemoGame.Visualization
                     break;
                 case Keys.Right:
                     game.MakePlayerMove(Directions.Right);
-                    Invalidate();
-                    break;
-                case Keys.Z:
-                    Z = true;
                     Invalidate();
                     break;
             }
