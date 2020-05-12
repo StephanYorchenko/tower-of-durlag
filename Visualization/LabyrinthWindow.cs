@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Media;
-using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
-using System.Threading;
 
 namespace LabirintDemoGame.Visualization
 {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Text;
 using LabirintDemoGame.Architecture;
@@ -22,7 +21,7 @@ namespace LabirintDemoGame.Controllers
             this.config = config;
             mapSizeGenerator = new MapSizeGenerator(height, width);
             var map = mapSizeGenerator.NextController();
-            Plot = new PlotController();
+            Plot = new PlotController(config);
             Level = new Level(map, Plot);
             Player = new Player();
             StepType = Step.Maze;

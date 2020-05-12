@@ -1,4 +1,3 @@
-using System.Windows.Forms.VisualStyles;
 using LabirintDemoGame.Architecture;
 using NUnit.Framework;
 

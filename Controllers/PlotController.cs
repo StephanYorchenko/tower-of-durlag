@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using LabirintDemoGame.Architecture;
 
@@ -28,11 +27,6 @@ namespace LabirintDemoGame.Controllers
         public void SetNextActFromJson(string json)
         {
             CurrentAct = PlotAct.CreateFromJson(json);
-        }
-
-        public bool EndPlotStep()
-        {
-            return false;
         }
     }
 }

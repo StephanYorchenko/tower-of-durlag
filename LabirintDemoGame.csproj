@@ -73,6 +73,7 @@
     <Compile Include="Tests\LabyrinthGeneratorShould.cs" />
     <Compile Include="Tests\LevelShould.cs" />
     <Compile Include="Tests\MapControllerShould.cs" />
+    <Compile Include="Tests\MapSizeGeneratorShould.cs" />
     <Compile Include="Tests\OptionShould.cs" />
     <Compile Include="Tests\PlayerShould.cs" />
     <Compile Include="Visualization\Button.cs" />

@@ -16,8 +16,8 @@ namespace LabirintDemoGame.Generators
 
         public MapController NextController()
         {
-            Width = Math.Min(89, Height + 2);
-            Height = Math.Min(91, Width + 2);
+            Width = Math.Min(89, Width + 2);
+            Height = Math.Min(91, Height + 2);
             return new MapController(Width, Height);
         }
     }
