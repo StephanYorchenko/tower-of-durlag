@@ -6,6 +6,7 @@ namespace LabirintDemoGame.Architecture
 {
     public class Option : PlotParameters
     {
+        public string Name { get; set; }
         public int[] requirements { get; set; }
         public string Result { get; set; }
 

@@ -57,7 +57,6 @@ namespace LabirintDemoGame.Controllers
                     direction.Y + PlayerPosition.Y,
                     CellTypes.Player);
             }
-
             ExploreCells();
             UpdateVisibleCells();
             if (PlayerPosition.Equals(EndPoint))

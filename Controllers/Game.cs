@@ -58,13 +58,12 @@ namespace LabirintDemoGame.Controllers
         
         public void MakePlayerMove(Directions direction)
         {
+            if (StepType != Step.Maze) return;
             Level.Map.MakePlayerMove(Player.Move(direction));
             if (Level.Map.Gold) Player.ApplyChanges(new Option {Gold = 1});
             if (Level.Map.IsEndReached && logLevels.Count > 0)
                 GetNextLevel();
             else if (Level.Map.IsEndReached)
-                EndGame = true;
-            else
                 StepType = Step.Plot;
         }
 
