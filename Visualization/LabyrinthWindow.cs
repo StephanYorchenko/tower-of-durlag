@@ -73,23 +73,26 @@ namespace LabirintDemoGame.Visualization
         {
             game.StartPlotAct();
             var text = new Button();
+            var r = new Button();
+            var l = new Button();
+            var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
+            e.Graphics.DrawImage( image, new Point(0,0));
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
                 new Point((ClientSize.Width - 600)/2, 400), 100, 600, null);
-            var l = new Button();
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
-                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0));
-            var r = new Button();
+                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,text}, e, image));
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
-                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(1));
-            e.Graphics.DrawImage(
-                bitmaps[game.Level.Plot.CurrentAct.Image.Substring(
-                    0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
+                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(1, new []{l,r,text}, e, image));
+            Controls.Remove(text);
         }
         
-        public void ClickMyButton(int index)
+        public void ClickMyButton(int index, Button[] bts, PaintEventArgs e, Bitmap image)
         {
             game.MakePlotAction(index);
-            game.StepType = Step.Maze;
+            Controls.Clear();
+            //e.Graphics.DrawImage(image, new Point(0,0));
+            game.EndPlotAct();
+            Invalidate();
         }
 
         protected override void OnKeyDown(KeyEventArgs e)

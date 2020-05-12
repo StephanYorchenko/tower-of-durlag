@@ -16,7 +16,6 @@ namespace LabirintDemoGame.Visualization
             btn.ForeColor = Color.Azure;
             btn.Location = (loc);
             btn.Click += evh;
-            
             form.Controls.Add(btn);
         }
     }
