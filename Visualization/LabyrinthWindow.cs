@@ -87,8 +87,8 @@ namespace LabirintDemoGame.Visualization
 
         private Point GetWindowCoordinates(Cell cell)
         {
-            var deltaX = Math.Max(0, game.PlayerPosition.X - ClientSize.Width/SizeImage + 2);
-            var deltaY = Math.Max(0, game.PlayerPosition.Y - ClientSize.Height/SizeImage + 2);
+            var deltaX = Math.Max(0, game.PlayerPosition.X - 1028/SizeImage + 3);
+            var deltaY = Math.Max(0, game.PlayerPosition.Y - 640/SizeImage + 3);
             return new Point(cell.X - deltaX, cell.Y-deltaY);
         }
     }
