@@ -25,6 +25,7 @@
         <e p="Steps.json" t="Include" />
         <e p="WeaponRoom.json" t="Include" />
       </e>
+      <e p="Config.cs" t="Include" />
       <e p="Controllers" t="Include">
         <e p="Game.cs" t="Include" />
         <e p="Level.cs" t="Include" />

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using LabirintDemoGame.Architecture;
@@ -7,6 +8,7 @@ namespace LabirintDemoGame.Controllers
     public class Game
     {
         public Player Player;
+        public PlotController Plot;
         public Level Level;
         private Queue<string> logLevels;
 
@@ -14,7 +16,8 @@ namespace LabirintDemoGame.Controllers
         {
             //TODO: add plot text and subjects parameters
             var map = new MapController(width, height);
-            Level = new Level(map);
+            var plot = new PlotController();
+            Level = new Level(map, plot);
             Player = new Player();
         }
 

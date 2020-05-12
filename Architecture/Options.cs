@@ -6,11 +6,8 @@ namespace LabirintDemoGame.Architecture
 {
     public class Option : PlotParameters
     {
-        public string Name;
-#pragma warning disable 649
-        public int[] requirements;
-#pragma warning restore 649
-        public string Result;
+        public int[] requirements { get; set; }
+        public string Result { get; set; }
 
         public bool IsValid(Player player)
         {
@@ -21,15 +18,12 @@ namespace LabirintDemoGame.Architecture
 
         public override string ToString()
         {
-            return $"{Name} -- {Result}";
+            return $"{Result}";
         }
 
-        public static Option FromJson(string fileName)
+        public static Option FromJson(string json)
         {
-            if (File.Exists(fileName))
-                return JsonParser.Deserialize<Option>(File.ReadAllText(fileName));
-            
-            throw new FileNotFoundException();
+            return JsonParser.Deserialize<Option>(json);
         }
     }
 }

@@ -10,11 +10,12 @@ namespace LabirintDemoGame.Controllers
     {
         private PlotAct currentAct;
 
+        public PlotController()
+        {
+            SetNextAct();
+        }
         public Option[] CurrentOptions => currentAct.GetOptions();
-        private static IEnumerable<string> directory = new DirectoryInfo("Cards")
-            .GetFiles()
-            .Select(x => x.Name)
-            .ToList();
+        private static IEnumerable<string> directory => Config.Cards;
 
         public void SetNextAct()
         {
