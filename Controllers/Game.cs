@@ -61,7 +61,7 @@ namespace LabirintDemoGame.Controllers
             if (StepType != Step.Maze) return;
             Level.Map.MakePlayerMove(Player.Move(direction));
             if (Level.Map.Gold) Player.ApplyChanges(new Option {Gold = 1});
-            if (Level.Map.IsEndReached && logLevels.Count > 0)
+            if (Level.Map.IsEndReached && Config && logLevels.Count > 0 )
                 GetNextLevel();
             else if (Level.Map.IsEndReached)
                 StepType = Step.Plot;
