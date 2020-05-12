@@ -4,7 +4,7 @@ namespace LabirintDemoGame.Architecture
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public CellTypes Type { get; }
+        public CellTypes Type { get; set; }
         public bool IsExplored { get; set; }
         public bool IsVisible { get; private set; }
 

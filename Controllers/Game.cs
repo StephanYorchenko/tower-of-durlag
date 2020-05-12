@@ -12,6 +12,8 @@ namespace LabirintDemoGame.Controllers
         public Level Level;
         private Queue<string> logLevels;
 
+        public bool IsPlotStep { get; private set; }
+
         public Game(int width, int height)
         {
             //TODO: add plot text and subjects parameters
@@ -19,6 +21,7 @@ namespace LabirintDemoGame.Controllers
             var plot = new PlotController();
             Level = new Level(map, plot);
             Player = new Player();
+            IsPlotStep = false;
         }
 
         public Game(Level level, Player player, Queue<string> queue = null)
@@ -51,10 +54,13 @@ namespace LabirintDemoGame.Controllers
         public void MakePlayerMove(Directions direction)
         {
             Level.Map.MakePlayerMove(Player.Move(direction));
+            if (Level.Map.Gold) Player.ApplyChanges(new Option {Gold = 1});
             if (Level.Map.IsEndReached && logLevels.Count > 0)
                 GetNextLevel();
             else if (Level.Map.IsEndReached)
                 EndGame = true;
+            else
+                IsPlotStep = true;
         }
 
         public void GetNextLevel()

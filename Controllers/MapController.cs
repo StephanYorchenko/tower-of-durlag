@@ -9,6 +9,7 @@ namespace LabirintDemoGame.Controllers
     public class MapController
     {
         private readonly LabyrinthGenerator labyrinthGenerator;
+        public bool Gold;
         public Cell PlayerPosition;
         public bool IsEndReached;
         private Cell[,] Maze { get; }
@@ -37,13 +38,26 @@ namespace LabirintDemoGame.Controllers
             return x >= 0 && y >= 0 && x < MazeWidth && y < MazeHeight && Maze[x, y].Type != CellTypes.Wall;
         }
 
+        private bool IsCellContainsGold(Direction direction)
+        {
+            var x = direction.X + PlayerPosition.X;
+            var y = direction.Y + PlayerPosition.Y;
+            var result = Maze[x, y].Type;
+            Maze[x, y].Type = CellTypes.Empty;
+            return result == CellTypes.Gold;
+        }
+
         public void MakePlayerMove(Direction direction)
         {
             if (IsMovingCorrect(direction))
+            {
+                Gold = IsCellContainsGold(direction);
                 PlayerPosition = new Cell(
                     direction.X + PlayerPosition.X,
                     direction.Y + PlayerPosition.Y,
                     CellTypes.Player);
+            }
+
             ExploreCells();
             UpdateVisibleCells();
             if (PlayerPosition.Equals(EndPoint))
