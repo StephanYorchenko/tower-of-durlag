@@ -67,6 +67,7 @@
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Generators\LabyrinthGenerator.cs" />
+    <Compile Include="Generators\MapSizeGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\GameShould.cs" />
     <Compile Include="Tests\LabyrinthGeneratorShould.cs" />

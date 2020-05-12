@@ -2,29 +2,35 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using LabirintDemoGame.Architecture;
+using LabirintDemoGame.Generators;
 
 namespace LabirintDemoGame.Controllers
 {
     public class Game
     {
+        private bool Config;
         public Player Player;
         public PlotController Plot;
         public Level Level;
         private Queue<string> logLevels;
 
+        private MapSizeGenerator mapSizeGenerator;
         public Step StepType;
 
-        public Game(int width, int height)
+        public Game(int width, int height, bool config = false)
         {
-            var map = new MapController(width, height);
+            Config = config;
+            mapSizeGenerator = new MapSizeGenerator(height, width);
+            var map = mapSizeGenerator.NextController();
             var plot = new PlotController();
             Level = new Level(map, plot);
             Player = new Player();
             StepType = Step.Maze;
         }
 
-        public Game(Level level, Player player, Queue<string> queue = null)
+        public Game(Level level, Player player, Queue<string> queue = null, bool config = false)
         {
+            Config = config;
             Level = level;
             Player = player;
             logLevels = queue;
@@ -42,7 +48,7 @@ namespace LabirintDemoGame.Controllers
         {
             var queue = new Queue<string>(text.Split(';'));
             var lvl = Level.CreateFromConfig(queue.Dequeue());
-            return new Game(lvl, new Player(), queue);
+            return new Game(lvl, new Player(), queue, true);
         }
 
         public void UpdateToConfig(string text)
@@ -77,7 +83,13 @@ namespace LabirintDemoGame.Controllers
 
         public void GetNextLevel()
         {
-            UpdateToConfig(logLevels.Dequeue());
+            if (Config)
+                UpdateToConfig(logLevels.Dequeue());
+            else
+            {
+                Plot.SetNextAct();
+                Level = new Level(mapSizeGenerator.NextController(), Plot);
+            }
         }
 
         public bool EndGame { get; private set; }
