@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Media;
+using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using LabirintDemoGame.Architecture;
@@ -70,18 +71,25 @@ namespace LabirintDemoGame.Visualization
         
         private void Plot(PaintEventArgs e)
         {
+            game.StartPlotAct();
             var text = new Button();
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
                 new Point((ClientSize.Width - 600)/2, 400), 100, 600, null);
             var l = new Button();
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
-                new Point(50 , ClientSize.Height - 80), 50, 250, null);
+                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0));
             var r = new Button();
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
-                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, null);
+                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(1));
             e.Graphics.DrawImage(
                 bitmaps[game.Level.Plot.CurrentAct.Image.Substring(
                     0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
+        }
+        
+        public void ClickMyButton(int index)
+        {
+            game.MakePlotAction(index);
+            game.StepType = Step.Maze;
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
