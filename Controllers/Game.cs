@@ -73,11 +73,18 @@ namespace LabirintDemoGame.Controllers
             if (Player.IsDead())
                 EndGame = true;
         }
+        
         public void MakePlotAction(int index)
         {
             Player.ApplyChanges(Plot.CurrentOptions[index]);
             if (Player.IsDead())
                 EndGame = true;
+        }
+
+        public void EndPlotAct()
+        {
+            StepType = Step.Maze;
+            GetNextLevel();
         }
 
         public void GetNextLevel()
