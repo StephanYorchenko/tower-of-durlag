@@ -20,9 +20,8 @@ namespace LabirintDemoGame.Controllers
             var height = int.Parse(parameters[0]);
             var width = int.Parse(parameters[1]);
             var map = new MapController(width, height);
-            return new Level(map, new PlotController());
+            var plot = new PlotController(true);
+            return new Level(map, plot);
         }
-        
-        
     }
 }

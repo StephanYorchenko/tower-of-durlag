@@ -23,7 +23,7 @@ namespace LabirintDemoGame.Tests
             var option = new Option {Requirements = new[] {10, 0, 0, 0, 0, 0}};
             Assert.IsFalse(option.IsValid(player));
             var option2 = new Option {Requirements = new[] {1, 0, 0, 0, 0, 0}};
-            Assert.IsTrue(option.IsValid(player));
+            Assert.IsTrue(option2.IsValid(player));
         }
     }
 }

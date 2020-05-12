@@ -19,7 +19,6 @@ namespace LabirintDemoGame.Tests
         [TestCase(5, 9)]
         [TestCase(13, 17)]
         [TestCase(13, 45)]
-        [TestCase(24, 56)]
         public void CorrectWidth(int height, int width)
         {
             var mapController = new MapController(width, height);

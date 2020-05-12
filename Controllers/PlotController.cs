@@ -10,9 +10,10 @@ namespace LabirintDemoGame.Controllers
     {
         public PlotAct CurrentAct { get; private set; }
 
-        public PlotController()
+        public PlotController(bool config = false)
         {
-            SetNextAct();
+            if (!config)
+                SetNextAct();
         }
         public Option[] CurrentOptions => CurrentAct.GetOptions();
         private static IEnumerable<string> Directory => Config.Cards;
@@ -21,7 +22,12 @@ namespace LabirintDemoGame.Controllers
         {
             var random = new Random();
             var jsonTemplate = Directory.ElementAt(random.Next(0, Directory.Count() - 1));
-            CurrentAct = PlotAct.CreateFromJson(jsonTemplate);
+            SetNextActFromJson(jsonTemplate);
+        }
+
+        public void SetNextActFromJson(string json)
+        {
+            CurrentAct = PlotAct.CreateFromJson(json);
         }
 
         public bool EndPlotStep()

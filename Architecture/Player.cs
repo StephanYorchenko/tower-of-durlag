@@ -19,7 +19,7 @@ namespace LabirintDemoGame.Architecture
 
         public void ApplyChanges(Option changes)
         {
-            Hp = Math.Max(100, Hp + changes.Hp);
+            Hp = Math.Min(100, Hp + changes.Hp);
             Torch += changes.Torch;
             Bandage += changes.Bandage;
             Herb += changes.Herb;

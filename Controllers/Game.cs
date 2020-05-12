@@ -22,8 +22,8 @@ namespace LabirintDemoGame.Controllers
             this.config = config;
             mapSizeGenerator = new MapSizeGenerator(height, width);
             var map = mapSizeGenerator.NextController();
-            var plot = new PlotController();
-            Level = new Level(map, plot);
+            Plot = new PlotController();
+            Level = new Level(map, Plot);
             Player = new Player();
             StepType = Step.Maze;
         }

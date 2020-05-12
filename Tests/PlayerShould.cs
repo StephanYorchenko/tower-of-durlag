@@ -14,7 +14,7 @@ namespace LabirintDemoGame.Tests
         {
             var player = new Player();
             Assert.AreEqual(100, player.Hp);
-            //player = new Player(13, new []{new PlotSubject("some item")});
+            player = new Player(13);
             Assert.AreEqual(13, player.Hp);
         }
 
