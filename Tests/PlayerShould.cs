@@ -13,18 +13,18 @@ namespace LabirintDemoGame.Tests
         public void IsInitializationCorrect()
         {
             var player = new Player();
-            Assert.AreEqual(100, player.HP);
+            Assert.AreEqual(100, player.Hp);
             //player = new Player(13, new []{new PlotSubject("some item")});
-            Assert.AreEqual(13, player.HP);
+            Assert.AreEqual(13, player.Hp);
         }
 
         [Test]
         public void PlayerChangeHpShould()
         {
             var player = new Player();
-            Assert.AreEqual(100, player.HP);
-            player.ApplyChanges(new Option{HP=-10, Gold = 200});
-            Assert.AreEqual(90, player.HP);
+            Assert.AreEqual(100, player.Hp);
+            player.ApplyChanges(new Option{Hp=-10, Gold = 200});
+            Assert.AreEqual(90, player.Hp);
             Assert.AreEqual(200, player.Gold);
         }
 
@@ -44,7 +44,7 @@ namespace LabirintDemoGame.Tests
         {
             var player = new Player(13);
             Assert.AreEqual("13", player.ToString());
-            player.ApplyChanges(new Option {HP = 50, requirements=new[]{1, 0, 0, 0, 0, 0}});
+            player.ApplyChanges(new Option {Hp = 50, Requirements=new[]{1, 0, 0, 0, 0, 0}});
             Assert.AreEqual("63", player.ToString());
             player = new Player(72);
             Assert.AreEqual("72", player.ToString());

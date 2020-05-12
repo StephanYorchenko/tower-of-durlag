@@ -8,7 +8,7 @@ namespace LabirintDemoGame.Controllers
 {
     public class Game
     {
-        private bool Config;
+        private bool config;
         public Player Player;
         public PlotController Plot;
         public Level Level;
@@ -19,7 +19,7 @@ namespace LabirintDemoGame.Controllers
 
         public Game(int width, int height, bool config = false)
         {
-            Config = config;
+            this.config = config;
             mapSizeGenerator = new MapSizeGenerator(height, width);
             var map = mapSizeGenerator.NextController();
             var plot = new PlotController();
@@ -30,7 +30,7 @@ namespace LabirintDemoGame.Controllers
 
         public Game(Level level, Player player, Queue<string> queue = null, bool config = false)
         {
-            Config = config;
+            this.config = config;
             Level = level;
             Player = player;
             logLevels = queue;
@@ -61,7 +61,7 @@ namespace LabirintDemoGame.Controllers
             if (StepType != Step.Maze) return;
             Level.Map.MakePlayerMove(Player.Move(direction));
             if (Level.Map.Gold) Player.ApplyChanges(new Option {Gold = 1});
-            if (Level.Map.IsEndReached && Config && logLevels.Count > 0 )
+            if (Level.Map.IsEndReached && config && logLevels.Count > 0 )
                 GetNextLevel();
             else if (Level.Map.IsEndReached)
                 StepType = Step.Plot;
@@ -82,7 +82,7 @@ namespace LabirintDemoGame.Controllers
 
         public void GetNextLevel()
         {
-            if (Config)
+            if (config)
                 UpdateToConfig(logLevels.Dequeue());
             else
             {

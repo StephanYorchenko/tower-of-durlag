@@ -1,4 +1,3 @@
-using System.IO;
 using System.Linq;
 using Json;
 
@@ -7,13 +6,13 @@ namespace LabirintDemoGame.Architecture
     public class Option : PlotParameters
     {
         public string Name { get; set; }
-        public int[] requirements { get; set; }
+        public int[] Requirements { get; set; }
         public string Result { get; set; }
 
         public bool IsValid(Player player)
         {
             return player.Check()
-                .Select((x, index) => x >= requirements[index])
+                .Select((x, index) => x >= Requirements[index])
                 .All(x => x);
         }
 

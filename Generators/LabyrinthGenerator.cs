@@ -16,7 +16,7 @@ namespace LabirintDemoGame.Generators
         public readonly HashSet<Cell> UnvisitedCells;
         private Stack<Cell> VisitingOrder { get; }
 
-        private static readonly List<Tuple<int, int>> NeighboursCoordinated = new List<Tuple<int, int>>
+        private static readonly List<Tuple<int, int>> neighboursCoordinated = new List<Tuple<int, int>>
         {
             new Tuple<int, int>(0 , -2),
             new Tuple<int, int>(2, 0),
@@ -79,7 +79,7 @@ namespace LabirintDemoGame.Generators
 
         public Cell[] GetUnvisitedNeighbours(Cell currentCell)
         {
-            return NeighboursCoordinated.Select(x =>
+            return neighboursCoordinated.Select(x =>
                                                  new Cell(currentCell.X + x.Item1,
                                                           currentCell.Y + x.Item2,
                                                           CellTypes.Empty))

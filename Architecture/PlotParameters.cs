@@ -8,6 +8,6 @@ namespace LabirintDemoGame.Architecture
         public bool Sword { get; set; }
         public int Gold { get; set; }
         public int Supplies { get; set; }
-        public int HP { get; set; }
+        public int Hp { get; set; }
     }
 }

@@ -15,12 +15,12 @@ namespace LabirintDemoGame.Controllers
             SetNextAct();
         }
         public Option[] CurrentOptions => CurrentAct.GetOptions();
-        private static IEnumerable<string> directory => Config.Cards;
+        private static IEnumerable<string> Directory => Config.Cards;
 
         public void SetNextAct()
         {
             var random = new Random();
-            var jsonTemplate = directory.ElementAt(random.Next(0, directory.Count() - 1));
+            var jsonTemplate = Directory.ElementAt(random.Next(0, Directory.Count() - 1));
             CurrentAct = PlotAct.CreateFromJson(jsonTemplate);
         }
 

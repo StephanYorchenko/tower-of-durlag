@@ -8,7 +8,7 @@ namespace LabirintDemoGame.Architecture
     {
         public Player(int health = 100)
         {
-            HP = health;
+            Hp = health;
             Torch = 1;
             Bandage = 1;
             Herb = 1;
@@ -19,7 +19,7 @@ namespace LabirintDemoGame.Architecture
 
         public void ApplyChanges(Option changes)
         {
-            HP = Math.Max(100, HP + changes.HP);
+            Hp = Math.Max(100, Hp + changes.Hp);
             Torch += changes.Torch;
             Bandage += changes.Bandage;
             Herb += changes.Herb;
@@ -35,7 +35,7 @@ namespace LabirintDemoGame.Architecture
 
         public override string ToString()
         {
-            return $"{HP}";
+            return $"{Hp}";
         }
 
         public List<int> Check()
@@ -51,6 +51,6 @@ namespace LabirintDemoGame.Architecture
             };
         }
 
-        public bool IsDead() => HP <= 0;
+        public bool IsDead() => Hp <= 0;
     }
 }
