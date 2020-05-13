@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Media;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
 
@@ -16,8 +19,8 @@ namespace LabirintDemoGame.Visualization
 
         public LabyrinthWindow(Game game)
         {
-            // var simpleSound = new SoundPlayer(@"Sounds\Sound1.wav");
-            // simpleSound.PlayLooping();
+            //var simpleSound = new SoundPlayer(@"Sounds\Sound1.wav");
+            //simpleSound.PlayLooping();
             this.game = game;
             ClientSize = new Size(1028, 640);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -62,6 +65,10 @@ namespace LabirintDemoGame.Visualization
                     new Point(player.X * SizeImage, player.Y * SizeImage));
                 e.Graphics.ResetTransform();
                 e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 20), Brushes.Yellow, 0, 0);
+                e.Graphics.DrawString(game.Player.Hp.ToString(), new Font("Arial", 20), Brushes.Red, 100, 0);
+                e.Graphics.DrawString(game.Player.Herb.ToString(), new Font("Arial", 20), Brushes.Green, 200, 0);
+                e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 20), Brushes.Brown, 300, 0);
+                e.Graphics.DrawString(game.Player.Supplies.ToString(), new Font("Arial", 20), Brushes.Chocolate, 400, 0);
             }
         }
         
@@ -76,18 +83,22 @@ namespace LabirintDemoGame.Visualization
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
                 new Point((ClientSize.Width - 600)/2, 400), 100, 600, null);
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
-                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,text}, e, image));
+                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,text}));
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
-                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(1, new []{l,r,text}, e, image));
-            Controls.Remove(text);
+                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(1, new []{l,r,text}));
         }
         
-        public void ClickMyButton(int index, Button[] bts, PaintEventArgs e, Bitmap image)
+        private void ClickMyButton(int index, Button[] bts)
         {
+            //var c = new Button();
             game.MakePlotAction(index);
-            Controls.Clear();
-            //e.Graphics.DrawImage(image, new Point(0,0));
+             Controls.Clear();
+            // MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
+            //     new Point((ClientSize.Width - 600)/2, 400), 100, 600, null);
+            // Thread.Sleep(1000);
             game.EndPlotAct();
+            //e.Graphics.DrawImage(image, new Point(0,0));
+            //a.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, ClientSize.Height);
             Invalidate();
         }
 
