@@ -150,13 +150,13 @@ namespace LabirintDemoGame.Visualization
             e.Graphics.DrawImage(bitmaps["Torch"], 0, 0);
             e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 64, 40);
             e.Graphics.DrawImage(bitmaps["Bandage"], 96, 0);
-            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 160, 40);
+            e.Graphics.DrawString(game.Player.Bandage.ToString(), new Font("Arial", 14), Brushes.Yellow, 160, 40);
             e.Graphics.DrawImage(bitmaps["Herb"], 192, 0);
-            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 256, 40);
+            e.Graphics.DrawString(game.Player.Herb.ToString(), new Font("Arial", 14), Brushes.Yellow, 256, 40);
             e.Graphics.DrawImage(bitmaps["Supplies"], 288, 0);
-            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 352, 40);
+            e.Graphics.DrawString(game.Player.Supplies.ToString(), new Font("Arial", 14), Brushes.Yellow, 352, 40);
             e.Graphics.DrawImage(bitmaps["Gold"], 384, 0);
-            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 448, 40);
+            e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 14), Brushes.Yellow, 448, 40);
             e.Graphics.DrawImage(bitmaps[GetHpImageName()], 480, 0);
             e.Graphics.DrawString(game.Player.Hp.ToString(), new Font("Arial", 14), Brushes.Yellow, 544, 40);
             if (game.Player.Sword)
@@ -165,8 +165,8 @@ namespace LabirintDemoGame.Visualization
 
         private string GetHpImageName()
         {
-            var hp = 22 - game.Player.Hp / 100d * 21;
-            return $"{(int) hp}";
+            var hp = (int) (22 - game.Player.Hp / 100d * 21);
+            return $"{hp}";
         }
     }
 }
