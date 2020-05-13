@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Media;
-using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
 
@@ -17,8 +15,8 @@ namespace LabirintDemoGame.Visualization
         private readonly Game game;
         private const int SizeImage = 64;
         private const int StatBar = 64;
-        private bool Z = false;
-        private int index = 0;
+        private bool Z;
+        private int index;
 
         public LabyrinthWindow(Game game)
         {
@@ -35,7 +33,7 @@ namespace LabirintDemoGame.Visualization
             foreach (var e in new DirectoryInfo("Stats").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
         }
-        
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -97,12 +95,12 @@ namespace LabirintDemoGame.Visualization
                 ClickMyButton(1, new []{l,r,text}));
         }
         
-        private void ClickMyButton(int index, Button[] bts)
+        private void ClickMyButton(int btnIndex, Button[] bts)
         {
-            game.MakePlotAction(index);
-            this.index = index;
+            game.MakePlotAction(btnIndex);
+            this.index = btnIndex;
             Controls.Clear();
-            Z = true; ;
+            Z = true;
             Invalidate();
         }
 
