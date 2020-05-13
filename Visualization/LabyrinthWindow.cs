@@ -165,7 +165,8 @@ namespace LabirintDemoGame.Visualization
 
         private string GetHpImageName()
         {
-            return $"{(int) 22 - game.Player.Hp / 100d * 21}";
+            var hp = 22 - game.Player.Hp / 100d * 21;
+            return $"{(int) hp}";
         }
     }
 }
