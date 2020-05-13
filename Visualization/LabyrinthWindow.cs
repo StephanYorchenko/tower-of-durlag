@@ -15,7 +15,7 @@ namespace LabirintDemoGame.Visualization
         private readonly Game game;
         private const int SizeImage = 64;
         private const int StatBar = 64;
-        private bool Z;
+        private bool drawResult;
         private int index;
 
         public LabyrinthWindow(Game game)
@@ -44,7 +44,7 @@ namespace LabirintDemoGame.Visualization
         protected override void OnPaint(PaintEventArgs e)
         {
             PaintStatBar(e);
-            if (Z)
+            if (drawResult)
             {
                 e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
                 var c = new Button();
@@ -100,7 +100,7 @@ namespace LabirintDemoGame.Visualization
             game.MakePlotAction(btnIndex);
             this.index = btnIndex;
             Controls.Clear();
-            Z = true;
+            drawResult = true;
             Invalidate();
         }
 
@@ -108,7 +108,7 @@ namespace LabirintDemoGame.Visualization
         {
             game.EndPlotAct(); 
             Controls.Clear();
-            Z = false;
+            drawResult = false;
             Invalidate();
         }
 
