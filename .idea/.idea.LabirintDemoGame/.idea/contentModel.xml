@@ -89,9 +89,7 @@
       </e>
       <e p="Program.cs" t="Include" />
       <e p="README.md" t="Include" />
-      <e p="Sounds" t="Include">
-        <e p="Sound1.wav" t="Include" />
-      </e>
+      <e p="Sounds" t="Include" />
       <e p="Stats" t="Include">
         <e p="1.png" t="Include" />
         <e p="10.png" t="Include" />
