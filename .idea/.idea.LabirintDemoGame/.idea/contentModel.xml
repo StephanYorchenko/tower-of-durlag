@@ -92,6 +92,35 @@
       <e p="Sounds" t="Include">
         <e p="Sound1.wav" t="Include" />
       </e>
+      <e p="Stats" t="Include">
+        <e p="1.png" t="Include" />
+        <e p="10.png" t="Include" />
+        <e p="11.png" t="Include" />
+        <e p="12.png" t="Include" />
+        <e p="13.png" t="Include" />
+        <e p="14.png" t="Include" />
+        <e p="15.png" t="Include" />
+        <e p="16.png" t="Include" />
+        <e p="17.png" t="Include" />
+        <e p="18.png" t="Include" />
+        <e p="19.png" t="Include" />
+        <e p="2.png" t="Include" />
+        <e p="20.png" t="Include" />
+        <e p="21.png" t="Include" />
+        <e p="3.png" t="Include" />
+        <e p="4.png" t="Include" />
+        <e p="5.png" t="Include" />
+        <e p="6.png" t="Include" />
+        <e p="7.png" t="Include" />
+        <e p="8.png" t="Include" />
+        <e p="9.png" t="Include" />
+        <e p="Bandage.png" t="Include" />
+        <e p="Herb.png" t="Include" />
+        <e p="Supples.png" t="Include" />
+        <e p="Supplies.png" t="Include" />
+        <e p="Sword.png" t="Include" />
+        <e p="Torch.png" t="Include" />
+      </e>
       <e p="Tests" t="Include">
         <e p="GameShould.cs" t="Include" />
         <e p="LabyrinthGeneratorShould.cs" t="Include" />

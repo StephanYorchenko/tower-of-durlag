@@ -14,7 +14,7 @@ namespace LabirintDemoGame.Architecture
             Y = y;
             Type = type;
             IsExplored = false;
-            IsVisible = true;
+            IsVisible = false;
         }
 
         public bool Equals(Cell obj)

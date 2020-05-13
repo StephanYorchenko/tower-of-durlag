@@ -84,10 +84,10 @@ namespace LabirintDemoGame.Controllers
         {
             VisibleMaze = new List<Cell>();
             foreach (var cell in Maze)
-                cell.SetVisiblity(cell.X >= PlayerPosition.X - 4 && cell.X <= PlayerPosition.X + 4 &&
-                                  cell.Y >= PlayerPosition.Y - 4 && cell.Y <= PlayerPosition.X + 4);
-            foreach (var cell in Maze)
-                if (cell.IsVisible)
+                if (cell.X >= PlayerPosition.X - 4 &&
+                    cell.X <= PlayerPosition.X + 4 &&
+                    cell.Y >= PlayerPosition.Y - 4 &&
+                    cell.Y <= PlayerPosition.Y + 4)
                     VisibleMaze.Add(cell);
         }
     }    
