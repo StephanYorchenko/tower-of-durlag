@@ -64,10 +64,10 @@ namespace LabirintDemoGame.Visualization
                 e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 20), Brushes.Yellow, 0, 0);
             }
         }
-        
         private void Plot(PaintEventArgs e)
         {
             game.StartPlotAct();
+            
             var text = new Button();
             var r = new Button();
             var l = new Button();
@@ -79,13 +79,12 @@ namespace LabirintDemoGame.Visualization
                 new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,text}, e, image));
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
                 new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(1, new []{l,r,text}, e, image));
-            Controls.Remove(text);
         }
         
         public void ClickMyButton(int index, Button[] bts, PaintEventArgs e, Bitmap image)
         {
             game.MakePlotAction(index);
-            Controls.Clear();
+            Controls.Clear();  
             //e.Graphics.DrawImage(image, new Point(0,0));
             game.EndPlotAct();
             Invalidate();

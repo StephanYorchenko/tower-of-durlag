@@ -8,12 +8,14 @@ namespace LabirintDemoGame.Visualization
     {
         public static void CreateMyButton(Button btn, Form form, string text, Point loc, int h, int w, EventHandler evh)
         {
-            btn = new Button();
-            btn.Size = new Size(w, h);
-            btn.BackColor = Color.Black;
-            btn.Text = text;
-            btn.ForeColor = Color.Azure;
-            btn.Location = (loc);
+            btn = new Button
+            {
+                Size = new Size(w, h),
+                BackColor = Color.Black,
+                Text = text,
+                ForeColor = Color.Azure,
+                Location = (loc)
+            };
             btn.Click += evh;
             form.Controls.Add(btn);
         }
