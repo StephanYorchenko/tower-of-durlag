@@ -16,6 +16,8 @@ namespace LabirintDemoGame.Visualization
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
         private readonly Game game;
         private const int SizeImage = 64;
+        private bool Z = false;
+        private int index = 0;
 
         public LabyrinthWindow(Game game)
         {
@@ -40,7 +42,14 @@ namespace LabirintDemoGame.Visualization
         
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (game.StepType == Step.Plot)
+            if (Z)
+            {
+                e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
+                var c = new Button();
+                MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
+                    new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click);
+            }
+            else if (game.StepType == Step.Plot)
             {
                 Plot(e);
             }
@@ -90,15 +99,18 @@ namespace LabirintDemoGame.Visualization
         
         private void ClickMyButton(int index, Button[] bts)
         {
-            //var c = new Button();
             game.MakePlotAction(index);
-             Controls.Clear();
-            // MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
-            //     new Point((ClientSize.Width - 600)/2, 400), 100, 600, null);
-            // Thread.Sleep(1000);
-            game.EndPlotAct();
-            //e.Graphics.DrawImage(image, new Point(0,0));
-            //a.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, ClientSize.Height);
+            this.index = index;
+            Controls.Clear();
+            Z = true; ;
+            Invalidate();
+        }
+
+        private void Click(object sender, EventArgs e)
+        {
+            game.EndPlotAct(); 
+            Controls.Clear();
+            Z = false;
             Invalidate();
         }
 
