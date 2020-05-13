@@ -15,6 +15,7 @@ namespace LabirintDemoGame.Visualization
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
         private readonly Game game;
         private const int SizeImage = 64;
+        private const int StatBar = 64;
         private bool Z = false;
         private int index = 0;
 
@@ -30,6 +31,8 @@ namespace LabirintDemoGame.Visualization
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
             foreach (var e in new DirectoryInfo("Background").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
+            foreach (var e in new DirectoryInfo("Stats").GetFiles("*.png"))
+                bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
         }
         
         protected override void OnLoad(EventArgs e)
@@ -41,6 +44,7 @@ namespace LabirintDemoGame.Visualization
         
         protected override void OnPaint(PaintEventArgs e)
         {
+            PaintStatBar(e);
             if (Z)
             {
                 e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
@@ -49,30 +53,27 @@ namespace LabirintDemoGame.Visualization
                     new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click);
             }
             else if (game.StepType == Step.Plot)
-            {
                 Plot(e);
-            }
+            else if (game.EndGame)
+                Close();
             else
             {
-                if (game.EndGame)
-                    Close();
-            
                 foreach (var t in game.Map)
                 {
                     var c = GetWindowCoordinates(t);
-                    e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * SizeImage, c.Y * SizeImage));
+                    e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * SizeImage, StatBar + c.Y * SizeImage));
                     if (t.Type != CellTypes.Player)
-                        e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * SizeImage, c.Y * SizeImage));
+                        e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * SizeImage, StatBar + c.Y * 
+                        SizeImage));
                     if (!t.IsExplored)
                         e.Graphics.FillRectangle(
-                            Brushes.Black, c.X * SizeImage, c.Y * SizeImage, SizeImage, SizeImage);
+                            Brushes.Black, c.X * SizeImage, StatBar + c.Y * SizeImage, SizeImage, SizeImage);
 
                 }
                 var player = GetWindowCoordinates(game.PlayerPosition);
                 e.Graphics.DrawImage(bitmaps["Player"], 
-                    new Point(player.X * SizeImage, player.Y * SizeImage));
+                    new Point(player.X * SizeImage, StatBar + player.Y * SizeImage));
                 e.Graphics.ResetTransform();
-                e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 20), Brushes.Yellow, 0, 0);
             }
         }
         
@@ -84,13 +85,15 @@ namespace LabirintDemoGame.Visualization
             var r = new Button();
             var l = new Button();
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
-            e.Graphics.DrawImage( image, new Point(0,0));
+            e.Graphics.DrawImage( image, new Point(0,StatBar));
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
-                new Point((ClientSize.Width - 600)/2, 400), 100, 600, null);
+                new Point((ClientSize.Width - 600)/2, StatBar + 380), 100, 600, null);
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
-                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,text}));
+                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,
+                text}));
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
-                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(1, new []{l,r,text}));
+                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => 
+                ClickMyButton(1, new []{l,r,text}));
         }
         
         private void ClickMyButton(int index, Button[] bts)
@@ -138,6 +141,31 @@ namespace LabirintDemoGame.Visualization
             var deltaX = Math.Max(0, game.PlayerPosition.X - ClientSize.Width/SizeImage + 3);
             var deltaY = Math.Max(0, game.PlayerPosition.Y - ClientSize.Height/SizeImage + 3);
             return new Point(cell.X - deltaX, cell.Y-deltaY);
+        }
+
+        private void PaintStatBar(PaintEventArgs e)
+        {
+            e.Graphics.Clear(BackColor);
+            
+            e.Graphics.DrawImage(bitmaps["Torch"], 0, 0);
+            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 64, 40);
+            e.Graphics.DrawImage(bitmaps["Bandage"], 96, 0);
+            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 160, 40);
+            e.Graphics.DrawImage(bitmaps["Herb"], 192, 0);
+            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 256, 40);
+            e.Graphics.DrawImage(bitmaps["Supplies"], 288, 0);
+            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 352, 40);
+            e.Graphics.DrawImage(bitmaps["Gold"], 384, 0);
+            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 448, 40);
+            e.Graphics.DrawImage(bitmaps[GetHpImageName()], 480, 0);
+            e.Graphics.DrawString(game.Player.Hp.ToString(), new Font("Arial", 14), Brushes.Yellow, 544, 40);
+            if (game.Player.Sword)
+                e.Graphics.DrawImage(bitmaps["Sword"], 576, 0);
+        }
+
+        private string GetHpImageName()
+        {
+            return $"{(int) 22 - game.Player.Hp / 100d * 21}";
         }
     }
 }
