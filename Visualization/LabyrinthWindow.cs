@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Media;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -21,8 +22,8 @@ namespace LabirintDemoGame.Visualization
 
         public LabyrinthWindow(Game game)
         {
-            //var simpleSound = new SoundPlayer(@"Sounds\Sound1.wav");
-            //simpleSound.PlayLooping();
+            var simpleSound = new SoundPlayer(@"Sounds/Sound1.wav");
+            simpleSound.PlayLooping();
             this.game = game;
             ClientSize = new Size(1028, 640);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -56,7 +57,7 @@ namespace LabirintDemoGame.Visualization
                 Plot(e);
             else if (game.EndGame)
                 Close();
-            else
+            else  if (game.StepType == Step.Maze)
             {
                 foreach (var t in game.Map)
                 {
@@ -105,7 +106,7 @@ namespace LabirintDemoGame.Visualization
             Invalidate();
         }
 
-        private void Click(object sender, EventArgs e)
+        private new void Click(object sender, EventArgs e)
         {
             game.EndPlotAct(); 
             Controls.Clear();
@@ -147,20 +148,20 @@ namespace LabirintDemoGame.Visualization
         {
             e.Graphics.Clear(BackColor);
             
-            e.Graphics.DrawImage(bitmaps["Torch"], 0, 0);
-            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 64, 40);
+            e.Graphics.DrawImage(bitmaps[GetHpImageName()], 0, 0);
+            e.Graphics.DrawString(game.Player.Hp.ToString(), new Font("Arial", 14), Brushes.Yellow, 64, 40);
             e.Graphics.DrawImage(bitmaps["Bandage"], 96, 0);
             e.Graphics.DrawString(game.Player.Bandage.ToString(), new Font("Arial", 14), Brushes.Yellow, 160, 40);
             e.Graphics.DrawImage(bitmaps["Herb"], 192, 0);
             e.Graphics.DrawString(game.Player.Herb.ToString(), new Font("Arial", 14), Brushes.Yellow, 256, 40);
             e.Graphics.DrawImage(bitmaps["Supplies"], 288, 0);
             e.Graphics.DrawString(game.Player.Supplies.ToString(), new Font("Arial", 14), Brushes.Yellow, 352, 40);
-            e.Graphics.DrawImage(bitmaps["Gold"], 384, 0);
-            e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 14), Brushes.Yellow, 448, 40);
-            e.Graphics.DrawImage(bitmaps[GetHpImageName()], 480, 0);
-            e.Graphics.DrawString(game.Player.Hp.ToString(), new Font("Arial", 14), Brushes.Yellow, 544, 40);
-            if (game.Player.Sword)
-                e.Graphics.DrawImage(bitmaps["Sword"], 576, 0);
+            e.Graphics.DrawImage(bitmaps["Torch"], 384, 0);
+            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 448, 40);
+            e.Graphics.DrawImage(bitmaps["Gold"], 480, 0);
+            e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 14), Brushes.Yellow, 544, 40);
+            if (game.Player.Sword != 2)
+                e.Graphics.DrawImage(bitmaps["Sword"], 600, 0);
         }
 
         private string GetHpImageName()

@@ -11,7 +11,7 @@ namespace LabirintDemoGame.Architecture
             Torch = 1;
             Bandage = 1;
             Herb = 1;
-            Sword = true;
+            Sword = 1;
             Gold = 0;
             Supplies = 1;
         }
@@ -22,7 +22,7 @@ namespace LabirintDemoGame.Architecture
             Torch += changes.Torch;
             Bandage += changes.Bandage;
             Herb += changes.Herb;
-            Sword = changes.Sword;
+            Sword = changes.Sword != 0? changes.Sword : Sword;
             Gold += changes.Gold;
             Supplies += changes.Supplies;
         }
@@ -44,7 +44,7 @@ namespace LabirintDemoGame.Architecture
                 Torch,
                 Bandage,
                 Herb,
-                Sword ? 1 : 0,
+                Sword,
                 Gold,
                 Supplies
             };
