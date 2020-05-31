@@ -19,9 +19,9 @@ namespace LabirintDemoGame.Tests
         public void IsValidShould()
         {
             var player = new Player();
-            var option = new Option {Requirements = new[] {10, 0, 0, 0, 0, 0}};
+            var option = new Option {Requirements = "10,0,0,0,0,0"};
             Assert.IsFalse(option.IsValid(player));
-            var option2 = new Option {Requirements = new[] {1, 0, 0, 0, 0, 0}};
+            var option2 = new Option {Requirements = "1,0,0,0,0,0"};
             Assert.IsTrue(option2.IsValid(player));
         }
     }

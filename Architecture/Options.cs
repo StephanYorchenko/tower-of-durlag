@@ -6,13 +6,16 @@ namespace LabirintDemoGame.Architecture
     public class Option : PlotParameters
     {
         public string Name { get; set; }
-        public int[] Requirements { get; set; }
+        public string Requirements { get; set; }
         public string Result { get; set; }
 
         public bool IsValid(Player player)
         {
+            var requirements = Requirements.Split(',')
+                .Select(x=> int.Parse(x))
+                .ToList();
             return player.Check()
-                .Select((x, index) => x >= Requirements[index])
+                .Select((x, index) => x >= requirements[index])
                 .All(x => x);
         }
 

@@ -26,6 +26,8 @@ namespace LabirintDemoGame.Visualization
             this.game = game;
             ClientSize = new Size(1028, 640);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MinimumSize = new Size(1028, 640);
+            MaximumSize = new Size(1028, 640);
             BackColor = Color.Black;
             foreach (var e in new DirectoryInfo("Images").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
@@ -55,7 +57,7 @@ namespace LabirintDemoGame.Visualization
             else if (game.StepType == Step.Plot)
                 Plot(e);
             else if (game.EndGame)
-                Close();
+                Dead(e);
             else  if (game.StepType == Step.Maze)
             {
                 foreach (var t in game.Map)
@@ -76,7 +78,14 @@ namespace LabirintDemoGame.Visualization
                 e.Graphics.ResetTransform();
             }
         }
-        
+
+        private void Dead(PaintEventArgs e)
+        {
+            var image = bitmaps["Dead"];
+            e.Graphics.DrawImage(image, new Point(0, 0));
+        }
+
+
         private void Plot(PaintEventArgs e)
         {
             game.StartPlotAct();
@@ -107,11 +116,7 @@ namespace LabirintDemoGame.Visualization
 
         private bool IsButtonEnable(Option option)
         {
-            if (option.Requirements != null)
-                return game.Player.Check()
-                    .Zip(option.Requirements, (x, y) => x >= y)
-                    .All(x => x);
-            return true;
+            return option.Requirements == null || option.IsValid(game.Player);
         }
 
         private new void Click(object sender, EventArgs e)
@@ -141,6 +146,10 @@ namespace LabirintDemoGame.Visualization
                 case Keys.Right:
                     game.MakePlayerMove(Directions.Right);
                     Invalidate();
+                    break;
+                case Keys.F:
+                    if (game.EndGame) 
+                        Close();
                     break;
             }
         }

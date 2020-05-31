@@ -1,7 +1,5 @@
 {
-  "requirement" : [
-    0,0,0,1,0,0
-  ],
+  "Requirements" : "0,0,0,1,0,0",
   "Name"     : "Сразиться",
   "Sword"    : 2,
   "Gold"     : 75,

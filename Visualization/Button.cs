@@ -18,7 +18,7 @@ namespace LabirintDemoGame.Visualization
                 Location = (loc),
                 Enabled = enabled
             };
-            btn.Click += evh;
+            btn.Click += enabled ? evh : null;
             form.Controls.Add(btn);
         }
     }

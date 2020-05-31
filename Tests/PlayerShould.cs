@@ -42,7 +42,7 @@ namespace LabirintDemoGame.Tests
         {
             var player = new Player(13);
             Assert.AreEqual("13", player.ToString());
-            player.ApplyChanges(new Option {Hp = 50, Requirements=new[]{1, 0, 0, 0, 0, 0}});
+            player.ApplyChanges(new Option {Hp = 50, Requirements="1,0,0,0,0,0"});
             Assert.AreEqual("63", player.ToString());
             player = new Player(72);
             Assert.AreEqual("72", player.ToString());

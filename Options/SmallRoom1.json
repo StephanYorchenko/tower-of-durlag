@@ -1,7 +1,5 @@
 {
-  "requirement" : [
-    0,0,0,0,0,1
-  ],
+  "Requirements" : "0,0,0,0,0,1",
   "Name"     : "Перекусить",
   "Supplies" : -1,
   "HP"       : 10,
