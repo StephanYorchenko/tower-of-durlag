@@ -5,15 +5,21 @@ namespace LabirintDemoGame.Architecture
 {
     public class Player : PlotParameters
     {
-        public Player(int health = 1)
+        public Player(int health = 1,
+            int torch = 1,
+            int bandage = 1,
+            int herb = 1,
+            int sword = 1,
+            int gold = 0,
+            int sup = 1)
         {
             Hp = health;
-            Torch = 1;
-            Bandage = 1;
-            Herb = 1;
-            Sword = 1;
-            Gold = 0;
-            Supplies = 1;
+            Torch = torch;
+            Bandage = bandage;
+            Herb = herb;
+            Sword = sword;
+            Gold = gold;
+            Supplies = sup;
         }
 
         public void ApplyChanges(Option changes)

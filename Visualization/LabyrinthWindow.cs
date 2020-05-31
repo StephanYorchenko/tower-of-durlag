@@ -64,8 +64,6 @@ namespace LabirintDemoGame.Visualization
                 MainMenu(e);
             else if (leader)
                 DrawLeaderboard(e);
-            else if (game.EndGame)
-                Dead(e);
             else
             {
                 if (drawResult)
@@ -82,6 +80,8 @@ namespace LabirintDemoGame.Visualization
                 }
                 else if (game.StepType == Step.Plot)
                     Plot(e);
+                else if (game.EndGame)
+                    Dead(e);
                 else if (game.StepType == Step.Maze)
                 {
                     foreach (var t in game.Map)
@@ -187,6 +187,10 @@ namespace LabirintDemoGame.Visualization
                     game.MakePlayerMove(Directions.Right);
                     Invalidate();
                     break;
+                case Keys.Escape:
+                    Pause();
+                    Invalidate();
+                    break;
             }
         }
 
@@ -264,8 +268,13 @@ namespace LabirintDemoGame.Visualization
         protected override void OnMouseClick(MouseEventArgs e)
         {
             if (!start) return;
-            if (ng || contin || leader)
+            if (ng || leader)
                 start = false;
+            else if (contin)
+            {
+                Continue();
+                start = false;
+            }
             else if (quit)
                 Close();
             Invalidate();
@@ -275,6 +284,30 @@ namespace LabirintDemoGame.Visualization
         {
             game = new Game(5, 7);
             drawResult = false;
+        }
+
+        private void Pause()
+        {
+            start = true;
+            var p = string.Join(",", game.Player.Check());
+            var log = $"{game.MazeWidth},{game.MazeHeight},{game.Player.Hp}," + p;
+            using (var w = new StreamWriter("last.txt"))
+                w.Write(log);
+        }
+
+        private void Continue()
+        {
+            string log;
+            using (var r = new StreamReader("last.txt"))
+                log = r.ReadLine();
+            Console.WriteLine(log);
+            var logList = log.Split(',')
+                .Select(int.Parse)
+                .ToList();
+            game = new Game(logList[0], logList[1]);
+            game.Player = new Player(logList[2], logList[3], logList[4], logList[5], logList[6],
+                logList[7], logList[8]);
+            Invalidate();
         }
     }
 }
