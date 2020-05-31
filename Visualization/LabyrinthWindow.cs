@@ -24,6 +24,7 @@ namespace LabirintDemoGame.Visualization
         private bool contin;
         private bool quit;
         private bool leader;
+        private Leaderboard leaders;
 
         public LabyrinthWindow(Game game)
         {
@@ -35,6 +36,7 @@ namespace LabirintDemoGame.Visualization
             contin = false;
             quit = false;
             leader = false;
+            leaders = new Leaderboard();
             ClientSize = new Size(1028, 640);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MinimumSize = new Size(1028, 640);
@@ -59,9 +61,9 @@ namespace LabirintDemoGame.Visualization
         {
             e.Graphics.Clear(BackColor);
             if (start)
-            {
                 MainMenu(e);
-            }
+            else if (leader)
+                DrawLeaderboard(e);
             else
             {
                 if (drawResult)
@@ -113,6 +115,7 @@ namespace LabirintDemoGame.Visualization
         {
             var image = bitmaps["YouDead"];
             e.Graphics.DrawImage(image, new Point(0, 0));
+            leaders.Update("Stephan", game.Player.Gold);
         }
 
 
@@ -160,7 +163,7 @@ namespace LabirintDemoGame.Visualization
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (game.EndGame)
+            if (game.EndGame || leader)
             {
                 start = true;
                 Invalidate();
@@ -233,6 +236,20 @@ namespace LabirintDemoGame.Visualization
                 e.Graphics.FillEllipse(Brushes.Silver, 845, 275, 10, 10);
         }
 
+        private void DrawLeaderboard(PaintEventArgs e)
+        {
+            var image = bitmaps["Leaderboard"];
+            var font = new Font("Arial", 36);
+            e.Graphics.DrawImage(image, new Point(0, 0));
+            var y = 200;
+            foreach (var record in leaders.Show())
+            {
+                e.Graphics.DrawString(record.Item1, font, Brushes.Silver, 240, y);
+                e.Graphics.DrawString(record.Item2, font, Brushes.Silver, 600, y);
+                y += 60;
+            }
+        }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             if (!start) return;
@@ -246,7 +263,7 @@ namespace LabirintDemoGame.Visualization
         protected override void OnMouseClick(MouseEventArgs e)
         {
             if (!start) return;
-            if (ng || contin)
+            if (ng || contin || leader)
                 start = false;
             else if (quit)
                 Close();

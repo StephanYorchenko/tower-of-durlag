@@ -9,6 +9,7 @@
         <e p="CellTypes.cs" t="Include" />
         <e p="Direction.cs" t="Include" />
         <e p="Directions.cs" t="Include" />
+        <e p="Leaderboard.cs" t="Include" />
         <e p="Options.cs" t="Include" />
         <e p="Player.cs" t="Include" />
         <e p="PlotAct.cs" t="Include" />
@@ -22,6 +23,7 @@
         <e p="DeadMan.png" t="Include" />
         <e p="Goblin.png" t="Include" />
         <e p="Ifrit.png" t="Include" />
+        <e p="Leaderboard.png" t="Include" />
         <e p="Medicine.png" t="Include" />
         <e p="Menu.png" t="Include" />
         <e p="SmallRoom.png" t="Include" />
@@ -142,6 +144,7 @@
         <e p="LabyrinthWindow.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
+      <e p="leaders.txt" t="Include" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="packages.config" t="Include" />

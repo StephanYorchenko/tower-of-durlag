@@ -14,7 +14,7 @@ namespace LabirintDemoGame
             "Medicine",
             "SmallRoom",
             "Steps",
-            "Weapon",
+            "WeaponRoom",
             "Goblin"
         };
     }

@@ -56,6 +56,7 @@
     <Compile Include="Architecture\CellTypes.cs" />
     <Compile Include="Architecture\Direction.cs" />
     <Compile Include="Architecture\Directions.cs" />
+    <Compile Include="Architecture\Leaderboard.cs" />
     <Compile Include="Architecture\Options.cs" />
     <Compile Include="Architecture\Player.cs" />
     <Compile Include="Architecture\PlotAct.cs" />
@@ -90,6 +91,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Background\Corridor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background\Leaderboard.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Background\Menu.png">
@@ -166,6 +170,9 @@
     </Content>
     <Content Include="Images\Wall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="leaders.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Options\Goblin0.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
