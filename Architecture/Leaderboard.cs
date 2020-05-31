@@ -41,8 +41,6 @@ namespace LabirintDemoGame.Architecture
                 .Select(x => x.Item1 + $" {x.Item2}")
                 .Take(5)
                 .ToList();
-            foreach (var r in Leaders)
-                Console.WriteLine(r);
             ToFile();
         }
 

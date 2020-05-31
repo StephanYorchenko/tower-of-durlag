@@ -268,8 +268,15 @@ namespace LabirintDemoGame.Visualization
         protected override void OnMouseClick(MouseEventArgs e)
         {
             if (!start) return;
-            if (ng || leader)
+            if (ng)
+            {
                 start = false;
+                NewGame();
+            }
+            else if (leader)
+            {
+                start = false;
+            }
             else if (contin)
             {
                 Continue();
