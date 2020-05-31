@@ -24,7 +24,7 @@ namespace LabirintDemoGame.Controllers
             SetNextActFromJson(jsonTemplate);
         }
 
-        public void SetNextActFromJson(string json)
+        private void SetNextActFromJson(string json)
         {
             CurrentAct = PlotAct.CreateFromJson(json);
         }

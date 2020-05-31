@@ -6,7 +6,8 @@ namespace LabirintDemoGame.Visualization
 {
     public class MyButton : Button
     {
-        public static void CreateMyButton(Button btn, Form form, string text, Point loc, int h, int w, EventHandler evh)
+        public static void CreateMyButton(Button btn, Form form, string text, Point loc, int h, 
+        int w, EventHandler evh, bool enabled)
         {
             btn = new Button
             {
@@ -14,7 +15,8 @@ namespace LabirintDemoGame.Visualization
                 BackColor = Color.Black,
                 Text = text,
                 ForeColor = Color.Azure,
-                Location = (loc)
+                Location = (loc),
+                Enabled = enabled
             };
             btn.Click += evh;
             form.Controls.Add(btn);

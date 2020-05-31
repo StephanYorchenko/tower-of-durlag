@@ -20,6 +20,7 @@
         <e p="Cellar.png" t="Include" />
         <e p="Corridor.png" t="Include" />
         <e p="DeadMan.png" t="Include" />
+        <e p="Goblin.png" t="Include" />
         <e p="Ifrit.png" t="Include" />
         <e p="Medicine.png" t="Include" />
         <e p="SmallRoom.png" t="Include" />
@@ -31,6 +32,7 @@
         <e p="Cellar.json" t="Include" />
         <e p="Corridor.json" t="Include" />
         <e p="DeadMan.json" t="Include" />
+        <e p="Goblin.json" t="Include" />
         <e p="Ifrit.json" t="Include" />
         <e p="Medicine.json" t="Include" />
         <e p="SmallRoom.json" t="Include" />
@@ -71,6 +73,9 @@
         <e p="DeadMan0.json" t="Include" />
         <e p="DeadMan1.json" t="Include" />
         <e p="DeadMan2.json" t="Include" />
+        <e p="Goblin0.json" t="Include" />
+        <e p="Goblin1.json" t="Include" />
+        <e p="Goblin2.json" t="Include" />
         <e p="Ifrit0.json" t="Include" />
         <e p="Ifrit1.json" t="Include" />
         <e p="Ifrit2.json" t="Include" />
@@ -89,7 +94,9 @@
       </e>
       <e p="Program.cs" t="Include" />
       <e p="README.md" t="Include" />
-      <e p="Sounds" t="Include" />
+      <e p="Sounds" t="Include">
+        <e p="Sound1.wav" t="Include" />
+      </e>
       <e p="Stats" t="Include">
         <e p="1.png" t="Include" />
         <e p="10.png" t="Include" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using LabirintDemoGame.Architecture;
@@ -49,7 +50,7 @@ namespace LabirintDemoGame.Visualization
                 e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
                 var c = new Button();
                 MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
-                    new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click);
+                    new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click, true);
             }
             else if (game.StepType == Step.Plot)
                 Plot(e);
@@ -86,22 +87,31 @@ namespace LabirintDemoGame.Visualization
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
             e.Graphics.DrawImage( image, new Point(0,StatBar));
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
-                new Point((ClientSize.Width - 600)/2, StatBar + 380), 100, 600, null);
+                new Point((ClientSize.Width - 600)/2, StatBar + 380), 100, 600, null, false);
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
                 new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,
-                text}));
+                text}), IsButtonEnable(game.Plot.CurrentOptions[0]));
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
                 new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => 
-                ClickMyButton(1, new []{l,r,text}));
+                ClickMyButton(1, new []{l,r,text}), IsButtonEnable(game.Plot.CurrentOptions[1]));
         }
         
         private void ClickMyButton(int btnIndex, Button[] bts)
         {
             game.MakePlotAction(btnIndex);
-            this.index = btnIndex;
+            index = btnIndex;
             Controls.Clear();
             drawResult = true;
             Invalidate();
+        }
+
+        private bool IsButtonEnable(Option option)
+        {
+            if (option.Requirements != null)
+                return game.Player.Check()
+                    .Zip(option.Requirements, (x, y) => x >= y)
+                    .All(x => x);
+            return true;
         }
 
         private new void Click(object sender, EventArgs e)
