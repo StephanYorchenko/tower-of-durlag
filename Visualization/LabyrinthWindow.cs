@@ -58,42 +58,38 @@ namespace LabirintDemoGame.Visualization
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.Clear(BackColor);
-            if (start)
-                MainMenu(e);
-            else
+            if (drawResult)
             {
-                if (drawResult)
-                {
-                    e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
-                    var c = new Button();
-                    MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
-                        new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click, true);
-                }
-                else if (game.EndGame)
-                    Dead(e);
-                else if (game.StepType == Step.Plot)
-                    Plot(e);
-                else if (game.StepType == Step.Maze)
-                {
-                    foreach (var t in game.Map)
-                    {
-                        var c = GetWindowCoordinates(t);
-                        e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1)));
-                        if (t.Type != CellTypes.Player)
-                            e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * (SizeImage - 1), StatBar + c.Y * 
-                                (SizeImage - 1)));
-                        if (!t.IsExplored)
-                            e.Graphics.FillRectangle(
-                                Brushes.Black, c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1), SizeImage, SizeImage);
-
-                    }
-                    var player = GetWindowCoordinates(game.PlayerPosition);
-                    e.Graphics.DrawImage(bitmaps["Player"], 
-                        new Point(player.X * (SizeImage - 1), StatBar + player.Y * (SizeImage - 1)));
-                    e.Graphics.ResetTransform();
-                }
-                PaintStatBar(e);
+                e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
+                e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
+                var c = new Button();
+                MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
+                    new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click, true);
             }
+            else if (game.EndGame)
+                Dead(e);
+            else if (game.StepType == Step.Plot)
+                Plot(e);
+            else if (game.StepType == Step.Maze)
+            {
+                foreach (var t in game.Map)
+                {
+                    var c = GetWindowCoordinates(t);
+                    e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1)));
+                    if (t.Type != CellTypes.Player)
+                        e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * (SizeImage - 1), StatBar + c.Y * 
+                            (SizeImage - 1)));
+                    if (!t.IsExplored)
+                        e.Graphics.FillRectangle(
+                            Brushes.Black, c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1), SizeImage, SizeImage);
+
+                }
+                var player = GetWindowCoordinates(game.PlayerPosition);
+                e.Graphics.DrawImage(bitmaps["Player"], 
+                    new Point(player.X * (SizeImage - 1), StatBar + player.Y * (SizeImage - 1)));
+                e.Graphics.ResetTransform();
+            }
+            PaintStatBar(e);
         }
 
         private void Dead(PaintEventArgs e)
@@ -111,7 +107,8 @@ namespace LabirintDemoGame.Visualization
             var r = new Button();
             var l = new Button();
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
-            e.Graphics.DrawImage( image, new Point(0,StatBar));
+            e.Graphics.DrawImage( image, new Point(0,0));
+            e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
                 new Point(214, 380), 100, 600, null, false);
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
