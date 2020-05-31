@@ -20,7 +20,7 @@ namespace LabirintDemoGame.Controllers
         public void SetNextAct()
         {
             var random = new Random();
-            var jsonTemplate = Directory.ElementAt(random.Next(0, Directory.Count() - 1));
+            var jsonTemplate = Directory.ElementAt(random.Next(0, Directory.Count()));
             SetNextActFromJson(jsonTemplate);
         }
 
