@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace LabirintDemoGame
 {
-    public class Config
+    public static class Config
     {
         public static readonly List<string> Cards = new List<string>
         {
@@ -14,7 +14,8 @@ namespace LabirintDemoGame
             "Medicine",
             "SmallRoom",
             "Steps",
-            "Weapon"
+            "Weapon",
+            "Goblin"
         };
     }
 }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Threading;
 using System.Windows.Forms;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
@@ -18,12 +19,22 @@ namespace LabirintDemoGame.Visualization
         private const int StatBar = 64;
         private bool drawResult;
         private int index;
+        private bool start;
+        private bool ng;
+        private bool contin;
+        private bool quit;
+        private bool leader;
 
         public LabyrinthWindow(Game game)
         {
             var simpleSound = new SoundPlayer(@"Sounds/Sound1.wav");
             simpleSound.PlayLooping();
             this.game = game;
+            start = true;
+            ng = false;
+            contin = false;
+            quit = false;
+            leader = false;
             ClientSize = new Size(1028, 640);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MinimumSize = new Size(1028, 640);
@@ -47,37 +58,42 @@ namespace LabirintDemoGame.Visualization
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.Clear(BackColor);
-            if (drawResult)
+            if (start)
+                MainMenu(e);
+            else
             {
-                e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
-                var c = new Button();
-                MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
-                    new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click, true);
-            }
-            else if (game.EndGame)
-                Dead(e);
-            else if (game.StepType == Step.Plot)
-                Plot(e);
-            else if (game.StepType == Step.Maze)
-            {
-                foreach (var t in game.Map)
+                if (drawResult)
                 {
-                    var c = GetWindowCoordinates(t);
-                    e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1)));
-                    if (t.Type != CellTypes.Player)
-                        e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * (SizeImage - 1), StatBar + c.Y * 
-                            (SizeImage - 1)));
-                    if (!t.IsExplored)
-                        e.Graphics.FillRectangle(
-                            Brushes.Black, c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1), SizeImage, SizeImage);
-
+                    e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
+                    var c = new Button();
+                    MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
+                        new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click, true);
                 }
-                var player = GetWindowCoordinates(game.PlayerPosition);
-                e.Graphics.DrawImage(bitmaps["Player"], 
-                    new Point(player.X * (SizeImage - 1), StatBar + player.Y * (SizeImage - 1)));
-                e.Graphics.ResetTransform();
+                else if (game.EndGame)
+                    Dead(e);
+                else if (game.StepType == Step.Plot)
+                    Plot(e);
+                else if (game.StepType == Step.Maze)
+                {
+                    foreach (var t in game.Map)
+                    {
+                        var c = GetWindowCoordinates(t);
+                        e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1)));
+                        if (t.Type != CellTypes.Player)
+                            e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * (SizeImage - 1), StatBar + c.Y * 
+                                (SizeImage - 1)));
+                        if (!t.IsExplored)
+                            e.Graphics.FillRectangle(
+                                Brushes.Black, c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1), SizeImage, SizeImage);
+
+                    }
+                    var player = GetWindowCoordinates(game.PlayerPosition);
+                    e.Graphics.DrawImage(bitmaps["Player"], 
+                        new Point(player.X * (SizeImage - 1), StatBar + player.Y * (SizeImage - 1)));
+                    e.Graphics.ResetTransform();
+                }
+                PaintStatBar(e);
             }
-            PaintStatBar(e);
         }
 
         private void Dead(PaintEventArgs e)
@@ -130,6 +146,11 @@ namespace LabirintDemoGame.Visualization
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            if (game.EndGame)
+            {
+                start = true;
+                Invalidate();
+            }
             switch (e.KeyCode)
             {
                 case Keys.Up:
@@ -147,10 +168,6 @@ namespace LabirintDemoGame.Visualization
                 case Keys.Right:
                     game.MakePlayerMove(Directions.Right);
                     Invalidate();
-                    break;
-                case Keys.F:
-                    if (game.EndGame) 
-                        Close();
                     break;
             }
         }
@@ -186,6 +203,40 @@ namespace LabirintDemoGame.Visualization
             hp = Math.Max(1, hp);
             hp = Math.Min(hp, 21);
             return $"{hp}";
+        }
+
+        private void MainMenu(PaintEventArgs e)
+        {
+            var image = bitmaps["Menu"];
+            e.Graphics.DrawImage(image, new Point(0, 0));
+            if (ng)
+                e.Graphics.FillEllipse(Brushes.Silver, 655, 45, 10, 10);
+            else if (contin)
+                e.Graphics.FillEllipse(Brushes.Silver, 705, 120, 10, 10);
+            else if (leader)
+                e.Graphics.FillEllipse(Brushes.Silver, 600, 205, 10, 10);
+            else if (quit)
+                e.Graphics.FillEllipse(Brushes.Silver, 845, 275, 10, 10);
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if (!start) return;
+            ng = e.Y < 80 && e.Y > 10 && e.X > 655;
+            contin = e.Y < 155 && e.Y > 80 && e.X > 750;
+            leader = e.Y < 230 && e.Y > 170 && e.X > 600;
+            quit = e.Y < 320 && e.Y > 245 && e.X > 845;
+            Invalidate();
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            if (!start) return;
+            if (ng || contin)
+                start = false;
+            else if (quit)
+                Close();
+            Invalidate();
         }
     }
 }
