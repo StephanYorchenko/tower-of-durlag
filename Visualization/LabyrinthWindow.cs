@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Threading;
 using System.Windows.Forms;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
@@ -50,6 +51,7 @@ namespace LabirintDemoGame.Visualization
             if (drawResult)
             {
                 e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
+                e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
                 var c = new Button();
                 MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
                     new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click, true);
@@ -95,7 +97,8 @@ namespace LabirintDemoGame.Visualization
             var r = new Button();
             var l = new Button();
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
-            e.Graphics.DrawImage( image, new Point(0,StatBar));
+            e.Graphics.DrawImage( image, new Point(0,0));
+            e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
                 new Point(214, 380), 100, 600, null, false);
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
