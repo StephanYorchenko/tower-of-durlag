@@ -37,9 +37,12 @@ namespace LabirintDemoGame.Architecture
             Leaders = Leaders.Select(x => x.Split(' '))
                 .Select(x => Tuple.Create(x[0], int.Parse(x[1])))
                 .OrderBy(x => x.Item2)
-                .Take(5)
+                .Reverse()
                 .Select(x => x.Item1 + $" {x.Item2}")
+                .Take(5)
                 .ToList();
+            foreach (var r in Leaders)
+                Console.WriteLine(r);
             ToFile();
         }
 
