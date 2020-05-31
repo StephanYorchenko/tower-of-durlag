@@ -5,7 +5,7 @@ namespace LabirintDemoGame.Architecture
 {
     public class Player : PlotParameters
     {
-        public Player(int health = 1,
+        public Player(int health = 100,
             int torch = 1,
             int bandage = 1,
             int herb = 1,
