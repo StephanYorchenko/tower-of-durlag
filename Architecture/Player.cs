@@ -5,7 +5,7 @@ namespace LabirintDemoGame.Architecture
 {
     public class Player : PlotParameters
     {
-        public Player(int health = 1)
+        public Player(int health = 100)
         {
             Hp = health;
             Torch = 1;
@@ -34,7 +34,7 @@ namespace LabirintDemoGame.Architecture
 
         public override string ToString()
         {
-            return $"{Hp}";
+            return $"{Math.Max(0, Hp)}";
         }
 
         public IEnumerable<int> Check()
