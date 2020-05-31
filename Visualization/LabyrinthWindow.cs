@@ -63,18 +63,18 @@ namespace LabirintDemoGame.Visualization
                 foreach (var t in game.Map)
                 {
                     var c = GetWindowCoordinates(t);
-                    e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * SizeImage, StatBar + c.Y * SizeImage));
+                    e.Graphics.DrawImage(bitmaps["Empty"], new Point(c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1)));
                     if (t.Type != CellTypes.Player)
-                        e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * SizeImage, StatBar + c.Y * 
-                        SizeImage));
+                        e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(c.X * (SizeImage - 1), StatBar + c.Y * 
+                            (SizeImage - 1)));
                     if (!t.IsExplored)
                         e.Graphics.FillRectangle(
-                            Brushes.Black, c.X * SizeImage, StatBar + c.Y * SizeImage, SizeImage, SizeImage);
+                            Brushes.Black, c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1), SizeImage, SizeImage);
 
                 }
                 var player = GetWindowCoordinates(game.PlayerPosition);
                 e.Graphics.DrawImage(bitmaps["Player"], 
-                    new Point(player.X * SizeImage, StatBar + player.Y * SizeImage));
+                    new Point(player.X * (SizeImage - 1), StatBar + player.Y * (SizeImage - 1)));
                 e.Graphics.ResetTransform();
             }
             PaintStatBar(e);
@@ -166,7 +166,7 @@ namespace LabirintDemoGame.Visualization
         {
             e.Graphics.DrawImage(bitmaps[GetHpImageName()], 0, 0);
             e.Graphics.DrawString(game.Player.Hp.ToString(), new Font("Arial", 14), Brushes.Yellow, 64, 40);
-            e.Graphics.DrawImage(bitmaps["Bandage"], 96, 0);
+            e.Graphics.DrawImage(bitmaps["Bandage"], 100, 0);
             e.Graphics.DrawString(game.Player.Bandage.ToString(), new Font("Arial", 14), Brushes.Yellow, 160, 40);
             e.Graphics.DrawImage(bitmaps["Herb"], 192, 0);
             e.Graphics.DrawString(game.Player.Herb.ToString(), new Font("Arial", 14), Brushes.Yellow, 256, 40);
