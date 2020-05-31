@@ -17,7 +17,7 @@ namespace LabirintDemoGame.Architecture
 
         private void ToFile()
         {
-            using (var w = new StreamWriter("leader.txt"))
+            using (var w = new StreamWriter("leaders.txt"))
                 w.Write(ToString());
         }
 

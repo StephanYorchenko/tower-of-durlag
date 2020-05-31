@@ -120,7 +120,7 @@
     <Content Include="Background\Steps.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Background\Weapon.png">
+    <Content Include="Background\WeaponRoom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Cards\AlchemicalLaboratory.json">

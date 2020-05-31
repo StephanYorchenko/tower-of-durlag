@@ -97,7 +97,7 @@ namespace LabirintDemoGame.Controllers
             }
         }
 
-        public bool EndGame { get; private set; }
+        public bool EndGame { get; set; }
 
         public List<Cell> Map => Level.Map.VisibleMaze;
         public int MazeWidth => Level.Map.MazeWidth;

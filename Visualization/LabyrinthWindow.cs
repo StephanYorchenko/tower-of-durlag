@@ -14,7 +14,7 @@ namespace LabirintDemoGame.Visualization
     public class LabyrinthWindow : Form
     {
         private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
-        private readonly Game game;
+        private Game game;
         private const int SizeImage = 64;
         private const int StatBar = 64;
         private bool drawResult;
@@ -26,11 +26,11 @@ namespace LabirintDemoGame.Visualization
         private bool leader;
         private Leaderboard leaders;
 
-        public LabyrinthWindow(Game game)
+        public LabyrinthWindow()
         {
             var simpleSound = new SoundPlayer(@"Sounds/Sound1.wav");
             simpleSound.PlayLooping();
-            this.game = game;
+            game = new Game(5, 7);
             start = true;
             ng = false;
             contin = false;
@@ -64,6 +64,8 @@ namespace LabirintDemoGame.Visualization
                 MainMenu(e);
             else if (leader)
                 DrawLeaderboard(e);
+            else if (game.EndGame)
+                Dead(e);
             else
             {
                 if (drawResult)
@@ -78,8 +80,6 @@ namespace LabirintDemoGame.Visualization
                         game.Level.Plot.CurrentAct.GetOptions()[index].Result,
                         new Point((ClientSize.Width - 600) / 2, 400), 100, 600, Click, true);
                 }
-                else if (game.EndGame)
-                    Dead(e);
                 else if (game.StepType == Step.Plot)
                     Plot(e);
                 else if (game.StepType == Step.Maze)
@@ -97,22 +97,21 @@ namespace LabirintDemoGame.Visualization
                             e.Graphics.FillRectangle(
                                 Brushes.Black, c.X * (SizeImage - 1),
                                 StatBar + c.Y * (SizeImage - 1), SizeImage, SizeImage);
-
                     }
-
                     var player = GetWindowCoordinates(game.PlayerPosition);
                     e.Graphics.DrawImage(bitmaps["Player"],
                         new Point(player.X * (SizeImage - 1),
                             StatBar + player.Y * (SizeImage - 1)));
                     e.Graphics.ResetTransform();
                 }
-
                 PaintStatBar(e);
             }
         }
 
         private void Dead(PaintEventArgs e)
         {
+            Controls.Clear();
+            Invalidate();
             var image = bitmaps["YouDead"];
             e.Graphics.DrawImage(image, new Point(0, 0));
             leaders.Update("Stephan", game.Player.Gold);
@@ -166,6 +165,8 @@ namespace LabirintDemoGame.Visualization
             if (game.EndGame || leader)
             {
                 start = true;
+                leader = false;
+                NewGame();
                 Invalidate();
             }
             switch (e.KeyCode)
@@ -268,6 +269,12 @@ namespace LabirintDemoGame.Visualization
             else if (quit)
                 Close();
             Invalidate();
+        }
+
+        private void NewGame()
+        {
+            game = new Game(5, 7);
+            drawResult = false;
         }
     }
 }

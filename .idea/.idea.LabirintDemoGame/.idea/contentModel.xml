@@ -28,7 +28,7 @@
         <e p="Menu.png" t="Include" />
         <e p="SmallRoom.png" t="Include" />
         <e p="Steps.png" t="Include" />
-        <e p="Weapon.png" t="Include" />
+        <e p="WeaponRoom.png" t="Include" />
         <e p="YouDead.png" t="Include" />
       </e>
       <e p="Cards" t="Include">
