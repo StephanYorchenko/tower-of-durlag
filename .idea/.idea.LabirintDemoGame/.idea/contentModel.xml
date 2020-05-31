@@ -19,7 +19,6 @@
         <e p="AlchemicalLaboratory.png" t="Include" />
         <e p="Cellar.png" t="Include" />
         <e p="Corridor.png" t="Include" />
-        <e p="Dead.png" t="Include" />
         <e p="DeadMan.png" t="Include" />
         <e p="Goblin.png" t="Include" />
         <e p="Ifrit.png" t="Include" />
@@ -27,6 +26,7 @@
         <e p="SmallRoom.png" t="Include" />
         <e p="Steps.png" t="Include" />
         <e p="Weapon.png" t="Include" />
+        <e p="YouDead.png" t="Include" />
       </e>
       <e p="Cards" t="Include">
         <e p="AlchemicalLaboratory.json" t="Include" />

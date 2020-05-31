@@ -92,7 +92,7 @@
     <Content Include="Background\Corridor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Background\Dead.png">
+    <Content Include="Background\YouDead.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Background\DeadMan.png">

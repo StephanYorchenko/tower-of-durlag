@@ -46,7 +46,7 @@ namespace LabirintDemoGame.Visualization
         
         protected override void OnPaint(PaintEventArgs e)
         {
-            PaintStatBar(e);
+            e.Graphics.Clear(BackColor);
             if (drawResult)
             {
                 e.Graphics.DrawImage( bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0,0));
@@ -54,11 +54,11 @@ namespace LabirintDemoGame.Visualization
                 MyButton.CreateMyButton(c, this, game.Level.Plot.CurrentAct.GetOptions()[index].Result, 
                     new Point((ClientSize.Width - 600)/2, 400), 100, 600, Click, true);
             }
-            else if (game.StepType == Step.Plot)
-                Plot(e);
             else if (game.EndGame)
                 Dead(e);
-            else  if (game.StepType == Step.Maze)
+            else if (game.StepType == Step.Plot)
+                Plot(e);
+            else if (game.StepType == Step.Maze)
             {
                 foreach (var t in game.Map)
                 {
@@ -77,11 +77,12 @@ namespace LabirintDemoGame.Visualization
                     new Point(player.X * SizeImage, StatBar + player.Y * SizeImage));
                 e.Graphics.ResetTransform();
             }
+            PaintStatBar(e);
         }
 
         private void Dead(PaintEventArgs e)
         {
-            var image = bitmaps["Dead"];
+            var image = bitmaps["YouDead"];
             e.Graphics.DrawImage(image, new Point(0, 0));
         }
 
@@ -96,7 +97,7 @@ namespace LabirintDemoGame.Visualization
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
             e.Graphics.DrawImage( image, new Point(0,StatBar));
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
-                new Point((ClientSize.Width - 600)/2, StatBar + 380), 100, 600, null, false);
+                new Point(214, 380), 100, 600, null, false);
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
                 new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,
                 text}), IsButtonEnable(game.Plot.CurrentOptions[0]));
@@ -163,8 +164,6 @@ namespace LabirintDemoGame.Visualization
 
         private void PaintStatBar(PaintEventArgs e)
         {
-            e.Graphics.Clear(BackColor);
-            
             e.Graphics.DrawImage(bitmaps[GetHpImageName()], 0, 0);
             e.Graphics.DrawString(game.Player.Hp.ToString(), new Font("Arial", 14), Brushes.Yellow, 64, 40);
             e.Graphics.DrawImage(bitmaps["Bandage"], 96, 0);
@@ -184,6 +183,8 @@ namespace LabirintDemoGame.Visualization
         private string GetHpImageName()
         {
             var hp = (int) (22 - game.Player.Hp / 100d * 21);
+            hp = Math.Max(1, hp);
+            hp = Math.Min(hp, 21);
             return $"{hp}";
         }
     }

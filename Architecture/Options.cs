@@ -12,7 +12,7 @@ namespace LabirintDemoGame.Architecture
         public bool IsValid(Player player)
         {
             var requirements = Requirements.Split(',')
-                .Select(x=> int.Parse(x))
+                .Select(int.Parse)
                 .ToList();
             return player.Check()
                 .Select((x, index) => x >= requirements[index])
