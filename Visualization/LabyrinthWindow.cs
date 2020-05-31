@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Forms;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
+using Timer = System.Windows.Forms.Timer;
 
 namespace LabirintDemoGame.Visualization
 {
@@ -25,6 +26,7 @@ namespace LabirintDemoGame.Visualization
         private bool quit;
         private bool leader;
         private Leaderboard leaders;
+        private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
 
         public LabyrinthWindow()
         {
@@ -48,6 +50,34 @@ namespace LabirintDemoGame.Visualization
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
             foreach (var e in new DirectoryInfo("Stats").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
+            var timer = new Timer();
+            timer.Interval = 100;
+            timer.Tick += TimerTick;
+            timer.Start();
+        }
+        
+        private void TimerTick(object sender, EventArgs args)
+        {
+            if(pressedKeys.Count > 0)
+            {
+                switch (pressedKeys.Min())
+                {
+                    case Keys.Up:
+                        game.MakePlayerMove(Directions.Up);
+                        break;
+                    case Keys.Down:
+                        game.MakePlayerMove(Directions.Down);
+                        break;
+                    case Keys.Left:
+                        game.MakePlayerMove(Directions.Left);
+                        break;
+                    case Keys.Right:
+                        game.MakePlayerMove(Directions.Right);
+                        break;
+                }
+            }
+            if(game.StepType == Step.Maze)
+                Invalidate();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -120,8 +150,8 @@ namespace LabirintDemoGame.Visualization
 
         private void Plot(PaintEventArgs e)
         {
+            pressedKeys.Clear();
             game.StartPlotAct();
-            
             var text = new Button();
             var r = new Button();
             var l = new Button();
@@ -162,36 +192,20 @@ namespace LabirintDemoGame.Visualization
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            pressedKeys.Add(e.KeyCode);
             if (game.EndGame || leader)
             {
                 start = true;
                 leader = false;
                 NewGame();
-                Invalidate();
             }
-            switch (e.KeyCode)
-            {
-                case Keys.Up:
-                    game.MakePlayerMove(Directions.Up);
-                    Invalidate();
-                    break;
-                case Keys.Down:
-                    game.MakePlayerMove(Directions.Down);
-                    Invalidate();
-                    break;
-                case Keys.Left:
-                    game.MakePlayerMove(Directions.Left);
-                    Invalidate();
-                    break;
-                case Keys.Right:
-                    game.MakePlayerMove(Directions.Right);
-                    Invalidate();
-                    break;
-                case Keys.Escape:
-                    Pause();
-                    Invalidate();
-                    break;
-            }
+            Invalidate();
+        }
+        
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            pressedKeys.Remove(e.KeyCode);
+            Invalidate();
         }
 
         private Point GetWindowCoordinates(Cell cell)
