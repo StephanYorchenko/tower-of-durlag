@@ -193,6 +193,8 @@ namespace LabirintDemoGame.Visualization
         protected override void OnKeyDown(KeyEventArgs e)
         {
             pressedKeys.Add(e.KeyCode);
+            if (e.KeyCode == Keys.Escape)
+                Pause();
             if (game.EndGame || leader)
             {
                 start = true;
