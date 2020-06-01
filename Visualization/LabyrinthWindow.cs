@@ -100,7 +100,7 @@ namespace LabirintDemoGame.Visualization
                     e.Graphics.DrawImage(
                         bitmaps[
                             game.Level.Plot.CurrentAct.Image.Substring(0,
-                                game.Level.Plot.CurrentAct.Image.Length - 4)], new Point(0, 0));
+                                game.Level.Plot.CurrentAct.Image.Length - 4)], 0,0, 1025, 640);
                     e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
                     var c = new Button();
                     MyButton.CreateMyButton(c, this,
