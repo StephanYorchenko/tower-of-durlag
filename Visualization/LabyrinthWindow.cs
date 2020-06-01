@@ -156,7 +156,7 @@ namespace LabirintDemoGame.Visualization
             var r = new Button();
             var l = new Button();
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
-            e.Graphics.DrawImage( image, new Point(0,0));
+            e.Graphics.DrawImage( image, 0, 0, 1028, 640);
             e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
             MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
                 new Point(214, 380), 100, 600, null, false);
