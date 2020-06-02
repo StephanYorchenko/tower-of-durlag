@@ -29,6 +29,7 @@ namespace LabirintDemoGame.Visualization
         private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
         private readonly Font lazursky;
         private readonly PrivateFontCollection fontCollection;
+        private bool isEnd = false;
 
         public LabyrinthWindow()
         {
@@ -67,6 +68,10 @@ namespace LabirintDemoGame.Visualization
 
         private void TimerTick(object sender, EventArgs args)
         {
+            if (game.EndGame)
+            {
+                isEnd = true;
+            }
             if(pressedKeys.Count > 0)
             {
                 switch (pressedKeys.Min())
@@ -85,7 +90,7 @@ namespace LabirintDemoGame.Visualization
                         break;
                 }
             }
-            if(game.StepType == Step.Maze)
+            if(game.StepType == Step.Maze && !isEnd)
                 Invalidate();
         }
 
@@ -99,7 +104,7 @@ namespace LabirintDemoGame.Visualization
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.Clear(BackColor);
-            if (start)
+            if (start && !isEnd)
                 MainMenu(e);
             else if (leader)
                 DrawLeaderboard(e);
@@ -110,7 +115,10 @@ namespace LabirintDemoGame.Visualization
                 else if (game.StepType == Step.Plot)
                     Plot(e);
                 else if (game.EndGame)
+                {
+                    isEnd = true;
                     Dead(e);
+                }
                 else if (game.StepType == Step.Maze)
                 {
                     foreach (var t in game.Map)
@@ -140,13 +148,13 @@ namespace LabirintDemoGame.Visualization
         private void Dead(PaintEventArgs e)
         {
             Controls.Clear();
-            Invalidate();
             var image = bitmaps["YouDead"];
             e.Graphics.DrawImage(image, new Point(0, 0));
             var name = "Stephan";
             if (InputBox("New document", "New document name:", ref name) == DialogResult.OK)
                 leaders.Update(name, game.Player.Gold);
-
+            isEnd = false;
+            Invalidate();
         }
 
         private void Result(PaintEventArgs e)
@@ -228,7 +236,7 @@ namespace LabirintDemoGame.Visualization
                 Pause();
             if (drawResult && e.KeyCode == Keys.Space)
                 Click();
-            if (game.EndGame || leader)
+            if ((game.EndGame || leader) && !isEnd)
             {
                 start = true;
                 leader = false;
