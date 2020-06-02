@@ -370,8 +370,8 @@ namespace LabirintDemoGame.Visualization
 
             Invalidate();
         }
-        
-        public static DialogResult InputBox(string title, string promptText, ref string value)
+
+        private static DialogResult InputBox(string title, string promptText, ref string value)
         {
             var form = new Form();
             var label = new Label();
