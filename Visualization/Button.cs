@@ -8,12 +8,8 @@ namespace LabirintDemoGame.Visualization
     public class MyButton : Button
     {
         public static void CreateMyButton(Button btn, Form form, string text, Point loc, int h, 
-        int w, EventHandler evh, bool enabled)
+        int w, EventHandler evh, bool enabled, Font font)
         {
-            var fontCollection = new PrivateFontCollection();
-            fontCollection.AddFontFile("lazursky.ttf");
-            var family = fontCollection.Families[0];
-            var lazursky = new Font(family, 14);
             btn = new Button
             {
                 Size = new Size(w, h),
@@ -22,7 +18,7 @@ namespace LabirintDemoGame.Visualization
                 ForeColor = Color.Azure,
                 Location = (loc),
                 Enabled = enabled,
-                Font = lazursky
+                Font = font
             };
             btn.Click += enabled ? evh : null;
             form.Controls.Add(btn);

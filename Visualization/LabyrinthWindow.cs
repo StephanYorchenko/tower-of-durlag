@@ -46,8 +46,7 @@ namespace LabirintDemoGame.Visualization
             fontCollection.AddFontFile("lazursky.ttf");
             var family = fontCollection.Families[0];
             lazursky = new Font(family, 14);
-            
-            ClientSize = new Size(1028, 640);
+
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MinimumSize = new Size(1028, 640);
             MaximumSize = new Size(1028, 640);
@@ -105,23 +104,7 @@ namespace LabirintDemoGame.Visualization
             else
             {
                 if (drawResult)
-                {
-                    e.Graphics.DrawImage(
-                        bitmaps[
-                            game.Level.Plot.CurrentAct.Image.Substring(0,
-                                game.Level.Plot.CurrentAct.Image.Length - 4)], 0,0, 1024, 640);
-                    e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 100);
-                    var s = new StringFormat {Alignment = StringAlignment.Center};
-                    e.Graphics.DrawString(game.Level.Plot.CurrentAct.GetOptions()[index].Result,
-                        lazursky,
-                        Brushes.Silver, 
-                        new RectangleF(60, 410, 904, 90),
-                        s);
-                    e.Graphics.FillRectangle(Brushes.Black, 360, 550, 290, 40);
-                    e.Graphics.DrawString("[ press space to continue ]",
-                        lazursky,
-                        Brushes.Silver, new RectangleF(380, 560, 270, 90));
-                }
+                    Result(e);
                 else if (game.StepType == Step.Plot)
                     Plot(e);
                 else if (game.EndGame)
@@ -161,6 +144,24 @@ namespace LabirintDemoGame.Visualization
             leaders.Update("Stephan", game.Player.Gold);
         }
 
+        private void Result(PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(
+                bitmaps[
+                    game.Level.Plot.CurrentAct.Image.Substring(0,
+                        game.Level.Plot.CurrentAct.Image.Length - 4)], 0, 0, 1024, 640);
+            e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 100);
+            var s = new StringFormat {Alignment = StringAlignment.Center};
+            e.Graphics.DrawString(game.Level.Plot.CurrentAct.GetOptions()[index].Result,
+                lazursky,
+                Brushes.Silver, 
+                new RectangleF(60, 410, 904, 90),
+                s);
+            e.Graphics.FillRectangle(Brushes.Black, 360, 550, 290, 40);
+            e.Graphics.DrawString("[ press space to continue ]",
+                lazursky,
+                Brushes.Silver, new RectangleF(380, 560, 270, 90));
+        }
 
         private void Plot(PaintEventArgs e)
         {
@@ -171,15 +172,27 @@ namespace LabirintDemoGame.Visualization
             var s = new StringFormat {Alignment = StringAlignment.Center};
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
             e.Graphics.DrawImage( image, 0, 0 , 1024, 640);
-            e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
             e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 100);
-            e.Graphics.DrawString(game.Level.Plot.CurrentAct.Text, lazursky, Brushes
-            .Silver, new RectangleF(60, 410, 904, 90), s);
-            MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
-                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r}), IsButtonEnable(game.Plot.CurrentOptions[0]));
-            MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
-                new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => 
-                ClickMyButton(1, new []{l,r}), IsButtonEnable(game.Plot.CurrentOptions[1]));
+            e.Graphics.DrawString(game.Level.Plot.CurrentAct.Text, 
+                lazursky, 
+                Brushes.Silver,
+                new RectangleF(60, 410, 904, 90),
+                s);
+            MyButton.CreateMyButton(l, 
+                this, game.Level.Plot.CurrentOptions[0].Name, 
+                new Point(50 , 540), 
+                50, 400, 
+                (sender, args) => ClickMyButton
+                (0, new []{l,r}),
+                IsButtonEnable(game.Plot.CurrentOptions[0]),
+                lazursky);
+            MyButton.CreateMyButton(l, 
+                this, game.Level.Plot.CurrentOptions[1].Name, 
+                new Point(574 , 540), 
+                50, 400,
+                (sender, args) => ClickMyButton(1, new []{l,r}),
+                IsButtonEnable(game.Plot.CurrentOptions[1]), 
+                lazursky);
         }
         
         private void ClickMyButton(int btnIndex, Button[] bts)
