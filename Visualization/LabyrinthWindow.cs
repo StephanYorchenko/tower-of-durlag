@@ -49,7 +49,7 @@ namespace LabirintDemoGame.Visualization
             fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile("lazursky.ttf");
             var family = fontCollection.Families[0];
-            lazursky = new Font(family, 14);
+            lazursky = new Font(family, 13);
 
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MinimumSize = new Size(1028, 640);
@@ -158,12 +158,12 @@ namespace LabirintDemoGame.Visualization
                 bitmaps[
                     game.Level.Plot.CurrentAct.Image.Substring(0,
                         game.Level.Plot.CurrentAct.Image.Length - 4)], 0, 0, 1024, 640);
-            e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 100);
+            e.Graphics.FillRectangle(Brushes.Black, 40, 400, 944, 120);
             var s = new StringFormat {Alignment = StringAlignment.Center};
             e.Graphics.DrawString(game.Level.Plot.CurrentAct.GetOptions()[index].Result,
                 lazursky,
                 Brushes.Silver, 
-                new RectangleF(60, 410, 904, 90),
+                new RectangleF(50, 410, 924, 100),
                 s);
             e.Graphics.FillRectangle(Brushes.Black, 360, 550, 290, 40);
             e.Graphics.DrawString("[ press space to continue ]",
@@ -180,11 +180,11 @@ namespace LabirintDemoGame.Visualization
             var s = new StringFormat {Alignment = StringAlignment.Center};
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
             e.Graphics.DrawImage( image, 0, 0 , 1024, 640);
-            e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 120);
+            e.Graphics.FillRectangle(Brushes.Black, 40, 400, 944, 120);
             e.Graphics.DrawString(game.Level.Plot.CurrentAct.Text, 
                 lazursky, 
                 Brushes.Silver,
-                new RectangleF(60, 410, 904, 90),
+                new RectangleF(50, 410, 924, 100),
                 s);
             MyButton.CreateMyButton(l, 
                 this, game.Level.Plot.CurrentOptions[0].Name, 
@@ -412,15 +412,12 @@ namespace LabirintDemoGame.Visualization
             form.AcceptButton = buttonOk;
             form.CancelButton = buttonCancel;
 
-            if (!flag)
-            {
-                flag = true;
-                var dialogResult = form.ShowDialog();
-                value = textBox.Text;
-                return dialogResult;
-            }
+            if (flag) return null;
+            flag = true;
+            var dialogResult = form.ShowDialog();
+            value = string.Join("",textBox.Text.Split(' '));
+            return dialogResult;
 
-            return null;
         }
     }
 }
