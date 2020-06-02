@@ -101,11 +101,14 @@ namespace LabirintDemoGame.Visualization
                         bitmaps[
                             game.Level.Plot.CurrentAct.Image.Substring(0,
                                 game.Level.Plot.CurrentAct.Image.Length - 4)], 0,0, 1024, 640);
-                    e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
-                    var c = new Button();
-                    MyButton.CreateMyButton(c, this,
-                        game.Level.Plot.CurrentAct.GetOptions()[index].Result,
-                        new Point((ClientSize.Width - 600) / 2, 400), 100, 600, Click, true);
+                    e.Graphics.FillRectangle(Brushes.Black, 214, 400, 600, 100);
+                    e.Graphics.DrawString(game.Level.Plot.CurrentAct.GetOptions()[index].Result,
+                        new Font("Arial", 14),
+                        Brushes.Silver, 
+                        new RectangleF(220, 410, 590, 90));
+                    e.Graphics.FillRectangle(Brushes.Black, 380, 550, 250, 40);
+                    e.Graphics.DrawString("[ press space to continue ]", new Font("Arial", 14), Brushes
+                        .Silver, new RectangleF(390, 560, 230, 30));
                 }
                 else if (game.StepType == Step.Plot)
                     Plot(e);
@@ -151,20 +154,19 @@ namespace LabirintDemoGame.Visualization
         {
             pressedKeys.Clear();
             game.StartPlotAct();
-            var text = new Button();
             var r = new Button();
             var l = new Button();
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
             e.Graphics.DrawImage( image, 0, 0 , 1024, 640);
             e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
-            MyButton.CreateMyButton(text, this, game.Level.Plot.CurrentAct.Text, 
-                new Point(214, 380), 100, 600, null, false);
+            e.Graphics.FillRectangle(Brushes.Black, 214, 400, 600, 100);
+            e.Graphics.DrawString(game.Level.Plot.CurrentAct.Text, new Font("Arial", 14), Brushes
+            .Silver, new RectangleF(220, 410, 590, 90));
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
-                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r,
-                text}), IsButtonEnable(game.Plot.CurrentOptions[0]));
+                new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r}), IsButtonEnable(game.Plot.CurrentOptions[0]));
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
                 new Point(ClientSize.Width - 300 , ClientSize.Height - 80), 50, 250, (sender, args) => 
-                ClickMyButton(1, new []{l,r,text}), IsButtonEnable(game.Plot.CurrentOptions[1]));
+                ClickMyButton(1, new []{l,r}), IsButtonEnable(game.Plot.CurrentOptions[1]));
         }
         
         private void ClickMyButton(int btnIndex, Button[] bts)
@@ -181,7 +183,7 @@ namespace LabirintDemoGame.Visualization
             return option.Requirements == null || option.IsValid(game.Player);
         }
 
-        private new void Click(object sender, EventArgs e)
+        private new void Click()
         {
             game.EndPlotAct(); 
             Controls.Clear();
@@ -194,6 +196,8 @@ namespace LabirintDemoGame.Visualization
             pressedKeys.Add(e.KeyCode);
             if (e.KeyCode == Keys.Escape)
                 Pause();
+            if (drawResult && e.KeyCode == Keys.Space)
+                Click();
             if (game.EndGame || leader)
             {
                 start = true;
