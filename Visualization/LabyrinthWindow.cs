@@ -5,6 +5,7 @@ using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Threading;
 using System.Windows.Forms;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
@@ -29,6 +30,8 @@ namespace LabirintDemoGame.Visualization
         private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
         private readonly Font lazursky;
         private readonly PrivateFontCollection fontCollection;
+        private readonly Timer timer;
+        private bool flag;
 
         public LabyrinthWindow()
         {
@@ -52,6 +55,8 @@ namespace LabirintDemoGame.Visualization
             MinimumSize = new Size(1028, 640);
             MaximumSize = new Size(1028, 640);
             BackColor = Color.Black;
+
+            flag = false;
             
             foreach (var e in new DirectoryInfo("Images").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
@@ -60,33 +65,30 @@ namespace LabirintDemoGame.Visualization
             foreach (var e in new DirectoryInfo("Stats").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
             
-            var timer = new Timer {Interval = 100};
+            timer = new Timer {Interval = 100};
             timer.Tick += TimerTick;
             timer.Start();
         }
 
         private void TimerTick(object sender, EventArgs args)
         {
-            if(pressedKeys.Count > 0)
+            if (game.StepType != Step.Maze || pressedKeys.Count <= 0) return;
+            switch (pressedKeys.Min())
             {
-                switch (pressedKeys.Min())
-                {
-                    case Keys.Up:
-                        game.MakePlayerMove(Directions.Up);
-                        break;
-                    case Keys.Down:
-                        game.MakePlayerMove(Directions.Down);
-                        break;
-                    case Keys.Left:
-                        game.MakePlayerMove(Directions.Left);
-                        break;
-                    case Keys.Right:
-                        game.MakePlayerMove(Directions.Right);
-                        break;
-                }
+                case Keys.Up:
+                    game.MakePlayerMove(Directions.Up);
+                    break;
+                case Keys.Down:
+                    game.MakePlayerMove(Directions.Down);
+                    break;
+                case Keys.Left:
+                    game.MakePlayerMove(Directions.Left);
+                    break;
+                case Keys.Right:
+                    game.MakePlayerMove(Directions.Right);
+                    break;
             }
-            if(game.StepType == Step.Maze)
-                Invalidate();
+            Invalidate();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -105,12 +107,12 @@ namespace LabirintDemoGame.Visualization
                 DrawLeaderboard(e);
             else
             {
-                if (drawResult)
+                if (game.EndGame)
+                    Dead(e);
+                else if (drawResult)
                     Result(e);
                 else if (game.StepType == Step.Plot)
                     Plot(e);
-                else if (game.EndGame)
-                    Dead(e);
                 else if (game.StepType == Step.Maze)
                 {
                     foreach (var t in game.Map)
@@ -144,9 +146,10 @@ namespace LabirintDemoGame.Visualization
             var image = bitmaps["YouDead"];
             e.Graphics.DrawImage(image, new Point(0, 0));
             var name = "Stephan";
-            if (InputBox("New document", "New document name:", ref name) == DialogResult.OK)
+            if (InputBox("Игра окончена", "Введите Ваше имя:", ref name) == DialogResult.OK)
+            {
                 leaders.Update(name, game.Player.Gold);
-
+            }
         }
 
         private void Result(PaintEventArgs e)
@@ -279,6 +282,7 @@ namespace LabirintDemoGame.Visualization
         private void MainMenu(PaintEventArgs e)
         {
             var image = bitmaps["Menu"];
+            flag = false;
             e.Graphics.DrawImage(image, new Point(0, 0));
             if (ng)
                 e.Graphics.FillEllipse(Brushes.Silver, 655, 45, 10, 10);
@@ -371,7 +375,7 @@ namespace LabirintDemoGame.Visualization
             Invalidate();
         }
 
-        private static DialogResult InputBox(string title, string promptText, ref string value)
+        private DialogResult? InputBox(string title, string promptText, ref string value)
         {
             var form = new Form();
             var label = new Label();
@@ -407,10 +411,16 @@ namespace LabirintDemoGame.Visualization
             form.MaximizeBox = false;
             form.AcceptButton = buttonOk;
             form.CancelButton = buttonCancel;
- 
-            var dialogResult = form.ShowDialog();
-            value = textBox.Text;
-            return dialogResult;
+
+            if (!flag)
+            {
+                flag = true;
+                var dialogResult = form.ShowDialog();
+                value = textBox.Text;
+                return dialogResult;
+            }
+
+            return null;
         }
     }
 }
