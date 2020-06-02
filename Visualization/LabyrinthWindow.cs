@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Media;
@@ -26,6 +27,8 @@ namespace LabirintDemoGame.Visualization
         private bool leader;
         private Leaderboard leaders;
         private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
+        private PrivateFontCollection fontCollection;
+        private Font lazursky;
 
         public LabyrinthWindow()
         {
@@ -38,6 +41,12 @@ namespace LabirintDemoGame.Visualization
             quit = false;
             leader = false;
             leaders = new Leaderboard();
+            
+            fontCollection = new PrivateFontCollection();
+            fontCollection.AddFontFile("lazursky.ttf");
+            var family = fontCollection.Families[0];
+            lazursky = new Font(family, 14);
+            
             ClientSize = new Size(1028, 640);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MinimumSize = new Size(1028, 640);
@@ -101,14 +110,17 @@ namespace LabirintDemoGame.Visualization
                         bitmaps[
                             game.Level.Plot.CurrentAct.Image.Substring(0,
                                 game.Level.Plot.CurrentAct.Image.Length - 4)], 0,0, 1024, 640);
-                    e.Graphics.FillRectangle(Brushes.Black, 214, 400, 600, 100);
+                    e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 100);
+                    var s = new StringFormat {Alignment = StringAlignment.Center};
                     e.Graphics.DrawString(game.Level.Plot.CurrentAct.GetOptions()[index].Result,
-                        new Font("Arial", 14),
+                        lazursky,
                         Brushes.Silver, 
-                        new RectangleF(220, 410, 590, 90));
-                    e.Graphics.FillRectangle(Brushes.Black, 380, 550, 250, 40);
-                    e.Graphics.DrawString("[ press space to continue ]", new Font("Arial", 14), Brushes
-                        .Silver, new RectangleF(390, 560, 250, 90));
+                        new RectangleF(60, 410, 904, 90),
+                        s);
+                    e.Graphics.FillRectangle(Brushes.Black, 360, 550, 290, 40);
+                    e.Graphics.DrawString("[ press space to continue ]",
+                        lazursky,
+                        Brushes.Silver, new RectangleF(380, 560, 270, 90));
                 }
                 else if (game.StepType == Step.Plot)
                     Plot(e);
@@ -156,12 +168,13 @@ namespace LabirintDemoGame.Visualization
             game.StartPlotAct();
             var r = new Button();
             var l = new Button();
+            var s = new StringFormat {Alignment = StringAlignment.Center};
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
             e.Graphics.DrawImage( image, 0, 0 , 1024, 640);
             e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, StatBar);
-            e.Graphics.FillRectangle(Brushes.Black, 214, 400, 600, 100);
-            e.Graphics.DrawString(game.Level.Plot.CurrentAct.Text, new Font("Arial", 14), Brushes
-            .Silver, new RectangleF(220, 410, 590, 90));
+            e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 100);
+            e.Graphics.DrawString(game.Level.Plot.CurrentAct.Text, lazursky, Brushes
+            .Silver, new RectangleF(60, 410, 904, 90), s);
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[0].Name, 
                 new Point(50 , ClientSize.Height - 80), 50, 250, (sender, args) => ClickMyButton(0, new []{l,r}), IsButtonEnable(game.Plot.CurrentOptions[0]));
             MyButton.CreateMyButton(l, this, game.Level.Plot.CurrentOptions[1].Name, 
@@ -188,7 +201,6 @@ namespace LabirintDemoGame.Visualization
             game.EndPlotAct(); 
             Controls.Clear();
             drawResult = false;
-            //Invalidate();
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -263,13 +275,12 @@ namespace LabirintDemoGame.Visualization
         private void DrawLeaderboard(PaintEventArgs e)
         {
             var image = bitmaps["Leaderboard"];
-            var font = new Font("Arial", 36);
             e.Graphics.DrawImage(image, new Point(0, 0));
             var y = 200;
             foreach (var record in leaders.Show())
             {
-                e.Graphics.DrawString(record.Item1, font, Brushes.Silver, 240, y);
-                e.Graphics.DrawString(record.Item2, font, Brushes.Silver, 600, y);
+                e.Graphics.DrawString(record.Item1, lazursky, Brushes.Silver, 240, y);
+                e.Graphics.DrawString(record.Item2, lazursky, Brushes.Silver, 600, y);
                 y += 60;
             }
         }

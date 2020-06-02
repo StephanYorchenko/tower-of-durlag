@@ -145,6 +145,7 @@
       </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="last.txt" t="Include" />
+      <e p="lazursky.ttf" t="Include" />
       <e p="leaders.txt" t="Include" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
