@@ -25,10 +25,9 @@ namespace LabirintDemoGame.Visualization
         private bool contin;
         private bool quit;
         private bool leader;
-        private Leaderboard leaders;
+        private readonly Leaderboard leaders;
         private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
-        private PrivateFontCollection fontCollection;
-        private Font lazursky;
+        private readonly Font lazursky;
 
         public LabyrinthWindow()
         {
@@ -42,7 +41,7 @@ namespace LabirintDemoGame.Visualization
             leader = false;
             leaders = new Leaderboard();
             
-            fontCollection = new PrivateFontCollection();
+            var fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile("lazursky.ttf");
             var family = fontCollection.Families[0];
             lazursky = new Font(family, 14);
@@ -57,12 +56,11 @@ namespace LabirintDemoGame.Visualization
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
             foreach (var e in new DirectoryInfo("Stats").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
-            var timer = new Timer();
-            timer.Interval = 100;
+            var timer = new Timer {Interval = 100};
             timer.Tick += TimerTick;
             timer.Start();
         }
-        
+
         private void TimerTick(object sender, EventArgs args)
         {
             if(pressedKeys.Count > 0)
@@ -172,7 +170,7 @@ namespace LabirintDemoGame.Visualization
             var s = new StringFormat {Alignment = StringAlignment.Center};
             var image = bitmaps[game.Level.Plot.CurrentAct.Image.Substring(0, game.Level.Plot.CurrentAct.Image.Length - 4)];
             e.Graphics.DrawImage( image, 0, 0 , 1024, 640);
-            e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 100);
+            e.Graphics.FillRectangle(Brushes.Black, 50, 400, 924, 120);
             e.Graphics.DrawString(game.Level.Plot.CurrentAct.Text, 
                 lazursky, 
                 Brushes.Silver,
@@ -183,19 +181,19 @@ namespace LabirintDemoGame.Visualization
                 new Point(50 , 540), 
                 50, 400, 
                 (sender, args) => ClickMyButton
-                (0, new []{l,r}),
+                (0),
                 IsButtonEnable(game.Plot.CurrentOptions[0]),
                 lazursky);
-            MyButton.CreateMyButton(l, 
+            MyButton.CreateMyButton(r, 
                 this, game.Level.Plot.CurrentOptions[1].Name, 
                 new Point(574 , 540), 
                 50, 400,
-                (sender, args) => ClickMyButton(1, new []{l,r}),
+                (sender, args) => ClickMyButton(1),
                 IsButtonEnable(game.Plot.CurrentOptions[1]), 
                 lazursky);
         }
         
-        private void ClickMyButton(int btnIndex, Button[] bts)
+        private void ClickMyButton(int btnIndex)
         {
             game.MakePlotAction(btnIndex);
             index = btnIndex;
@@ -351,12 +349,18 @@ namespace LabirintDemoGame.Visualization
             using (var r = new StreamReader("last.txt"))
                 log = r.ReadLine();
             Console.WriteLine(log);
-            var logList = log.Split(',')
-                .Select(int.Parse)
-                .ToList();
-            game = new Game(logList[0], logList[1]);
-            game.Player = new Player(logList[2], logList[3], logList[4], logList[5], logList[6],
-                logList[7], logList[8]);
+            if (log != null)
+            {
+                var logList = log.Split(',')
+                    .Select(int.Parse)
+                    .ToList();
+                game = new Game(logList[0], logList[1])
+                {
+                    Player = new Player(logList[2], logList[3], logList[4], logList[5], logList[6],
+                        logList[7], logList[8])
+                };
+            }
+
             Invalidate();
         }
     }
