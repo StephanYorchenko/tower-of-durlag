@@ -28,11 +28,13 @@ namespace LabirintDemoGame.Visualization
         private readonly Leaderboard leaders;
         private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
         private readonly Font lazursky;
+        private readonly PrivateFontCollection fontCollection;
 
         public LabyrinthWindow()
         {
             var simpleSound = new SoundPlayer(@"Sounds/Sound1.wav");
             simpleSound.PlayLooping();
+            
             game = new Game(5, 7);
             start = true;
             ng = false;
@@ -41,7 +43,7 @@ namespace LabirintDemoGame.Visualization
             leader = false;
             leaders = new Leaderboard();
             
-            var fontCollection = new PrivateFontCollection();
+            fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile("lazursky.ttf");
             var family = fontCollection.Families[0];
             lazursky = new Font(family, 14);
@@ -50,12 +52,14 @@ namespace LabirintDemoGame.Visualization
             MinimumSize = new Size(1028, 640);
             MaximumSize = new Size(1028, 640);
             BackColor = Color.Black;
+            
             foreach (var e in new DirectoryInfo("Images").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
             foreach (var e in new DirectoryInfo("Background").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
             foreach (var e in new DirectoryInfo("Stats").GetFiles("*.png"))
                 bitmaps[e.Name.Substring(0, e.Name.Length - 4)] = (Bitmap) Image.FromFile(e.FullName);
+            
             var timer = new Timer {Interval = 100};
             timer.Tick += TimerTick;
             timer.Start();
@@ -139,7 +143,10 @@ namespace LabirintDemoGame.Visualization
             Invalidate();
             var image = bitmaps["YouDead"];
             e.Graphics.DrawImage(image, new Point(0, 0));
-            leaders.Update("Stephan", game.Player.Gold);
+            var name = "Stephan";
+            if (InputBox("New document", "New document name:", ref name) == DialogResult.OK)
+                leaders.Update(name, game.Player.Gold);
+
         }
 
         private void Result(PaintEventArgs e)
@@ -362,6 +369,48 @@ namespace LabirintDemoGame.Visualization
             }
 
             Invalidate();
+        }
+        
+        public static DialogResult InputBox(string title, string promptText, ref string value)
+        {
+            var form = new Form();
+            var label = new Label();
+            var textBox = new TextBox();
+            var buttonOk = new Button();
+            var buttonCancel = new Button();
+ 
+            form.Text = title;
+            label.Text = promptText;
+            textBox.Text = value;
+ 
+            buttonOk.Text = "OK";
+            buttonCancel.Text = "Cancel";
+            buttonOk.DialogResult = DialogResult.OK;
+            buttonCancel.DialogResult = DialogResult.Cancel;
+ 
+            label.SetBounds(9, 20, 372, 13);
+            textBox.SetBounds(12, 36, 372, 20);
+            buttonOk.SetBounds(228, 72, 75, 23);
+            buttonCancel.SetBounds(309, 72, 75, 23);
+ 
+            label.AutoSize = true;
+            textBox.Anchor |= AnchorStyles.Right;
+            buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+ 
+            form.ClientSize = new Size(396, 107);
+            form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+            form.AcceptButton = buttonOk;
+            form.CancelButton = buttonCancel;
+ 
+            var dialogResult = form.ShowDialog();
+            value = textBox.Text;
+            return dialogResult;
         }
     }
 }
