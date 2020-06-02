@@ -188,7 +188,7 @@ namespace LabirintDemoGame.Visualization
             game.EndPlotAct(); 
             Controls.Clear();
             drawResult = false;
-            Invalidate();
+            //Invalidate();
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
