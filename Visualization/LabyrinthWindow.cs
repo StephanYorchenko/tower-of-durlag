@@ -108,7 +108,7 @@ namespace LabirintDemoGame.Visualization
                         new RectangleF(220, 410, 590, 90));
                     e.Graphics.FillRectangle(Brushes.Black, 380, 550, 250, 40);
                     e.Graphics.DrawString("[ press space to continue ]", new Font("Arial", 14), Brushes
-                        .Silver, new RectangleF(390, 560, 230, 30));
+                        .Silver, new RectangleF(390, 560, 250, 90));
                 }
                 else if (game.StepType == Step.Plot)
                     Plot(e);
