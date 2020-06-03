@@ -15,7 +15,14 @@ namespace LabirintDemoGame
             "SmallRoom",
             "Steps",
             "WeaponRoom",
-            "Goblin"
+            "Goblin",
+
+            "Treasury",
+            "BigRoom",
+            "Sewerage",
+            "Sewer",
+            "Storage",
+            "Gate"
         };
     }
 }

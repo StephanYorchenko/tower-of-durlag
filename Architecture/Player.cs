@@ -31,6 +31,17 @@ namespace LabirintDemoGame.Architecture
             Sword = changes.Sword != 0? changes.Sword : Sword;
             Gold += changes.Gold;
             Supplies += changes.Supplies;
+            Minimize();
+        }
+
+        private void Minimize()
+        {
+            Hp = Math.Max(0, Hp);
+            Torch = Math.Max(0, Torch);
+            Bandage = Math.Max(0, Bandage);
+            Herb = Math.Max(0, Herb);
+            Gold = Math.Max(Gold, 0);
+            Supplies = Math.Max(Supplies, 0);
         }
 
         public static Direction Move(Directions direction)
