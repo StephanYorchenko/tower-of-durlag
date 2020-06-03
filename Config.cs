@@ -6,16 +6,16 @@ namespace LabirintDemoGame
     {
         public static readonly List<string> Cards = new List<string>
         {
-            "AlchemicalLaboratory",
-            "Cellar",
-            "Corridor",
-            "DeadMan",
-            "Ifrit",
-            "Medicine",
-            "SmallRoom",
-            "Steps",
-            "WeaponRoom",
-            "Goblin",
+            // "AlchemicalLaboratory",
+            // "Cellar",
+            // "Corridor",
+            // "DeadMan",
+            // "Ifrit",
+            // "Medicine",
+            // "SmallRoom",
+            // "Steps",
+            // "WeaponRoom",
+            // "Goblin",
 
             "Treasury",
             "BigRoom",
