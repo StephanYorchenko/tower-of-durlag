@@ -141,6 +141,7 @@
     <Content Include="Background\WeaponRoom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="c.cur" />
     <Content Include="Images\Empty.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
