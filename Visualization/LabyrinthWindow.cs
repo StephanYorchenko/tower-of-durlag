@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using LabirintDemoGame.Architecture;
 using LabirintDemoGame.Controllers;
+using NUnit.Framework.Internal;
 using Timer = System.Windows.Forms.Timer;
 
 namespace LabirintDemoGame.Visualization
@@ -113,6 +114,8 @@ namespace LabirintDemoGame.Visualization
                     Result(e);
                 else if (game.StepType == Step.Plot)
                     Plot(e);
+                else if (game.StepType == Step.Tavern)
+                    Tavern();
                 else if (game.StepType == Step.Maze)
                 {
                     foreach (var t in game.Map)
@@ -418,6 +421,11 @@ namespace LabirintDemoGame.Visualization
             value = string.Join("",textBox.Text.Split(' '));
             return dialogResult;
 
+        }
+
+        private void Tavern()
+        {
+            game.StepType = Step.Plot;
         }
     }
 }

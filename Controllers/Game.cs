@@ -62,8 +62,10 @@ namespace LabirintDemoGame.Controllers
             if (Level.Map.Gold) Player.ApplyChanges(new Option {Gold = 1});
             if (Level.Map.IsEndReached && config && logLevels.Count > 0 )
                 GetNextLevel();
-            else if (Level.Map.IsEndReached)
+            else if (Level.Map.IsEndReached && Plot.Adventure.Count > 0)
                 StepType = Step.Plot;
+            else if (Level.Map.IsEndReached && Plot.Adventure.Count == 0)
+                StepType = Step.Tavern;
         }
 
         public void StartPlotAct()

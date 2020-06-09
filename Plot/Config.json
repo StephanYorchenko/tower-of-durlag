@@ -1,0 +1,21 @@
+{
+  "TowerOfDurlag": ["AlchemicalLaboratory",
+                    "Cellar",
+                    "Corridor",
+                    "DeadMan",
+                    "Ifrit",
+                    "Medicine",
+                    "SmallRoom",
+                    "Steps",
+                    "WeaponRoom",
+                    "Goblin",
+                    "Treasury",
+                    "BigRoom",
+                    "Sewerage",
+                    "Sewer",
+                    "Storage",
+                    "Gate"],
+  "Larswood"     : [],
+  "FirewineRuins": [],
+  "Underdark"    : []
+}

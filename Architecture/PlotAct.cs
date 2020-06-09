@@ -13,12 +13,12 @@ namespace LabirintDemoGame.Architecture
 
         public static PlotAct CreateFromJson(string fileName)
         {
-            var file = $@"Cards/{fileName}.json";
+            var file = $@"Plot/Cards/{fileName}.json";
 
              var act = JsonParser.Deserialize<PlotAct>(ReadJson(file));
-             act.option1 = Option.FromJson(ReadJson($@"Options/{fileName}1.json"));
-             act.option2 = Option.FromJson(ReadJson($@"Options/{fileName}2.json"));
-             act.autoOption = Option.FromJson(ReadJson($@"Options/{fileName}0.json"));
+             act.option1 = Option.FromJson(ReadJson($@"Plot/Options/{fileName}1.json"));
+             act.option2 = Option.FromJson(ReadJson($@"Plot/Options/{fileName}2.json"));
+             act.autoOption = Option.FromJson(ReadJson($@"Plot/Options/{fileName}0.json"));
             
             return act;
         }
