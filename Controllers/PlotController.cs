@@ -41,10 +41,11 @@ namespace LabirintDemoGame.Controllers
 
         private void CreateAdventure()
         {
+            var rnd = new Random();
+            Depth = rnd.Next(3, 10);
             Adventure = new Queue<string>();
             var temp = Config.GetConfig(Location);
-            var rnd = new Random();
-            temp = temp.OrderBy(x => rnd.Next()).ToList();
+            temp = temp.OrderBy(x => rnd.Next()).Take(Depth).ToList();
             foreach (var item in temp)
             {
                 Adventure.Enqueue(item);

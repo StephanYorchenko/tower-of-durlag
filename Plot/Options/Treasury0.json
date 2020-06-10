@@ -1,5 +1,1 @@
-{
-	"Sword" :  1,
-	"Gold"  : 50,
-	"HP"    : -5
-}
+{"Torch": 0, "Herb": 0, "Sword": 1, "Gold": 50, "Supplies": 0, "Hp": 0}

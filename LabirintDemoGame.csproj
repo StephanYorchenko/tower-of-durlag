@@ -171,6 +171,9 @@
     <Content Include="Plot\Cards\AlchemicalLaboratory.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Cards\Beholder.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Plot\Cards\BigRoom.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -180,7 +183,19 @@
     <Content Include="Plot\Cards\Corridor.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Cards\Crystal.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Plot\Cards\DeadMan.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plot\Cards\Draw.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plot\Cards\Dwarf.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plot\Cards\ElvenTower.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Plot\Cards\Gate.json">
@@ -189,10 +204,16 @@
     <Content Include="Plot\Cards\Goblin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Cards\Grotto.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Plot\Cards\Ifrit.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Plot\Cards\Medicine.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plot\Cards\Ogr.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Plot\Cards\Sewer.json">
@@ -204,6 +225,9 @@
     <Content Include="Plot\Cards\SmallRoom.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Cards\Stalactite.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Plot\Cards\Steps.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -211,6 +235,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Plot\Cards\Treasury.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plot\Cards\UstNata.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Plot\Cards\WeaponRoom.json">
@@ -228,6 +255,9 @@
     <Content Include="Plot\Options\AlchemicalLaboratory2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Options\Beholder0.json" />
+    <Content Include="Plot\Options\Beholder1.json" />
+    <Content Include="Plot\Options\Beholder2.json" />
     <Content Include="Plot\Options\BigRoom0.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -255,6 +285,9 @@
     <Content Include="Plot\Options\Corridor2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Options\Crystal0.json" />
+    <Content Include="Plot\Options\Crystal1.json" />
+    <Content Include="Plot\Options\Crystal2.json" />
     <Content Include="Plot\Options\DeadMan0.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -264,6 +297,15 @@
     <Content Include="Plot\Options\DeadMan2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Options\Draw0.json" />
+    <Content Include="Plot\Options\Draw1.json" />
+    <Content Include="Plot\Options\Draw2.json" />
+    <Content Include="Plot\Options\Dwarf0.json" />
+    <Content Include="Plot\Options\Dwarf1.json" />
+    <Content Include="Plot\Options\Dwarf2.json" />
+    <Content Include="Plot\Options\ElvenTower0.json" />
+    <Content Include="Plot\Options\ElvenTower1.json" />
+    <Content Include="Plot\Options\ElvenTower2.json" />
     <Content Include="Plot\Options\Gate0.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -282,6 +324,9 @@
     <Content Include="Plot\Options\Goblin2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Options\Grotto0.json" />
+    <Content Include="Plot\Options\Grotto1.json" />
+    <Content Include="Plot\Options\Grotto2.json" />
     <Content Include="Plot\Options\Ifrit0.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -300,6 +345,9 @@
     <Content Include="Plot\Options\Medicine2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Options\Ogr0.json" />
+    <Content Include="Plot\Options\Ogr1.json" />
+    <Content Include="Plot\Options\Ogr2.json" />
     <Content Include="Plot\Options\Sewer0.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -327,6 +375,9 @@
     <Content Include="Plot\Options\SmallRoom2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Options\Stalactite0.json" />
+    <Content Include="Plot\Options\Stalactite1.json" />
+    <Content Include="Plot\Options\Stalactite2.json" />
     <Content Include="Plot\Options\Steps0.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -354,6 +405,9 @@
     <Content Include="Plot\Options\Treasury2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Plot\Options\UstNata0.json" />
+    <Content Include="Plot\Options\UstNata1.json" />
+    <Content Include="Plot\Options\UstNata2.json" />
     <Content Include="Plot\Options\WeaponRoom0.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

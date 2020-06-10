@@ -7,7 +7,6 @@ namespace LabirintDemoGame.Architecture
     {
         public Player(int health = 100,
             int torch = 1,
-            int bandage = 1,
             int herb = 1,
             int sword = 1,
             int gold = 0,
@@ -15,7 +14,6 @@ namespace LabirintDemoGame.Architecture
         {
             Hp = health;
             Torch = torch;
-            Bandage = bandage;
             Herb = herb;
             Sword = sword;
             Gold = gold;
@@ -28,7 +26,7 @@ namespace LabirintDemoGame.Architecture
             Torch += changes.Torch;
             Bandage += changes.Bandage;
             Herb += changes.Herb;
-            Sword = changes.Sword != 0? changes.Sword : Sword;
+            Sword += changes.Sword;
             Gold += changes.Gold;
             Supplies += changes.Supplies;
             Minimize();
@@ -39,6 +37,7 @@ namespace LabirintDemoGame.Architecture
             Hp = Math.Max(0, Hp);
             Torch = Math.Max(0, Torch);
             Bandage = Math.Max(0, Bandage);
+            Sword = Math.Max(0, Math.Min(1, Sword));
             Herb = Math.Max(0, Herb);
             Gold = Math.Max(Gold, 0);
             Supplies = Math.Max(Supplies, 0);

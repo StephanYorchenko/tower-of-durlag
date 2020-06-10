@@ -370,8 +370,8 @@ namespace LabirintDemoGame.Visualization
                     .ToList();
                 game = new Game(logList[0], logList[1])
                 {
-                    Player = new Player(logList[2], logList[3], logList[4], logList[5], logList[6],
-                        logList[7], logList[8])
+                    Player = new Player(logList[2], logList[3], logList[4], logList[5],
+                        logList[6], logList[7])
                 };
             }
 
