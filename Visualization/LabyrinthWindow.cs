@@ -33,12 +33,12 @@ namespace LabirintDemoGame.Visualization
         private readonly PrivateFontCollection fontCollection;
         private readonly Timer timer;
         private bool flag;
+        private bool soundOn = true;
+        private SoundPlayer simpleSound = new SoundPlayer(@"Sounds/Sound1.wav");
 
         public LabyrinthWindow()
         {
-            var simpleSound = new SoundPlayer(@"Sounds/Sound1.wav");
             simpleSound.PlayLooping();
-            
             game = new Game(5, 7);
             start = true;
             ng = false;
@@ -56,6 +56,7 @@ namespace LabirintDemoGame.Visualization
             MinimumSize = new Size(1028, 640);
             MaximumSize = new Size(1028, 640);
             BackColor = Color.Black;
+            Cursor = new Cursor("c.cur");
 
             flag = false;
             
@@ -86,6 +87,18 @@ namespace LabirintDemoGame.Visualization
                     game.MakePlayerMove(Directions.Left);
                     break;
                 case Keys.Right:
+                    game.MakePlayerMove(Directions.Right);
+                    break;
+                case Keys.W:
+                    game.MakePlayerMove(Directions.Up);
+                    break;
+                case Keys.S:
+                    game.MakePlayerMove(Directions.Down);
+                    break;
+                case Keys.A:
+                    game.MakePlayerMove(Directions.Left);
+                    break;
+                case Keys.D:
                     game.MakePlayerMove(Directions.Right);
                     break;
             }
@@ -234,6 +247,19 @@ namespace LabirintDemoGame.Visualization
                 Pause();
             if (drawResult && e.KeyCode == Keys.Space)
                 Click();
+            if (e.KeyCode == Keys.M)
+            {
+                if(soundOn)
+                {
+                    simpleSound.Stop();
+                    soundOn = false;
+                }
+                else
+                {
+                    simpleSound.PlayLooping();
+                    soundOn = true;
+                }
+            }
             if (game.EndGame || leader)
             {
                 start = true;
@@ -260,18 +286,16 @@ namespace LabirintDemoGame.Visualization
         {
             e.Graphics.DrawImage(bitmaps[GetHpImageName()], 0, 0);
             e.Graphics.DrawString(game.Player.Hp.ToString(), new Font("Arial", 14), Brushes.Yellow, 64, 40);
-            e.Graphics.DrawImage(bitmaps["Bandage"], 100, 0);
-            e.Graphics.DrawString(game.Player.Bandage.ToString(), new Font("Arial", 14), Brushes.Yellow, 160, 40);
-            e.Graphics.DrawImage(bitmaps["Herb"], 192, 0);
-            e.Graphics.DrawString(game.Player.Herb.ToString(), new Font("Arial", 14), Brushes.Yellow, 256, 40);
-            e.Graphics.DrawImage(bitmaps["Supplies"], 288, 0);
-            e.Graphics.DrawString(game.Player.Supplies.ToString(), new Font("Arial", 14), Brushes.Yellow, 352, 40);
-            e.Graphics.DrawImage(bitmaps["Torch"], 384, 0);
-            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 448, 40);
-            e.Graphics.DrawImage(bitmaps["Gold"], 480, 0);
-            e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 14), Brushes.Yellow, 544, 40);
+            e.Graphics.DrawImage(bitmaps["Herb"], 110, 0);
+            e.Graphics.DrawString(game.Player.Herb.ToString(), new Font("Arial", 14), Brushes.Yellow, 164, 40);
+            e.Graphics.DrawImage(bitmaps["Supplies"], 196, 0);
+            e.Graphics.DrawString(game.Player.Supplies.ToString(), new Font("Arial", 14), Brushes.Yellow, 260, 40);
+            e.Graphics.DrawImage(bitmaps["Torch"], 292, 0);
+            e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 356, 40);
+            e.Graphics.DrawImage(bitmaps["Gold"], 388, 0);
+            e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 14), Brushes.Yellow, 440, 40);
             if (game.Player.Sword != 2)
-                e.Graphics.DrawImage(bitmaps["Sword"], 600, 0);
+                e.Graphics.DrawImage(bitmaps["Sword"], 480, 0);
         }
 
         private string GetHpImageName()
