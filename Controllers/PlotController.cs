@@ -11,8 +11,6 @@ namespace LabirintDemoGame.Controllers
 
         public PlotController(bool config = false)
         {
-            var rnd = new Random();
-            Depth = rnd.Next(3, 10);
             Location = "TowerOfDurlag";
             CreateAdventure();
             if (!config)

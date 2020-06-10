@@ -24,7 +24,6 @@ namespace LabirintDemoGame.Architecture
         {
             Hp = Math.Min(100, Hp + changes.Hp);
             Torch += changes.Torch;
-            Bandage += changes.Bandage;
             Herb += changes.Herb;
             Sword += changes.Sword;
             Gold += changes.Gold;
@@ -36,7 +35,6 @@ namespace LabirintDemoGame.Architecture
         {
             Hp = Math.Max(0, Hp);
             Torch = Math.Max(0, Torch);
-            Bandage = Math.Max(0, Bandage);
             Sword = Math.Max(0, Math.Min(1, Sword));
             Herb = Math.Max(0, Herb);
             Gold = Math.Max(Gold, 0);
@@ -58,7 +56,6 @@ namespace LabirintDemoGame.Architecture
             return new List<int>
             {
                 Torch,
-                Bandage,
                 Herb,
                 Sword,
                 Gold,
