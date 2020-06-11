@@ -150,7 +150,7 @@ namespace LabirintDemoGame.Visualization
                                 c.X * (SizeImage - 1), StatBar + c.Y *
                                 (SizeImage - 1)));
                         else if (t.Type == CellTypes.End)
-                            e.Graphics.DrawImage(bitmaps["Gold"], new Point(
+                            e.Graphics.DrawImage(bitmaps[GetExitImageName()], new Point(
                                 c.X * (SizeImage - 1), StatBar + c.Y *
                                 (SizeImage - 1)));
                         if (!t.IsExplored)
@@ -334,6 +334,19 @@ namespace LabirintDemoGame.Visualization
             }
         }
 
+        private string GetExitImageName()
+        {
+            switch (game.Plot.Location)
+            {
+                case "Underdark":
+                    return "End0";
+                case "Larswood":
+                    return "End2";
+                default:
+                    return "End0";
+            }
+        }
+
         private string GetEmptyImageName()
         {
             switch (game.Plot.Location)
@@ -439,10 +452,10 @@ namespace LabirintDemoGame.Visualization
         private void Pause()
         {
             start = true;
-            var p = string.Join(",", game.Player.Check());
-            var log = $"{game.MazeWidth},{game.MazeHeight},{game.Player.Hp}," + p;
-            using (var w = new StreamWriter("last.txt"))
-                w.Write(log);
+            // var p = string.Join(",", game.Player.Check());
+            // var log = $"{game.MazeWidth},{game.MazeHeight},{game.Player.Hp}," + p;
+            // using (var w = new StreamWriter("last.txt"))
+            //     w.Write(log);
         }
 
         private void Continue()

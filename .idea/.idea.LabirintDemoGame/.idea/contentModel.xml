@@ -74,7 +74,8 @@
         <e p="Empty0.png" t="Include" />
         <e p="Empty1.png" t="Include" />
         <e p="Empty2.png" t="Include" />
-        <e p="End.png" t="Include" />
+        <e p="End0.png" t="Include" />
+        <e p="End2.png" t="Include" />
         <e p="Gold.png" t="Include" />
         <e p="Player.png" t="Include" />
         <e p="Start.png" t="Include" />
@@ -89,6 +90,7 @@
           <e p="AlchemicalLaboratory.json" t="Include" />
           <e p="Beholder.json" t="Include" />
           <e p="BigRoom.json" t="Include" />
+          <e p="Camp.json" t="Include" />
           <e p="Cellar.json" t="Include" />
           <e p="Corridor.json" t="Include" />
           <e p="Crystal.json" t="Include" />
@@ -97,11 +99,17 @@
           <e p="Dwarf.json" t="Include" />
           <e p="ElvenTower.json" t="Include" />
           <e p="Gate.json" t="Include" />
+          <e p="Gnoll.json" t="Include" />
           <e p="Goblin.json" t="Include" />
+          <e p="GoblinRanger.json" t="Include" />
+          <e p="GoblinTroll.json" t="Include" />
+          <e p="GoblinsBand.json" t="Include" />
           <e p="Grotto.json" t="Include" />
           <e p="Ifrit.json" t="Include" />
           <e p="Medicine.json" t="Include" />
           <e p="Ogr.json" t="Include" />
+          <e p="OldRoad.json" t="Include" />
+          <e p="Ruins.json" t="Include" />
           <e p="Sewer.json" t="Include" />
           <e p="Sewerage.json" t="Include" />
           <e p="SmallRoom.json" t="Include" />
@@ -109,6 +117,7 @@
           <e p="Steps.json" t="Include" />
           <e p="Storage.json" t="Include" />
           <e p="Treasury.json" t="Include" />
+          <e p="Undead.json" t="Include" />
           <e p="UstNata.json" t="Include" />
           <e p="WeaponRoom.json" t="Include" />
         </e>
@@ -123,6 +132,9 @@
           <e p="BigRoom0.json" t="Include" />
           <e p="BigRoom1.json" t="Include" />
           <e p="BigRoom2.json" t="Include" />
+          <e p="Camp0.json" t="Include" />
+          <e p="Camp1.json" t="Include" />
+          <e p="Camp2.json" t="Include" />
           <e p="Cellar0.json" t="Include" />
           <e p="Cellar1.json" t="Include" />
           <e p="Cellar2.json" t="Include" />
@@ -147,9 +159,21 @@
           <e p="Gate0.json" t="Include" />
           <e p="Gate1.json" t="Include" />
           <e p="Gate2.json" t="Include" />
+          <e p="Gnoll0.json" t="Include" />
+          <e p="Gnoll1.json" t="Include" />
+          <e p="Gnoll2.json" t="Include" />
           <e p="Goblin0.json" t="Include" />
           <e p="Goblin1.json" t="Include" />
           <e p="Goblin2.json" t="Include" />
+          <e p="GoblinRanger0.json" t="Include" />
+          <e p="GoblinRanger1.json" t="Include" />
+          <e p="GoblinRanger2.json" t="Include" />
+          <e p="GoblinTroll0.json" t="Include" />
+          <e p="GoblinTroll1.json" t="Include" />
+          <e p="GoblinTroll2.json" t="Include" />
+          <e p="GoblinsBand0.json" t="Include" />
+          <e p="GoblinsBand1.json" t="Include" />
+          <e p="GoblinsBand2.json" t="Include" />
           <e p="Grotto0.json" t="Include" />
           <e p="Grotto1.json" t="Include" />
           <e p="Grotto2.json" t="Include" />
@@ -162,6 +186,12 @@
           <e p="Ogr0.json" t="Include" />
           <e p="Ogr1.json" t="Include" />
           <e p="Ogr2.json" t="Include" />
+          <e p="OldRoad0.json" t="Include" />
+          <e p="OldRoad1.json" t="Include" />
+          <e p="OldRoad2.json" t="Include" />
+          <e p="Ruins0.json" t="Include" />
+          <e p="Ruins1.json" t="Include" />
+          <e p="Ruins2.json" t="Include" />
           <e p="Sewer0.json" t="Include" />
           <e p="Sewer1.json" t="Include" />
           <e p="Sewer2.json" t="Include" />
@@ -183,6 +213,9 @@
           <e p="Treasury0.json" t="Include" />
           <e p="Treasury1.json" t="Include" />
           <e p="Treasury2.json" t="Include" />
+          <e p="Undead0.json" t="Include" />
+          <e p="Undead1.json" t="Include" />
+          <e p="Undead2.json" t="Include" />
           <e p="UstNata0.json" t="Include" />
           <e p="UstNata1.json" t="Include" />
           <e p="UstNata2.json" t="Include" />
