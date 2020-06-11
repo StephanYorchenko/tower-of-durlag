@@ -339,7 +339,7 @@ namespace LabirintDemoGame.Visualization
             switch (game.Plot.Location)
             {
                 case "Underdark":
-                    return "End0";
+                    return "End1";
                 case "Larswood":
                     return "End2";
                 default:
