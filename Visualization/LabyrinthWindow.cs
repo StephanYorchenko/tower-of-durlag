@@ -31,6 +31,7 @@ namespace LabirintDemoGame.Visualization
         private bool larswoodSign;
         private bool underdarkSign;
         private bool towerSign;
+        private bool preSign;
         private readonly Leaderboard leaders;
         private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
         private readonly Font lazursky;
@@ -49,6 +50,7 @@ namespace LabirintDemoGame.Visualization
             contin = false;
             quit = false;
             leader = false;
+            preSign = false;
             leaders = new Leaderboard();
             
             fontCollection = new PrivateFontCollection();
@@ -106,7 +108,7 @@ namespace LabirintDemoGame.Visualization
                     break;
             }
 
-            signs = game.StepType == Step.Tavern;
+            preSign = game.StepType == Step.Tavern;
             Invalidate();
         }
 
@@ -124,6 +126,8 @@ namespace LabirintDemoGame.Visualization
                 MainMenu(e);
             else if (leader)
                 DrawLeaderboard(e);
+            else if (preSign)
+                EndAdventure(e);
             else
             {
                 if (game.EndGame)
@@ -262,7 +266,7 @@ namespace LabirintDemoGame.Visualization
                 Click();
             if (e.KeyCode == Keys.M)
             {
-                if(soundOn)
+                if (soundOn)
                 {
                     simpleSound.Stop();
                     soundOn = false;
@@ -272,6 +276,12 @@ namespace LabirintDemoGame.Visualization
                     simpleSound.PlayLooping();
                     soundOn = true;
                 }
+            }
+
+            if (preSign)
+            {
+                preSign = false;
+                signs = true;
             }
             if (game.EndGame || leader)
             {
@@ -323,7 +333,7 @@ namespace LabirintDemoGame.Visualization
         {
             switch (game.Plot.Location)
             {
-                case "TowerOfDurlsg":
+                case "TowerOfDurlag":
                     return "Wall0";
                 case "Underdark":
                     return "Wall1";
@@ -452,10 +462,6 @@ namespace LabirintDemoGame.Visualization
         private void Pause()
         {
             start = true;
-            // var p = string.Join(",", game.Player.Check());
-            // var log = $"{game.MazeWidth},{game.MazeHeight},{game.Player.Hp}," + p;
-            // using (var w = new StreamWriter("last.txt"))
-            //     w.Write(log);
         }
 
         private void Continue()
@@ -558,6 +564,25 @@ namespace LabirintDemoGame.Visualization
                 e.Graphics.DrawLine(pen, 994, 195, 947, 227);
                 e.Graphics.DrawLine(pen, 947, 227, 793, 234);
             }
+        }
+
+        private void EndAdventure(PaintEventArgs e)
+        {
+            string name = "EndAdventure0";
+            switch (game.Plot.Location)
+            {
+                case "TowerOfDurlag":
+                    name = "EndAdventure0";
+                    break;
+                case "Larswood":
+                    name = "EndAdventure2";
+                    break;
+                case "Underdark":
+                    name = "EndAdventure1";
+                    break;
+            }
+            e.Graphics.DrawImage(
+                bitmaps[name], 0, 0, 1024, 640);
         }
     }
 }

@@ -28,6 +28,9 @@
         <e p="Draw.png" t="Include" />
         <e p="Dwarf.png" t="Include" />
         <e p="ElvenTower.png" t="Include" />
+        <e p="EndAdventure0.png" t="Include" />
+        <e p="EndAdventure1.png" t="Include" />
+        <e p="EndAdventure2.png" t="Include" />
         <e p="Gate.png" t="Include" />
         <e p="Gnoll.png" t="Include" />
         <e p="Goblin.png" t="Include" />
