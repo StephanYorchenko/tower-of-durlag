@@ -59,8 +59,8 @@ namespace LabirintDemoGame.Visualization
             lazursky = new Font(family, 13);
 
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            MinimumSize = new Size(1028, 640);
-            MaximumSize = new Size(1028, 640);
+            MinimumSize = new Size(1026, 644);
+            MaximumSize = new Size(1028, 644);
             BackColor = Color.Black;
 
             flag = false;
@@ -583,6 +583,7 @@ namespace LabirintDemoGame.Visualization
             }
             e.Graphics.DrawImage(
                 bitmaps[name], 0, 0, 1024, 640);
+            Thread.Sleep(500);
         }
     }
 }
