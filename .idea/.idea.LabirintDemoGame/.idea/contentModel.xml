@@ -18,22 +18,44 @@
       </e>
       <e p="Background" t="Include">
         <e p="AlchemicalLaboratory.png" t="Include" />
+        <e p="Beholder.png" t="Include" />
         <e p="BigRoom.png" t="Include" />
+        <e p="Camp.png" t="Include" />
         <e p="Cellar.png" t="Include" />
         <e p="Corridor.png" t="Include" />
+        <e p="Crystal.png" t="Include" />
         <e p="DeadMan.png" t="Include" />
+        <e p="Draw.png" t="Include" />
+        <e p="Dwarf.png" t="Include" />
+        <e p="ElvenTower.png" t="Include" />
         <e p="Gate.png" t="Include" />
+        <e p="Gnoll.png" t="Include" />
         <e p="Goblin.png" t="Include" />
+        <e p="GoblinRanger.png" t="Include" />
+        <e p="GoblinTroll.png" t="Include" />
+        <e p="GoblinsBand.png" t="Include" />
+        <e p="Grotto.png" t="Include" />
         <e p="Ifrit.png" t="Include" />
         <e p="Leaderboard.png" t="Include" />
         <e p="Medicine.png" t="Include" />
         <e p="Menu.png" t="Include" />
+        <e p="MistyForest.png" t="Include" />
+        <e p="Ogr.png" t="Include" />
+        <e p="OldRoad.png" t="Include" />
+        <e p="Outlaws.png" t="Include" />
+        <e p="Ruins.png" t="Include" />
         <e p="Sewer.png" t="Include" />
         <e p="Sewerage.png" t="Include" />
         <e p="SmallRoom.png" t="Include" />
+        <e p="Stalactite.png" t="Include" />
         <e p="Steps.png" t="Include" />
         <e p="Storage.png" t="Include" />
+        <e p="Swamp.png" t="Include" />
         <e p="Treasury.png" t="Include" />
+        <e p="Trolls.png" t="Include" />
+        <e p="Undead.png" t="Include" />
+        <e p="UstNata.png" t="Include" />
+        <e p="Ways.png" t="Include" />
         <e p="WeaponRoom.png" t="Include" />
         <e p="YouDead.png" t="Include" />
       </e>
@@ -49,12 +71,16 @@
         <e p="MapSizeGenerator.cs" t="Include" />
       </e>
       <e p="Images" t="Include">
-        <e p="Empty.png" t="Include" />
+        <e p="Empty0.png" t="Include" />
+        <e p="Empty1.png" t="Include" />
+        <e p="Empty2.png" t="Include" />
         <e p="End.png" t="Include" />
         <e p="Gold.png" t="Include" />
         <e p="Player.png" t="Include" />
         <e p="Start.png" t="Include" />
-        <e p="Wall.png" t="Include" />
+        <e p="Wall0.png" t="Include" />
+        <e p="Wall1.png" t="Include" />
+        <e p="Wall2.png" t="Include" />
       </e>
       <e p="LabirintDemoGame.csproj" t="IncludeRecursive" />
       <e p="LabirintDemoGame.sln" t="IncludeFlat" />
@@ -213,6 +239,7 @@
         <e p="LabyrinthWindow.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
+      <e p="c.cur" t="Include" />
       <e p="last.txt" t="Include" />
       <e p="lazursky.ttf" t="Include" />
       <e p="leaders.txt" t="Include" />

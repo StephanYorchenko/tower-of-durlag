@@ -27,6 +27,10 @@ namespace LabirintDemoGame.Visualization
         private bool contin;
         private bool quit;
         private bool leader;
+        private bool signs;
+        private bool larswoodSign;
+        private bool underdarkSign;
+        private bool towerSign;
         private readonly Leaderboard leaders;
         private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
         private readonly Font lazursky;
@@ -56,7 +60,6 @@ namespace LabirintDemoGame.Visualization
             MinimumSize = new Size(1028, 640);
             MaximumSize = new Size(1028, 640);
             BackColor = Color.Black;
-            Cursor = new Cursor("c.cur");
 
             flag = false;
             
@@ -102,6 +105,8 @@ namespace LabirintDemoGame.Visualization
                     game.MakePlayerMove(Directions.Right);
                     break;
             }
+
+            signs = game.StepType == Step.Tavern;
             Invalidate();
         }
 
@@ -127,17 +132,25 @@ namespace LabirintDemoGame.Visualization
                     Result(e);
                 else if (game.StepType == Step.Plot)
                     Plot(e);
-                else if (game.StepType == Step.Tavern)
-                    Tavern();
+                else if (signs)
+                    Signs(e);
                 else if (game.StepType == Step.Maze)
                 {
                     foreach (var t in game.Map)
                     {
                         var c = GetWindowCoordinates(t);
-                        e.Graphics.DrawImage(bitmaps["Empty"],
+                        e.Graphics.DrawImage(bitmaps[GetEmptyImageName()],
                             new Point(c.X * (SizeImage - 1), StatBar + c.Y * (SizeImage - 1)));
-                        if (t.Type != CellTypes.Player)
-                            e.Graphics.DrawImage(bitmaps[t.Type.ToString()], new Point(
+                        if (t.Type == CellTypes.Wall)
+                            e.Graphics.DrawImage(bitmaps[GetWallImageName()], new Point(
+                                c.X * (SizeImage - 1), StatBar + c.Y *
+                                (SizeImage - 1)));
+                        else if (t.Type == CellTypes.Gold)
+                            e.Graphics.DrawImage(bitmaps["Gold"], new Point(
+                                c.X * (SizeImage - 1), StatBar + c.Y *
+                                (SizeImage - 1)));
+                        else if (t.Type == CellTypes.End)
+                            e.Graphics.DrawImage(bitmaps["Gold"], new Point(
                                 c.X * (SizeImage - 1), StatBar + c.Y *
                                 (SizeImage - 1)));
                         if (!t.IsExplored)
@@ -294,7 +307,7 @@ namespace LabirintDemoGame.Visualization
             e.Graphics.DrawString(game.Player.Torch.ToString(), new Font("Arial", 14), Brushes.Yellow, 356, 40);
             e.Graphics.DrawImage(bitmaps["Gold"], 388, 0);
             e.Graphics.DrawString(game.Player.Gold.ToString(), new Font("Arial", 14), Brushes.Yellow, 440, 40);
-            if (game.Player.Sword != 2)
+            if (game.Player.Sword != 0)
                 e.Graphics.DrawImage(bitmaps["Sword"], 480, 0);
         }
 
@@ -304,6 +317,34 @@ namespace LabirintDemoGame.Visualization
             hp = Math.Max(1, hp);
             hp = Math.Min(hp, 21);
             return $"{hp}";
+        }
+
+        private string GetWallImageName()
+        {
+            switch (game.Plot.Location)
+            {
+                case "TowerOfDurlsg":
+                    return "Wall0";
+                case "Underdark":
+                    return "Wall1";
+                case "Larswood":
+                    return "Wall2";
+                default:
+                    return "Wall0";
+            }
+        }
+
+        private string GetEmptyImageName()
+        {
+            switch (game.Plot.Location)
+            {
+                case "Underdark":
+                    return "Empty1";
+                case "Larswood":
+                    return "Empty2";
+                default:
+                    return "Empty0";
+            }
         }
 
         private void MainMenu(PaintEventArgs e)
@@ -336,39 +377,62 @@ namespace LabirintDemoGame.Visualization
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (!start) return;
-            ng = e.Y < 80 && e.Y > 10 && e.X > 655;
-            contin = e.Y < 155 && e.Y > 80 && e.X > 750;
-            leader = e.Y < 230 && e.Y > 170 && e.X > 600;
-            quit = e.Y < 320 && e.Y > 245 && e.X > 845;
-            Invalidate();
+            if (start)
+            {
+                ng = e.Y < 80 && e.Y > 10 && e.X > 655;
+                contin = e.Y < 155 && e.Y > 80 && e.X > 750;
+                leader = e.Y < 230 && e.Y > 170 && e.X > 600;
+                quit = e.Y < 320 && e.Y > 245 && e.X > 845;
+                Invalidate();
+            }
+            else if (signs)
+            {
+                towerSign = e.Y > 318 && e.Y < 401 && 232 < e.X && e.X < 419;
+                underdarkSign = 211 < e.Y && e.Y < 294 && 472 < e.X && e.X < 621;
+                larswoodSign = 173 < e.Y && e.Y < 234 && 772 < e.X && e.X < 994;
+                Invalidate();
+            }
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
-            if (!start) return;
-            if (ng)
+            if (!(start || signs)) return;
+            if (ng && start)
             {
                 start = false;
                 NewGame();
             }
-            else if (leader)
+            else if (leader && start)
             {
                 start = false;
             }
-            else if (contin)
+            else if (contin && start)
             {
                 Continue();
                 start = false;
             }
-            else if (quit)
+            else if (quit && start)
                 Close();
+            else if (signs)
+            {
+                if (towerSign)
+                    game.Plot.Location = "TowerOfDurlag";
+                else if (underdarkSign)
+                    game.Plot.Location = "Underdark";
+                else if (larswoodSign)
+                    game.Plot.Location = "Larswood";
+                game.Plot.CreateAdventure();
+                game.GetNextLevel();
+                game.StepType = Step.Maze;
+                signs = false;
+            }
             Invalidate();
         }
 
         private void NewGame()
         {
             game = new Game(5, 7);
+            signs = true;
             drawResult = false;
         }
 
@@ -399,6 +463,8 @@ namespace LabirintDemoGame.Visualization
                 };
             }
 
+            game.StepType = Step.Tavern;
+            signs = true;
             Invalidate();
         }
 
@@ -447,9 +513,38 @@ namespace LabirintDemoGame.Visualization
 
         }
 
-        private void Tavern()
+        private void Signs(PaintEventArgs e)
         {
-            game.StepType = Step.Plot;
+            var p = string.Join(",", game.Player.Check());
+            var log = $"{game.MazeWidth},{game.MazeHeight},{game.Player.Hp}," + p;
+            using (var w = new StreamWriter("last.txt"))
+                w.Write(log);
+            e.Graphics.DrawImage(
+                bitmaps["Ways"], 0, 0, 1024, 640);
+            var pen = new Pen(Brushes.Silver, 3);
+            if (towerSign)
+            {
+                e.Graphics.DrawLine(pen, 232, 354, 287, 324);
+                e.Graphics.DrawLine(pen, 287, 324, 419, 318);
+                e.Graphics.DrawLine(pen, 232, 354, 296, 387);
+                e.Graphics.DrawLine(pen, 415, 401, 296, 387);
+            }
+            
+            if (underdarkSign)
+            {
+                e.Graphics.DrawLine(pen, 472, 211, 584, 233);
+                e.Graphics.DrawLine(pen, 621, 264, 584, 233);
+                e.Graphics.DrawLine(pen, 621, 264, 583, 292);
+                e.Graphics.DrawLine(pen, 461, 294, 583, 292);
+            }
+            
+            if (larswoodSign)
+            {
+                e.Graphics.DrawLine(pen, 772, 174, 921, 173);
+                e.Graphics.DrawLine(pen, 921, 173, 994, 195);
+                e.Graphics.DrawLine(pen, 994, 195, 947, 227);
+                e.Graphics.DrawLine(pen, 947, 227, 793, 234);
+            }
         }
     }
 }

@@ -35,7 +35,7 @@ namespace LabirintDemoGame.Architecture
         {
             Hp = Math.Max(0, Hp);
             Torch = Math.Max(0, Torch);
-            Sword = Math.Max(0, Math.Min(1, Sword));
+            Sword = Math.Min(1, Math.Max(0, Sword));
             Herb = Math.Max(0, Herb);
             Gold = Math.Max(Gold, 0);
             Supplies = Math.Max(Supplies, 0);

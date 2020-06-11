@@ -20,6 +20,7 @@ namespace LabirintDemoGame
         }
         public List<string> GetLocations(string area)
         {
+            
             switch (area)
             {
                 case "TowerOfDurlag":
