@@ -271,10 +271,8 @@ class MainWindow(QWidget):
         if file_name:
             directory = './Plot/'
             name = file_name[-file_name[::-1].find('/'):-5]
-            print(name)
             self.name.setText(name)
             location = self.get_locations(name)
-            print(location)
             for k, v in self.main_plot.locations.items():
                 if k == location:
                     v.setChecked(True)
